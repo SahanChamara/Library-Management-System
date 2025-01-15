@@ -1,0 +1,99 @@
+/* Root Styles */
+.root {
+    -fx-font-family: "Roboto", sans-serif;
+}
+
+/* AnchorPane Styles */
+.anchor-pane {
+    -fx-background-radius: 10;
+}
+
+/* Left Pane Styling */
+.anchor-pane.left-pane {
+    -fx-background-color: #4a5a72;
+}
+
+.anchor-pane.right-pane {
+    -fx-background-color: #0f172a;
+}
+
+/* Label Styles */
+.label {
+    -fx-text-fill: #bdbfc3;
+    -fx-font-size: 14px;
+}
+
+.label.header {
+    -fx-font-size: 28px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.label.subheader {
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-text-fill: linear-gradient(from 0% 0% to 100% 100%, #007BFF, #00FF94);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 1, 1);
+}
+
+.label.small {
+    -fx-font-size: 13px;
+    -fx-text-fill: #94a3b8;
+}
+
+.label.link {
+    -fx-text-fill: #0ea5e9;
+    -fx-underline: true;
+    -fx-cursor: hand;
+}
+
+/* JFXButton Styles */
+.jfx-button {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #007BFF, #00FF94);
+    -fx-background-radius: 30;
+    -fx-padding: 10 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 2, 2);
+    -fx-cursor: hand;
+}
+
+.jfx-button:hover {
+    -fx-background-color: #0ea5e9;
+}
+
+#signUpButton {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #007BFF, #00FF94);
+    -fx-background-radius: 30;
+    -fx-padding: 10 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 2, 2);
+    -fx-cursor: hand;
+}
+
+
+/* JFXTextField & JFXPasswordField Styles */
+.jfx-text-field,
+.jfx-password-field {
+    -fx-background-color: #1e293b;
+    -fx-background-radius: 5;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #94a3b8;
+    -fx-padding: 5 10;
+    -fx-font-size: 14px;
+}
+
+.jfx-text-field:focused,
+.jfx-password-field:focused {
+    -fx-border-color: #2896ec;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+}
+
+/* ImageView Styles */
+.image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
+}
