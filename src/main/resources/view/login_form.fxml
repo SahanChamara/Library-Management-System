@@ -99,7 +99,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <JFXButton id="sendcode" layoutX="22.0" layoutY="274.0" onAction="#btnSignInOnAction" prefHeight="29.0" prefWidth="272.0" style="-fx-background-radius: 10;" styleClass="sendcode" stylesheets="@../styles/loginForm.css" text="Verify Code" textFill="WHITE">
+            <JFXButton id="sendcode" layoutX="22.0" layoutY="274.0" onAction="#btnVerifyCodeOnAction" prefHeight="29.0" prefWidth="272.0" style="-fx-background-radius: 10;" styleClass="sendcode" stylesheets="@../styles/loginForm.css" text="Verify Code" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="10.0" />
                </font>

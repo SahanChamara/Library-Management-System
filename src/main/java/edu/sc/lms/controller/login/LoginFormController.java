@@ -1,7 +1,6 @@
 package edu.sc.lms.controller.login;
 
 import animatefx.animation.FadeIn;
-import animatefx.animation.FadeOut;
 import animatefx.animation.ZoomIn;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -16,7 +15,6 @@ import org.apache.commons.lang3.RandomStringUtils;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.swing.*;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -51,6 +49,7 @@ public class LoginFormController {
     private JFXPasswordField txtPassword;
 
     private String generateOTP;
+    private String existEmail;
 
     @FXML
     void btnBackMouseClick(MouseEvent event) {
@@ -59,13 +58,29 @@ public class LoginFormController {
 
     @FXML
     void btnResetPassword(ActionEvent event) {
-
+        if(txtNewResetPassword.getText().equals(txtNewConfirmPassword.getText())){
+            if(LoginController.getInstance().updatePassword(txtNewResetPassword.getText(), existEmail)){
+                new Alert(Alert.AlertType.INFORMATION,"Password Reset Successful").show();
+            }else{
+                new Alert(Alert.AlertType.ERROR,"Password Reset Failed").show();
+            }
+        }else{
+            new Alert(Alert.AlertType.ERROR,"Please Check the Input Password and Try Again").show();
+        }
     }
 
     @FXML
     void btnSendCode(ActionEvent event) {
-        String recipentEmail = txtEmailEnterPassReset.getText();
-        sendEmail(recipentEmail);
+        try {
+            if (LoginController.getInstance().isExistUser(txtEmailEnterPassReset.getText())) {
+                sendEmail(txtEmailEnterPassReset.getText());
+                existEmail = txtEmailEnterPassReset.getText();
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "Please Enter Your Account Create Email Address").show();
+            }
+        }catch (NumberFormatException e){
+            new Alert(Alert.AlertType.INFORMATION,"Please Enter the Email Address").show();
+        }
     }
 
     private void sendEmail(String recipentEmail) {
@@ -89,7 +104,6 @@ public class LoginFormController {
         });
 
         Message message = prepareMessage(session, myEmail, recipentEmail, generateOTP);
-        System.out.println(message);
         if (message != null) {
             new Alert(Alert.AlertType.INFORMATION, "Your Verification Code is send you email").show();
             paneEnterOTP.toFront();
@@ -156,5 +170,10 @@ public class LoginFormController {
         paneSignIn.toFront();
         new ZoomIn(paneSignIn).play();
 
+    }
+
+    @FXML
+    public void btnVerifyCodeOnAction(ActionEvent actionEvent) {
+        
     }
 }
