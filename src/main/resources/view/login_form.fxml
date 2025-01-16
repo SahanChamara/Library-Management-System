@@ -47,6 +47,46 @@
                </font>
             </Label>
          </children></AnchorPane>
+      <AnchorPane fx:id="paneForgotPassword" layoutX="345.0" prefHeight="434.0" prefWidth="355.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="22.0" layoutY="106.0" prefHeight="29.0" prefWidth="195.0" text="Forgot Password">
+               <font>
+                  <Font name="Lucida Bright Demibold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="135.0" prefHeight="21.0" prefWidth="272.0" text="Enter you email to receive a verification code" textFill="#656565">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="176.0" prefHeight="21.0" prefWidth="58.0" text="Email">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtEmailEnterPassReset" layoutX="22.0" layoutY="205.0" prefHeight="31.0" prefWidth="272.0" promptText="Enter your email" style="-fx-background-radius: 10;" styleClass="jfx-text-field" stylesheets="@../styles/loginForm.css" />
+            <ImageView fitHeight="21.0" fitWidth="20.0" layoutX="25.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/email.png" />
+               </image>
+            </ImageView>
+            <JFXButton id="sendcode" layoutX="22.0" layoutY="274.0" onAction="#btnSendCode" prefHeight="29.0" prefWidth="272.0" style="-fx-background-radius: 10;" styleClass="sendcode" stylesheets="@../styles/loginForm.css" text="Send Code" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="21.0" fitWidth="35.0" layoutX="22.0" layoutY="31.0" onMouseClicked="#forgotPassFormBack" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/arrow.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="50.0" layoutY="32.0" prefHeight="17.0" prefWidth="44.0" text="Back">
+               <font>
+                  <Font name="Candara Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="paneEnterOTP" layoutX="345.0" layoutY="1.0" prefHeight="434.0" prefWidth="355.0" style="-fx-background-color: #ffffff;">
          <children>
             <Label layoutX="22.0" layoutY="106.0" prefHeight="29.0" prefWidth="195.0" text="Enter OTP">
@@ -139,46 +179,6 @@
                   <Image url="@../assets/password.png" />
                </image>
             </ImageView>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="paneForgotPassword" layoutX="345.0" prefHeight="434.0" prefWidth="355.0" style="-fx-background-color: #ffffff;">
-         <children>
-            <Label layoutX="22.0" layoutY="106.0" prefHeight="29.0" prefWidth="195.0" text="Forgot Password">
-               <font>
-                  <Font name="Lucida Bright Demibold" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="22.0" layoutY="135.0" prefHeight="21.0" prefWidth="272.0" text="Enter you email to receive a verification code" textFill="#656565">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <Label layoutX="22.0" layoutY="176.0" prefHeight="21.0" prefWidth="58.0" text="Email">
-               <font>
-                  <Font name="Calibri Bold" size="16.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="txtEmailEnterPassReset" layoutX="22.0" layoutY="205.0" prefHeight="31.0" prefWidth="272.0" promptText="Enter your email" style="-fx-background-radius: 10;" styleClass="jfx-text-field" stylesheets="@../styles/loginForm.css" />
-            <ImageView fitHeight="21.0" fitWidth="20.0" layoutX="25.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/email.png" />
-               </image>
-            </ImageView>
-            <JFXButton id="sendcode" layoutX="22.0" layoutY="274.0" onAction="#btnSendCode" prefHeight="29.0" prefWidth="272.0" style="-fx-background-radius: 10;" styleClass="sendcode" stylesheets="@../styles/loginForm.css" text="Send Code" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="10.0" />
-               </font>
-            </JFXButton>
-            <ImageView fitHeight="21.0" fitWidth="35.0" layoutX="22.0" layoutY="31.0" onMouseClicked="#forgotPassFormBack" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/arrow.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="50.0" layoutY="32.0" prefHeight="17.0" prefWidth="44.0" text="Back">
-               <font>
-                  <Font name="Candara Bold" size="12.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="paneSignIn" layoutX="345.0" layoutY="1.0" prefHeight="434.0" prefWidth="355.0" style="-fx-background-color: #ffffff;">
