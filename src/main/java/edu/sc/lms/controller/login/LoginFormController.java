@@ -1,9 +1,14 @@
 package edu.sc.lms.controller.login;
 
+import animatefx.animation.FadeIn;
+import animatefx.animation.FadeOut;
+import animatefx.animation.ZoomIn;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import edu.sc.lms.model.Staff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
@@ -53,6 +58,11 @@ public class LoginFormController {
 
     @FXML
     void btnSignInOnAction(ActionEvent event) {
+        if(LoginController.getInstance().loginUser(new Staff(null,txtEmail.getText(),null,txtPassword.getText()))){
+            new Alert(Alert.AlertType.INFORMATION,"Login Successful").show();
+        }else {
+            new Alert(Alert.AlertType.INFORMATION,"Login failed").show();
+        }
 
     }
 
@@ -63,7 +73,14 @@ public class LoginFormController {
 
     @FXML
     void forgotPassOnMouseClick(MouseEvent event) {
-
+        new FadeIn(paneForgotPassword).play();
+        paneForgotPassword.toFront();
     }
 
+    @FXML
+    public void forgotPassFormBack(MouseEvent mouseEvent) {
+        paneSignIn.toFront();
+        new ZoomIn(paneSignIn).play();
+
+    }
 }
