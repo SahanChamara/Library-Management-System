@@ -1,6 +1,6 @@
 /* Root Styles */
 .root {
-    -fx-font-family: "Roboto", sans-serif;
+    -fx-font-family: "PlayfairDisplay-SemiBold", sans-serif;
 }
 
 /* AnchorPane Styles */
@@ -32,7 +32,7 @@
 .label.subheader {
     -fx-font-size: 38px;
     -fx-font-weight: bold;
-    -fx-text-fill: linear-gradient(from 0% 0% to 100% 100%, #007BFF, #00FF94);
+    -fx-text-fill: linear-gradient(from 0% 0% to 100% 100%, #007BFF, #8161f6);
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 1, 1);
 }
 
@@ -52,7 +52,7 @@
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
-    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #007BFF, #00FF94);
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #007BFF, #9f58f6);
     -fx-background-radius: 30;
     -fx-padding: 10 20;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 2, 2);
@@ -74,15 +74,32 @@
     -fx-cursor: hand;
 }
 
+#sendcode{
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #007BFF, #9f58f6);
+    -fx-background-radius: 30;
+    -fx-padding: 10 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 2, 2);
+    -fx-cursor: hand;
+}
+
+#veryCode{
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 2;
+    -fx-text-fill: black;
+    -fx-font-size: 15px;
+}
 
 /* JFXTextField & JFXPasswordField Styles */
 .jfx-text-field,
 .jfx-password-field {
-    -fx-background-color: #1e293b;
+    -fx-background-color: #ffffff;
     -fx-background-radius: 5;
-    -fx-text-fill: white;
-    -fx-prompt-text-fill: #94a3b8;
-    -fx-padding: 5 10;
+    -fx-text-fill: black;
+    -fx-prompt-text-fill: gray;
+    -fx-padding: 5 30;
     -fx-font-size: 14px;
 }
 

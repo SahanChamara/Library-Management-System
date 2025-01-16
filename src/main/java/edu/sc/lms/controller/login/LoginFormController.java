@@ -1,6 +1,5 @@
 package edu.sc.lms.controller.login;
 
-import animatefx.animation.FadeInDownBig;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -11,7 +10,13 @@ import javafx.scene.layout.AnchorPane;
 public class LoginFormController {
 
     @FXML
-    private AnchorPane paneCreateAnAccount;
+    private AnchorPane paneEnterOTP;
+
+    @FXML
+    private AnchorPane paneForgotPassword;
+
+    @FXML
+    private AnchorPane paneResetPassword;
 
     @FXML
     private AnchorPane paneSignIn;
@@ -20,19 +25,29 @@ public class LoginFormController {
     private JFXTextField txtEmail;
 
     @FXML
-    private JFXTextField txtNewEmail;
+    private JFXTextField txtEmailEnterPassReset;
 
     @FXML
-    private JFXPasswordField txtNewPassword;
+    private JFXTextField txtNewConfirmPassword;
 
     @FXML
-    private JFXTextField txtNewUserName;
+    private JFXTextField txtNewResetPassword;
 
     @FXML
     private JFXPasswordField txtPassword;
 
     @FXML
-    void btnCreateAccountOnAction(ActionEvent event) {
+    void btnBackMouseClick(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnResetPassword(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnSendCode(ActionEvent event) {
 
     }
 
@@ -43,9 +58,7 @@ public class LoginFormController {
 
     @FXML
     void createAccountOnMouseClick(MouseEvent event) {
-        paneSignIn.setVisible(false);
-        new FadeInDownBig(paneCreateAnAccount).play();
-        paneCreateAnAccount.toFront();
+
     }
 
     @FXML

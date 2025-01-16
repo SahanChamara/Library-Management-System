@@ -12,26 +12,26 @@
 
 <AnchorPane prefHeight="424.0" prefWidth="700.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.login.LoginFormController">
    <children>
-      <AnchorPane prefHeight="434.0" prefWidth="349.0" style="-fx-background-color: #4a5a72;">
+      <AnchorPane prefHeight="434.0" prefWidth="349.0" style="-fx-background-color: #f25f5ff;">
          <children>
             <Label layoutX="21.0" layoutY="21.0" prefHeight="38.0" prefWidth="220.0" styleClass="subheader" stylesheets="@../styles/loginForm.css" text="Welcome to" textFill="#2896ec">
                <font>
-                  <Font name="System Bold" size="38.0" />
+                  <Font name="Bookman Old Style" size="38.0" />
                </font>
             </Label>
             <Label layoutX="25.0" layoutY="63.0" prefHeight="38.0" prefWidth="220.0" styleClass="subheader" stylesheets="@../styles/loginForm.css" text="LibraryMS" textFill="#2896ec">
                <font>
-                  <Font name="System Bold" size="38.0" />
+                  <Font name="Blackadder ITC" size="38.0" />
                </font>
             </Label>
-            <Label layoutX="27.0" layoutY="117.0" prefHeight="21.0" prefWidth="286.0" text="Experience the future of library" textFill="#94a3b8" />
-            <Label layoutX="27.0" layoutY="138.0" prefHeight="21.0" prefWidth="286.0" text="management" textFill="#94a3b8" />
+            <Label layoutX="27.0" layoutY="117.0" prefHeight="21.0" prefWidth="286.0" text="Experience the future of library" textFill="#4d4d4d" />
+            <Label layoutX="27.0" layoutY="138.0" prefHeight="21.0" prefWidth="286.0" text="management" textFill="#4d4d4d" />
             <ImageView fitHeight="29.0" fitWidth="35.0" layoutX="26.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/login%20icon%201.png" />
                </image>
             </ImageView>
-            <Label layoutX="63.0" layoutY="305.0" prefHeight="21.0" prefWidth="286.0" text="Smart book tracking &amp; management" textFill="WHITE">
+            <Label layoutX="63.0" layoutY="305.0" prefHeight="21.0" prefWidth="286.0" text="Smart book tracking &amp; management" textFill="#222222">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -41,82 +41,150 @@
                   <Image url="@../assets/analytics.png" />
                </image>
             </ImageView>
-            <Label layoutX="63.0" layoutY="342.0" prefHeight="21.0" prefWidth="235.0" text="Advanced analytics &amp; Insights" textFill="WHITE">
+            <Label layoutX="63.0" layoutY="342.0" prefHeight="21.0" prefWidth="235.0" text="Advanced analytics &amp; Insights" textFill="#222222">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
          </children></AnchorPane>
-      <AnchorPane fx:id="paneCreateAnAccount" layoutX="349.0" prefHeight="434.0" prefWidth="362.0" style="-fx-background-color: #0f172a;">
+      <AnchorPane fx:id="paneEnterOTP" layoutX="345.0" layoutY="1.0" prefHeight="434.0" prefWidth="355.0" style="-fx-background-color: #ffffff;">
          <children>
-            <JFXButton id="signUpButton" layoutX="43.0" layoutY="329.0" onAction="#btnCreateAccountOnAction" prefHeight="35.0" prefWidth="272.0" style="-fx-background-color: #1c9dea; -fx-background-radius: 10;" stylesheets="@../styles/loginForm.css" text="Create an account" textFill="WHITE">
+            <Label layoutX="22.0" layoutY="106.0" prefHeight="29.0" prefWidth="195.0" text="Enter OTP">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="Lucida Bright Demibold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="135.0" prefHeight="21.0" prefWidth="272.0" text="We sent a verification code to your email" textFill="#656565">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <JFXButton id="sendcode" layoutX="22.0" layoutY="274.0" onAction="#btnSignInOnAction" prefHeight="29.0" prefWidth="272.0" style="-fx-background-radius: 10;" styleClass="sendcode" stylesheets="@../styles/loginForm.css" text="Verify Code" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="10.0" />
                </font>
             </JFXButton>
-            <Label layoutX="29.0" layoutY="25.0" prefHeight="31.0" prefWidth="127.0" text="Sign Up" textFill="WHITE">
+            <JFXTextField id="veryCode" layoutX="22.0" layoutY="181.0" prefHeight="35.0" prefWidth="74.0" stylesheets="@../styles/loginForm.css">
                <font>
-                  <Font name="System Bold" size="28.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
-            </Label>
-            <Label layoutX="32.0" layoutY="76.0" prefHeight="21.0" prefWidth="44.0" text="Email" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <JFXTextField fx:id="txtNewEmail" layoutX="29.0" layoutY="100.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="35.0" prefWidth="255.0" promptText="Enter email" style="-fx-background-color: #1e293b; -fx-background-radius: 5;">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
             </JFXTextField>
-            <Label layoutX="31.0" layoutY="239.0" prefHeight="21.0" prefWidth="74.0" text="Password" textFill="WHITE">
+            <JFXTextField id="veryCode" layoutX="96.0" layoutY="181.0" prefHeight="35.0" prefWidth="74.0" stylesheets="@../styles/loginForm.css" />
+            <JFXTextField id="veryCode" layoutX="180.0" layoutY="181.0" prefHeight="35.0" prefWidth="74.0" stylesheets="@../styles/loginForm.css" />
+            <JFXTextField id="veryCode" layoutX="257.0" layoutY="181.0" prefHeight="35.0" prefWidth="74.0" stylesheets="@../styles/loginForm.css" />
+            <Label layoutX="59.0" layoutY="318.0" prefHeight="17.0" prefWidth="139.0" text="Didn't receive the code?" />
+            <Label layoutX="195.0" layoutY="316.0" onMouseClicked="#createAccountOnMouseClick" prefHeight="21.0" prefWidth="66.0" text="Resend" textFill="#0ea5e9">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <JFXPasswordField fx:id="txtNewPassword" layoutX="29.0" layoutY="265.0" prefHeight="35.0" prefWidth="255.0" promptText="Enter password" style="-fx-background-color: #1e293b; -fx-background-radius: 5;">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </JFXPasswordField>
-            <Label layoutX="29.0" layoutY="153.0" prefHeight="21.0" prefWidth="74.0" text="User Name" textFill="WHITE">
+            <ImageView fitHeight="21.0" fitWidth="35.0" layoutX="14.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/arrow.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="42.0" layoutY="43.0" prefHeight="17.0" prefWidth="44.0" text="Back">
                <font>
-                  <Font name="System Bold" size="13.0" />
+                  <Font name="Candara Bold" size="12.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtNewUserName" layoutX="29.0" layoutY="180.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="35.0" prefWidth="255.0" promptText="Enter User Name" style="-fx-background-color: #1e293b; -fx-background-radius: 5;">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-            </JFXTextField>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="paneSignIn" layoutX="356.0" prefHeight="434.0" prefWidth="355.0" style="-fx-background-color: #0f172a;">
+      <AnchorPane fx:id="paneResetPassword" layoutX="345.0" layoutY="2.0" prefHeight="434.0" prefWidth="355.0" style="-fx-background-color: #ffffff;">
          <children>
-            <Label layoutX="39.0" layoutY="33.0" prefHeight="31.0" prefWidth="127.0" text="Sign In" textFill="WHITE">
+            <Label layoutX="22.0" layoutY="106.0" prefHeight="29.0" prefWidth="195.0" text="Reset Password">
                <font>
-                  <Font name="System Bold" size="28.0" />
+                  <Font name="Lucida Bright Demibold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="40.0" layoutY="74.0" prefHeight="21.0" prefWidth="286.0" text="Welcome back! Please enter you details" textFill="#bdbfc3" />
-            <Label layoutX="40.0" layoutY="112.0" prefHeight="21.0" prefWidth="44.0" text="Email" textFill="WHITE">
+            <Label layoutX="22.0" layoutY="135.0" prefHeight="21.0" prefWidth="272.0" text="Create a new password for your account" textFill="#656565">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <JFXButton id="sendcode" layoutX="22.0" layoutY="352.0" onAction="#btnResetPassword" prefHeight="29.0" prefWidth="272.0" style="-fx-background-radius: 10;" styleClass="sendcode" stylesheets="@../styles/loginForm.css" text="Reset Password" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="21.0" fitWidth="35.0" layoutX="14.0" layoutY="42.0" onMouseClicked="#btnBackMouseClick" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/arrow.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="42.0" layoutY="43.0" prefHeight="17.0" prefWidth="44.0" text="Back">
+               <font>
+                  <Font name="Candara Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="177.0" prefHeight="21.0" prefWidth="113.0" text="New Password">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtNewResetPassword" layoutX="22.0" layoutY="200.0" prefHeight="31.0" prefWidth="272.0" promptText="Enter new password" style="-fx-background-radius: 10;" styleClass="jfx-text-field" stylesheets="@../styles/loginForm.css" />
+            <ImageView fitHeight="21.0" fitWidth="35.0" layoutX="25.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/password.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="22.0" layoutY="262.0" prefHeight="21.0" prefWidth="139.0" text="Confirm Password">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtNewConfirmPassword" layoutX="22.0" layoutY="286.0" prefHeight="31.0" prefWidth="272.0" promptText="Confirm new password" style="-fx-background-radius: 10;" styleClass="jfx-text-field" stylesheets="@../styles/loginForm.css" />
+            <ImageView fitHeight="21.0" fitWidth="35.0" layoutX="25.0" layoutY="292.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/password.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneForgotPassword" layoutX="345.0" prefHeight="434.0" prefWidth="355.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="22.0" layoutY="106.0" prefHeight="29.0" prefWidth="195.0" text="Forgot Password">
+               <font>
+                  <Font name="Lucida Bright Demibold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="135.0" prefHeight="21.0" prefWidth="272.0" text="Enter you email to receive a verification code" textFill="#656565">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="176.0" prefHeight="21.0" prefWidth="58.0" text="Email">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="txtEmailEnterPassReset" layoutX="22.0" layoutY="205.0" prefHeight="31.0" prefWidth="272.0" promptText="Enter your email" style="-fx-background-radius: 10;" styleClass="jfx-text-field" stylesheets="@../styles/loginForm.css" />
+            <ImageView fitHeight="21.0" fitWidth="20.0" layoutX="25.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/email.png" />
+               </image>
+            </ImageView>
+            <JFXButton id="sendcode" layoutX="22.0" layoutY="274.0" onAction="#btnSendCode" prefHeight="29.0" prefWidth="272.0" style="-fx-background-radius: 10;" styleClass="sendcode" stylesheets="@../styles/loginForm.css" text="Send Code" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="paneSignIn" layoutX="345.0" layoutY="1.0" prefHeight="434.0" prefWidth="355.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="39.0" layoutY="33.0" prefHeight="31.0" prefWidth="127.0" text="Sign In">
+               <font>
+                  <Font name="Serif Bold" size="28.0" />
+               </font>
+            </Label>
+            <Label layoutX="40.0" layoutY="74.0" prefHeight="21.0" prefWidth="286.0" text="Welcome back! Please enter you details" textFill="#5b5b5b" />
+            <Label layoutX="40.0" layoutY="112.0" prefHeight="21.0" prefWidth="44.0" text="Email">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtEmail" layoutX="40.0" layoutY="142.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="35.0" prefWidth="255.0" promptText="Enter your email" style="-fx-background-color: #1e293b; -fx-background-radius: 5;">
+            <JFXTextField fx:id="txtEmail" layoutX="40.0" layoutY="142.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="35.0" prefWidth="255.0" promptText="Enter your email" style="-fx-background-color: #fffff; -fx-background-radius: 8;">
                <font>
                   <Font size="14.0" />
                </font>
@@ -127,12 +195,12 @@
                   <Insets left="10.0" />
                </padding>
             </JFXTextField>
-            <Label layoutX="40.0" layoutY="198.0" prefHeight="21.0" prefWidth="74.0" text="Password" textFill="WHITE">
+            <Label layoutX="41.0" layoutY="198.0" prefHeight="21.0" prefWidth="74.0" text="Password">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <JFXPasswordField fx:id="txtPassword" layoutX="40.0" layoutY="219.0" prefHeight="35.0" prefWidth="255.0" promptText="Enter your password" style="-fx-background-color: #1e293b; -fx-background-radius: 5;">
+            <JFXPasswordField fx:id="txtPassword" layoutX="40.0" layoutY="219.0" prefHeight="35.0" prefWidth="255.0" promptText="Enter your password" style="-fx-background-color: #ffff; -fx-background-radius: 8;">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -142,17 +210,11 @@
                   <Font name="System Bold" size="11.0" />
                </font>
             </Label>
-            <JFXButton layoutX="40.0" layoutY="309.0" onAction="#btnSignInOnAction" prefHeight="35.0" prefWidth="272.0" style="-fx-background-color: #1c9dea; -fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@../styles/loginForm.css" text="Sign In" textFill="WHITE">
+            <JFXButton layoutX="40.0" layoutY="306.0" onAction="#btnSignInOnAction" prefHeight="25.0" prefWidth="272.0" style="-fx-background-radius: 10;" styleClass="jfx-button" stylesheets="@../styles/loginForm.css" text="Sign In" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </JFXButton>
-            <Label layoutX="56.0" layoutY="377.0" prefHeight="21.0" prefWidth="127.0" text="Dont have an account?" textFill="#bdbfc3" />
-            <Label layoutX="184.0" layoutY="377.0" onMouseClicked="#createAccountOnMouseClick" prefHeight="21.0" prefWidth="127.0" text="Create account" textFill="#0ea5e9">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
    </children>
