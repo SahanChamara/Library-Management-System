@@ -16,4 +16,5 @@ public class Book {
     private String availability;
     private String categoryId;
     private String authorId;
+    private String bookCoverImg;
 }
