@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="238.0" prefWidth="214.0" style="-fx-background-radius: 10; -fx-background-color: #74b9ff;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.bookcard.BookCardFormController">
+<AnchorPane prefHeight="238.0" prefWidth="214.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.bookcard.BookCardFormController">
+   <stylesheets>
+      <URL value="@../styles/bookcard.css" />
+   </stylesheets>
    <children>
-      <ImageView fx:id="coverImg" fitHeight="131.0" fitWidth="200.0" layoutX="64.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="coverImg" fitHeight="131.0" fitWidth="200.0" layoutX="68.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" styleClass="image-view">
          <image>
             <Image url="@../assets/book%20cover.png" />
          </image>
       </ImageView>
-      <Label fx:id="lblBookTtle" layoutX="20.0" layoutY="148.0" prefHeight="28.0" prefWidth="96.0" text="Book Title">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
-      <Label fx:id="lblPrice" layoutX="20.0" layoutY="185.0" prefHeight="28.0" prefWidth="96.0" text="Price">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
+      <Label fx:id="lblBookTtle" layoutX="15.0" layoutY="148.0" prefHeight="28.0" prefWidth="190.0" styleClass="label" text="Book Title :" />
+      <Label fx:id="lblPrice" layoutX="15.0" layoutY="185.0" prefHeight="28.0" prefWidth="190.0" styleClass="label" text="Price :" />
    </children>
 </AnchorPane>

@@ -1,0 +1,37 @@
+/* General Styles for the Card */
+.anchor-pane {
+    /*-fx-background-color: linear-gradient(to bottom, #74b9ff, #0984e3); /* Modern gradient effect */
+    -fx-background-radius: 15; /* Rounded corners */
+    -fx-border-color: rgba(0, 0, 0, 0.2); /* Subtle shadow color as border */
+    -fx-border-width: 1; /* Border width for the shadow effect */
+    -fx-border-radius: 15; /* Match border radius with background */
+    -fx-padding: 10; /* Inner spacing */
+    -fx-transition: all 0.3s ease-in-out; /* Smooth animations */
+}
+
+/* Book Cover Image */
+.image-view {
+    -fx-border-radius: 10; /* Rounded corners for the image */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 8, 0.5, 0, 2); /* Shadow for the image */
+    -fx-margin: 10; /* Space around the image */
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+/* Book Title Label */
+.label {
+    -fx-font-family: "Segoe UI Semibold"; /* Modern font */
+    -fx-font-size: 14px; /* Adjust font size */
+    -fx-text-fill: #2d3436; /* Neutral text color */
+    -fx-padding: 5 10; /* Padding for spacing */
+}
+
+/* Hover Effect for the Card */
+.anchor-pane:hover {
+    -fx-border-color: rgba(0, 0, 0, 0.4); /* Darker border on hover */
+    -fx-border-width: 2; /* Slightly thicker border on hover */
+}
+
+/* Hover Effect for the Image */
+.image-view:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 12, 0.5, 0, 3); /* Enhanced shadow */
+}
