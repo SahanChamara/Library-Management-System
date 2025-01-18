@@ -1,12 +1,19 @@
 package edu.sc.lms.controller.dashboard;
 
 import edu.sc.lms.dbconnection.DBConnection;
+import edu.sc.lms.model.Book;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DashboardController implements DashBoardService {
     private static DashboardController instance;
+    private Image image;
 
     private DashboardController() {
     }
@@ -39,7 +46,35 @@ public class DashboardController implements DashBoardService {
     public String borrowedBooks() {
         try {
             ResultSet rst = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT COUNT(RecordId) FROM bookrecord");
-            return rst.next()?rst.getString(1):null;
+            return rst.next() ? rst.getString(1) : null;
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    @Override
+    public List<Book> loadBookToCard() {
+        ArrayList<Book> bookArrayList = new ArrayList<>();
+        try {
+            ResultSet rst = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT BookTitle,price,coverImg FROM book");
+            while (rst.next()) {
+                InputStream is = rst.getBinaryStream(3);
+                try {
+                    FileOutputStream os = new FileOutputStream(new File("bookCoverImg.jpg"));
+                    byte[] contents = new byte[1024];
+                    int size = 0;
+                    while ((size = is.read(contents)) != -1) {
+                        os.write(contents, 0, size);
+                    }
+                    image = new Image("file:bookCoverImg.jpg");
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                bookArrayList.add(new Book(null, rst.getString(1), null, rst.getDouble(2), null, image, null, null));
+            }
+            return bookArrayList;
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);
         }

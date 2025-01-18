@@ -1,5 +1,6 @@
 package edu.sc.lms.model;
 
+import javafx.scene.image.Image;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,8 @@ public class Book {
     private String isbn;
     private Double price;
     private String availability;
+    private Image bookCoverImg;
     private String categoryId;
     private String authorId;
-    private String bookCoverImg;
+
 }

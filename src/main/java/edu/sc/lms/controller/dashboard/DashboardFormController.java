@@ -106,13 +106,21 @@ public class DashboardFormController implements Initializable {
     private List<Book> getData() {
         List<Book> bookCard = new ArrayList<>();
         Book book;
-        for (int i = 0; i < 20; i++) {
+
+        for (Book bookDatabase : DashboardController.getInstance().loadBookToCard()) {
             book = new Book();
-            book.setBookTitle("Foundation");
-            book.setPrice(1500.00);
-            book.setBookCoverImg("/assets/book cover.png");
+            book.setBookTitle(bookDatabase.getBookTitle());
+            book.setPrice(bookDatabase.getPrice());
+            book.setBookCoverImg(bookDatabase.getBookCoverImg());
             bookCard.add(book);
         }
+//        for (int i = 0; i < 20; i++) {
+//            book = new Book();
+//            book.setBookTitle("Foundation");
+//            book.setPrice(1500.00);
+//            book.setBookCoverImg("/assets/book cover.png");
+//            bookCard.add(book);
+//        }
         return bookCard;
     }
 
@@ -120,7 +128,6 @@ public class DashboardFormController implements Initializable {
         bookCardArray.addAll(getData());
         int column = 0;
         int row = 1;
-
         for (Book book : bookCardArray) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/view/book_card__view.fxml"));
