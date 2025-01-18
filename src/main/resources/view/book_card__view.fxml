@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="238.0" prefWidth="214.0" style="-fx-background-radius: 10;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.bookcard.BookCardFormController">
+   <children>
+      <ImageView fx:id="coverImg" fitHeight="131.0" fitWidth="200.0" layoutX="64.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" scaleX="1.5">
+         <image>
+            <Image url="@../assets/book%20cover.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="lblBookTtle" layoutX="20.0" layoutY="148.0" prefHeight="28.0" prefWidth="96.0" text="Book Title" />
+      <Label fx:id="lblPrice" layoutX="20.0" layoutY="185.0" prefHeight="28.0" prefWidth="96.0" text="Price" />
+   </children>
+</AnchorPane>

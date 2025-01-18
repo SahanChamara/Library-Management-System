@@ -13,6 +13,7 @@ public class Book {
     private String bookId;
     private String bookTitle;
     private String isbn;
+    private Double price;
     private String availability;
     private String categoryId;
     private String authorId;
