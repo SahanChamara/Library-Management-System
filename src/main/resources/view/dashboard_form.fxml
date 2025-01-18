@@ -1,38 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import io.github.palexdev.mfxcore.controls.Label?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../styles/dashboard.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.dashboard.DashboardFormController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f2eeed;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.dashboard.DashboardFormController">
    <children>
-      <AnchorPane layoutX="-3.0" prefHeight="1085.0" prefWidth="447.0" style="-fx-background-color: #007BFF;">
+      <AnchorPane layoutX="-3.0" prefHeight="1085.0" prefWidth="382.0" style="-fx-background-color: #007BFF;">
          <children>
-            <Circle fill="DODGERBLUE" layoutX="89.0" layoutY="90.0" radius="49.0" stroke="BLACK" strokeType="INSIDE" />
-            <ImageView fitHeight="62.0" fitWidth="71.0" layoutX="58.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+            <Circle fill="DODGERBLUE" layoutX="71.0" layoutY="73.0" radius="49.0" stroke="BLACK" strokeType="INSIDE" />
+            <ImageView fitHeight="62.0" fitWidth="71.0" layoutX="40.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/user.png" />
                </image>
             </ImageView>
-            <Label layoutX="160.0" layoutY="50.0" prefHeight="46.0" prefWidth="241.0" text="Sahan Chamara" textFill="WHITE">
+            <Label layoutX="132.0" layoutY="29.0" prefHeight="46.0" prefWidth="241.0" text="Sahan Chamara" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="31.0" />
                </font>
             </Label>
-            <Label layoutX="160.0" layoutY="91.0" prefHeight="46.0" prefWidth="241.0" text="LibrarayMs" textFill="WHITE">
+            <Label layoutX="132.0" layoutY="70.0" prefHeight="46.0" prefWidth="241.0" text="LibrarayMs" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="23.0" />
                </font>
             </Label>
-            <Line endX="235.66665649414062" layoutX="175.0" layoutY="163.0" startX="-141.66665649414062" stroke="#c9c9c9" />
-            <JFXButton layoutX="28.0" layoutY="209.0" prefHeight="69.0" prefWidth="240.0" text="Dashboard" textFill="WHITE">
+            <Line endX="194.0" layoutX="167.0" layoutY="152.0" startX="-141.66665649414062" stroke="#c9c9c9" />
+            <JFXButton layoutX="40.0" layoutY="204.0" prefHeight="29.0" prefWidth="240.0" stylesheets="@../styles/dashboard.css" text="Dashboard" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
@@ -47,14 +53,14 @@
                   <Insets left="5.0" />
                </padding>
             </JFXButton>
-            <JFXButton layoutX="28.0" layoutY="319.0" prefHeight="69.0" prefWidth="361.0" text="Books Management" textFill="WHITE">
+            <JFXButton layoutX="40.0" layoutY="292.0" prefHeight="53.0" prefWidth="241.0" stylesheets="@../styles/dashboard.css" text="Books Management" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="49.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../assets/dashboad.png" />
+                        <Image url="@../assets/book%20management.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -62,22 +68,225 @@
                   <Insets left="5.0" />
                </padding>
             </JFXButton>
-            <JFXButton layoutX="33.0" layoutY="426.0" prefHeight="46.0" prefWidth="240.0" text="Members" textFill="WHITE">
+            <JFXButton layoutX="40.0" layoutY="381.0" prefHeight="46.0" prefWidth="240.0" stylesheets="@../styles/dashboard.css" text="Members" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
                <graphic>
                   <ImageView fitHeight="49.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../assets/dashboad.png" />
+                        <Image url="@../assets/member.png" />
                      </image>
                   </ImageView>
                </graphic>
                <padding>
                   <Insets left="5.0" />
                </padding>
+            </JFXButton>
+            <JFXButton layoutX="40.0" layoutY="469.0" prefHeight="18.0" prefWidth="240.0" stylesheets="@../styles/dashboard.css" text="Circulation" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/circulation.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton layoutX="41.0" layoutY="556.0" prefHeight="18.0" prefWidth="240.0" stylesheets="@../styles/dashboard.css" text="Reports" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/report.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton layoutX="70.0" layoutY="947.0" prefHeight="53.0" prefWidth="209.0" text="Log Out" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </JFXButton>
          </children>
       </AnchorPane>
+      <Label layoutX="406.0" layoutY="33.0" prefHeight="47.0" prefWidth="303.0" text="Library Dashboard">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <JFXTextField layoutX="755.0" layoutY="32.0" prefHeight="47.0" prefWidth="711.0" promptText="Search books, members or transactions">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </JFXTextField>
+      <JFXButton layoutX="1501.0" layoutY="44.0" prefHeight="47.0" prefWidth="181.0" text="Add Book">
+         <font>
+            <Font size="23.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="49.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="1696.0" layoutY="44.0" prefHeight="51.0" prefWidth="214.0" text="Add Member">
+         <font>
+            <Font size="23.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="49.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <AnchorPane layoutX="455.0" layoutY="122.0" prefHeight="158.0" prefWidth="314.0" style="-fx-background-radius: 10; -fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="14.0" layoutY="20.0" prefHeight="38.0" prefWidth="157.0" text="Total Books">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="79.0" prefHeight="34.0" prefWidth="62.0" text="120">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="803.0" layoutY="122.0" prefHeight="158.0" prefWidth="314.0" style="-fx-background-radius: 10; -fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="14.0" layoutY="20.0" prefHeight="38.0" prefWidth="200.0" text="Active Members">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="79.0" prefHeight="34.0" prefWidth="62.0" text="120">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1171.0" layoutY="122.0" prefHeight="158.0" prefWidth="322.0" style="-fx-background-radius: 10; -fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="14.0" layoutY="20.0" prefHeight="38.0" prefWidth="200.0" text="Books Borrowed">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="79.0" prefHeight="34.0" prefWidth="62.0" text="120">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1558.0" layoutY="122.0" prefHeight="158.0" prefWidth="314.0" style="-fx-background-radius: 10; -fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="14.0" layoutY="20.0" prefHeight="38.0" prefWidth="200.0" text="Due Returns">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+            <Label layoutX="17.0" layoutY="79.0" prefHeight="34.0" prefWidth="62.0" text="120">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <TabPane layoutX="439.0" layoutY="311.0" prefHeight="677.0" prefWidth="1433.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Recently Added">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="409.0" prefWidth="1345.0">
+                     <children>
+                        <AnchorPane layoutX="26.0" layoutY="23.0" prefHeight="278.0" prefWidth="241.0" style="-fx-background-radius: 10; -fx-background-color: #ffffff;">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="21.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="21.0" layoutY="177.0" prefHeight="34.0" prefWidth="91.0" text="Book Title">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="21.0" layoutY="205.0" prefHeight="34.0" prefWidth="117.0" text="Book Author">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="21.0" layoutY="236.0" prefHeight="34.0" prefWidth="117.0" text="Avalability">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="26.0" layoutY="335.0" prefHeight="278.0" prefWidth="241.0" style="-fx-background-radius: 10; -fx-background-color: #ffffff;">
+                           <children>
+                              <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="21.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="21.0" layoutY="177.0" prefHeight="34.0" prefWidth="91.0" text="Book Title">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="21.0" layoutY="205.0" prefHeight="34.0" prefWidth="117.0" text="Book Author">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="21.0" layoutY="236.0" prefHeight="34.0" prefWidth="117.0" text="Avalability">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <GridPane layoutX="6.0" prefHeight="19.0" prefWidth="19.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Most Popular">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </AnchorPane>
