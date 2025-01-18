@@ -1,0 +1,50 @@
+/* General Button Styles */
+.jfx-button {
+    -fx-background-color: linear-gradient(to right, #0056b3, #007BFF); /* Gradient effect for the default state */
+    -fx-border-color: transparent; /* No border by default */
+    -fx-text-fill: white; /* White text */
+    -fx-font-family: 'Arial'; /* Clean font */
+    -fx-font-size: 18px; /* Readable font size */
+    -fx-padding: 8 15; /* Padding for balanced appearance */
+    -fx-background-radius: 25px; /* Rounded corners */
+    -fx-cursor: hand; /* Pointer cursor on hover */
+    -fx-alignment: center-left; /* Align icon and text */
+    -fx-transition: all 0.3s ; /* Smooth transition */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 8, 0.5, 0, 2); /* Subtle shadow */
+}
+
+/* Hover Effect */
+.jfx-button:hover {
+    -fx-background-color: linear-gradient(to right, #5f27cd, #0652DD); /* Reverse gradient on hover */
+    -fx-text-fill: #e6e6e6; /* Slightly dimmed text */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.6, 0, 3); /* Enhanced shadow */
+}
+
+/* Pressed Effect */
+.jfx-button:pressed {
+    -fx-background-color: #003f7f; /* Darker solid color on press */
+    -fx-text-fill: white; /* Keep text white */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 4, 0.4, 0, 2); /* Intense shadow */
+
+}
+
+/* Button with Icon Styles */
+.jfx-button > .image-view {
+    -fx-padding: 5; /* Space between icon and text */
+
+    -fx-transition: all 0.3s ease-in-out; /* Smooth transition for icon */
+}
+
+
+/* Specific Button Adjustments (Optional) */
+.jfx-button.dashboard {
+    -fx-background-color: linear-gradient(to right, #28a745, #218838); /* Gradient green for dashboard */
+}
+
+.jfx-button.books-management {
+    -fx-background-color: linear-gradient(to right, #ffc107, #e0a800); /* Gradient yellow for books management */
+}
+
+.jfx-button.members {
+    -fx-background-color: linear-gradient(to right, #17a2b8, #138496); /* Gradient cyan for members */
+}
