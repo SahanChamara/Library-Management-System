@@ -47,6 +47,49 @@
                </font>
             </Label>
          </children></AnchorPane>
+      <AnchorPane fx:id="paneEnterOTP" layoutX="345.0" layoutY="1.0" prefHeight="434.0" prefWidth="355.0" style="-fx-background-color: #ffffff;">
+         <children>
+            <Label layoutX="22.0" layoutY="106.0" prefHeight="29.0" prefWidth="195.0" text="Enter OTP">
+               <font>
+                  <Font name="Lucida Bright Demibold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="135.0" prefHeight="21.0" prefWidth="272.0" text="We sent a verification code to your email" textFill="#656565">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <JFXButton id="sendcode" layoutX="22.0" layoutY="274.0" onAction="#btnVerifyCodeOnAction" prefHeight="29.0" prefWidth="272.0" style="-fx-background-radius: 10;" styleClass="sendcode" stylesheets="@../styles/loginForm.css" text="Verify Code" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="10.0" />
+               </font>
+            </JFXButton>
+            <JFXTextField id="veryCode" fx:id="txtCodeNum1" layoutX="22.0" layoutY="181.0" prefHeight="35.0" prefWidth="74.0" stylesheets="@../styles/loginForm.css">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </JFXTextField>
+            <JFXTextField id="veryCode" fx:id="txtCodeNum2" layoutX="96.0" layoutY="181.0" prefHeight="35.0" prefWidth="74.0" stylesheets="@../styles/loginForm.css" />
+            <JFXTextField id="veryCode" fx:id="txtCodeNum3" layoutX="180.0" layoutY="181.0" prefHeight="35.0" prefWidth="74.0" stylesheets="@../styles/loginForm.css" />
+            <JFXTextField id="veryCode" fx:id="txtCodeNum4" layoutX="257.0" layoutY="181.0" prefHeight="35.0" prefWidth="74.0" stylesheets="@../styles/loginForm.css" />
+            <Label layoutX="59.0" layoutY="318.0" prefHeight="17.0" prefWidth="139.0" text="Didn't receive the code?" />
+            <Label layoutX="195.0" layoutY="316.0" onDragDetected="#btnResenOnAction" onMouseClicked="#createAccountOnMouseClick" prefHeight="21.0" prefWidth="66.0" text="Resend" textFill="#0ea5e9">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="21.0" fitWidth="35.0" layoutX="14.0" layoutY="42.0" onMouseClicked="#btnOtpEnterSectionBack" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/arrow.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="42.0" layoutY="43.0" prefHeight="17.0" prefWidth="44.0" text="Back">
+               <font>
+                  <Font name="Candara Bold" size="12.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
       <AnchorPane fx:id="paneForgotPassword" layoutX="345.0" prefHeight="434.0" prefWidth="355.0" style="-fx-background-color: #ffffff;">
          <children>
             <Label layoutX="22.0" layoutY="106.0" prefHeight="29.0" prefWidth="195.0" text="Forgot Password">
@@ -81,49 +124,6 @@
                </image>
             </ImageView>
             <Label layoutX="50.0" layoutY="32.0" prefHeight="17.0" prefWidth="44.0" text="Back">
-               <font>
-                  <Font name="Candara Bold" size="12.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="paneEnterOTP" layoutX="345.0" layoutY="1.0" prefHeight="434.0" prefWidth="355.0" style="-fx-background-color: #ffffff;">
-         <children>
-            <Label layoutX="22.0" layoutY="106.0" prefHeight="29.0" prefWidth="195.0" text="Enter OTP">
-               <font>
-                  <Font name="Lucida Bright Demibold" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="22.0" layoutY="135.0" prefHeight="21.0" prefWidth="272.0" text="We sent a verification code to your email" textFill="#656565">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Label>
-            <JFXButton id="sendcode" layoutX="22.0" layoutY="274.0" onAction="#btnVerifyCodeOnAction" prefHeight="29.0" prefWidth="272.0" style="-fx-background-radius: 10;" styleClass="sendcode" stylesheets="@../styles/loginForm.css" text="Verify Code" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="10.0" />
-               </font>
-            </JFXButton>
-            <JFXTextField id="veryCode" layoutX="22.0" layoutY="181.0" prefHeight="35.0" prefWidth="74.0" stylesheets="@../styles/loginForm.css">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </JFXTextField>
-            <JFXTextField id="veryCode" layoutX="96.0" layoutY="181.0" prefHeight="35.0" prefWidth="74.0" stylesheets="@../styles/loginForm.css" />
-            <JFXTextField id="veryCode" layoutX="180.0" layoutY="181.0" prefHeight="35.0" prefWidth="74.0" stylesheets="@../styles/loginForm.css" />
-            <JFXTextField id="veryCode" layoutX="257.0" layoutY="181.0" prefHeight="35.0" prefWidth="74.0" stylesheets="@../styles/loginForm.css" />
-            <Label layoutX="59.0" layoutY="318.0" prefHeight="17.0" prefWidth="139.0" text="Didn't receive the code?" />
-            <Label layoutX="195.0" layoutY="316.0" onMouseClicked="#createAccountOnMouseClick" prefHeight="21.0" prefWidth="66.0" text="Resend" textFill="#0ea5e9">
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="21.0" fitWidth="35.0" layoutX="14.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/arrow.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="42.0" layoutY="43.0" prefHeight="17.0" prefWidth="44.0" text="Back">
                <font>
                   <Font name="Candara Bold" size="12.0" />
                </font>
