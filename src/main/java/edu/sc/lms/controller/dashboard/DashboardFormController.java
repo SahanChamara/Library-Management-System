@@ -151,14 +151,9 @@ public class DashboardFormController implements Initializable {
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        lblTotalBooks.setText(DashboardController.getInstance().totalBooks());
+        lblActiveMembers.setText(DashboardController.getInstance().activeMembers());
+        lblBorrowedBooks.setText(DashboardController.getInstance().borrowedBooks());
         loadCard();
-    }
-
-    public TabPane getTabPane() {
-        return TabPane;
-    }
-
-    public void setTabPane(TabPane tabPane) {
-        TabPane = tabPane;
     }
 }
