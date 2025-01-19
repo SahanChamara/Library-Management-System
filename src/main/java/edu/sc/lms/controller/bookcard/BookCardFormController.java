@@ -23,7 +23,7 @@ public class BookCardFormController {
         this.book=book;
         lblBookTtle.setText(book.getBookTitle());
         lblPrice.setText(String.valueOf(book.getPrice()));
-        Image image = book.getBookCoverImg();
+        Image image = new Image(book.getBookCoverImg());
         coverImg.setImage(image);
     }
 

@@ -21,9 +21,7 @@ import javafx.scene.control.TabPane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class DashboardFormController implements Initializable {
 
@@ -114,13 +112,6 @@ public class DashboardFormController implements Initializable {
             book.setBookCoverImg(bookDatabase.getBookCoverImg());
             bookCard.add(book);
         }
-//        for (int i = 0; i < 20; i++) {
-//            book = new Book();
-//            book.setBookTitle("Foundation");
-//            book.setPrice(1500.00);
-//            book.setBookCoverImg("/assets/book cover.png");
-//            bookCard.add(book);
-//        }
         return bookCard;
     }
 
@@ -135,7 +126,6 @@ public class DashboardFormController implements Initializable {
 
             BookCardFormController bookCardFormController = fxmlLoader.getController();
             bookCardFormController.setData(book);
-
             if (column == 5) {
                 column = 0;
                 row++;
@@ -155,6 +145,7 @@ public class DashboardFormController implements Initializable {
             GridPane.setMargin(anchorPane, new Insets(5));
         }
     }
+
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
