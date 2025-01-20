@@ -17,7 +17,7 @@ public class Book {
     private Double price;
     private String availability;
     private String bookCoverImg;
-    private String categoryId;
-    private String authorId;
+    private String category;
+    private String authorName;
 
 }

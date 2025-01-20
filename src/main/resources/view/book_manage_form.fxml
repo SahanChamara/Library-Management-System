@@ -10,17 +10,16 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f2eeed;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.bookmanage.BookManageFormController">
+<AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f2eeed;" stylesheets="@../styles/bookmanagement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.bookmanage.BookManageFormController">
    <children>
       <Label layoutX="49.0" layoutY="43.0" prefHeight="46.0" prefWidth="312.0" text="Book Management">
          <font>
             <Font name="System Bold" size="31.0" />
          </font>
       </Label>
-      <JFXButton layoutX="1610.0" layoutY="45.0" prefHeight="51.0" prefWidth="235.0" text="Add New Book">
+      <JFXButton layoutX="1610.0" layoutY="45.0" onAction="#btnAddNewBookOnAction" prefHeight="51.0" prefWidth="235.0" text="Add New Book">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
@@ -32,26 +31,25 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXComboBox layoutX="78.0" layoutY="133.0" prefHeight="35.0" prefWidth="183.0" promptText="Select Category" />
-      <JFXComboBox layoutX="294.0" layoutY="134.0" prefHeight="35.0" prefWidth="174.0" promptText="Select Status" />
+      <JFXComboBox fx:id="comboSelectCategory" layoutX="78.0" layoutY="133.0" prefHeight="35.0" prefWidth="183.0" promptText="Select Category" />
+      <JFXComboBox fx:id="comboSelectStatus" layoutX="294.0" layoutY="134.0" prefHeight="35.0" prefWidth="174.0" promptText="Select Status" />
       <AnchorPane layoutX="49.0" layoutY="195.0" prefHeight="741.0" prefWidth="1830.0" style="-fx-background-color: #f2eeed;">
          <children>
-            <TableView layoutX="25.0" layoutY="14.0" prefHeight="704.0" prefWidth="1786.0">
+            <TableView fx:id="tblBooks" layoutX="25.0" layoutY="14.0" prefHeight="704.0" prefWidth="1786.0" style="-fx-background-color: #ffffff;">
               <columns>
-                <TableColumn prefWidth="253.0" text="Book Cover" />
-                <TableColumn prefWidth="199.0" text="ISBN" />
-                  <TableColumn prefWidth="332.0" text="Title" />
-                  <TableColumn prefWidth="262.0" text="Author" />
-                  <TableColumn prefWidth="163.0" text="Category" />
-                  <TableColumn prefWidth="145.0" text="Status" />
-                  <TableColumn prefWidth="203.0" text="Added Date" />
-                  <TableColumn prefWidth="228.0" text="Actions" />
+                <TableColumn fx:id="colBookCover" prefWidth="253.0" text="Book Cover" />
+                <TableColumn fx:id="colIsbn" prefWidth="199.0" text="ISBN" />
+                  <TableColumn fx:id="colTitle" prefWidth="332.0" text="Title" />
+                  <TableColumn fx:id="colAuthor" prefWidth="262.0" text="Author" />
+                  <TableColumn fx:id="colCategory" prefWidth="163.0" text="Category" />
+                  <TableColumn fx:id="colAvailability" prefWidth="145.0" text="Availability" />
+                  <TableColumn fx:id="colPrice" prefWidth="203.0" text="Price" />
+                  <TableColumn fx:id="colActions" prefWidth="228.0" text="Actions" />
               </columns>
             </TableView>
          </children>
       </AnchorPane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="70.0" layoutX="1062.0" layoutY="35.0" stroke="WHITE" strokeLineCap="ROUND" strokeType="INSIDE" width="492.0" />
-      <JFXTextField layoutX="1093.0" layoutY="47.0" prefHeight="35.0" prefWidth="430.0" promptText="Search by tutle, author, ISBN..." style="-fx-background-radius: 10;">
+      <JFXTextField fx:id="txtSearch" layoutX="1093.0" layoutY="47.0" prefHeight="35.0" prefWidth="430.0" promptText="Search by title, author, ISBN..." style="-fx-background-radius: 10;">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
