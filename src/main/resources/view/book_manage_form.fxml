@@ -5,22 +5,22 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f2eeed;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.bookmanage.BookManageFormController">
    <children>
-      <Label layoutX="41.0" layoutY="24.0" prefHeight="46.0" prefWidth="312.0" text="Book Management">
+      <Label layoutX="49.0" layoutY="43.0" prefHeight="46.0" prefWidth="312.0" text="Book Management">
          <font>
             <Font name="System Bold" size="31.0" />
          </font>
       </Label>
-      <JFXButton layoutX="1648.0" layoutY="19.0" prefHeight="51.0" prefWidth="244.0" text="Add New Book">
+      <JFXButton layoutX="1610.0" layoutY="45.0" prefHeight="51.0" prefWidth="235.0" text="Add New Book">
          <font>
             <Font name="System Bold" size="23.0" />
          </font>
@@ -32,8 +32,26 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="90.0" layoutX="46.0" layoutY="86.0" stroke="WHITE" strokeDashOffset="5.0" strokeLineCap="ROUND" strokeType="OUTSIDE" width="1833.0" />
-      <JFXTextField layoutX="72.0" layoutY="105.0" prefHeight="46.0" prefWidth="1340.0" promptText="Search by tutle, author, ISBN..." style="-fx-background-radius: 10;">
+      <JFXComboBox layoutX="78.0" layoutY="133.0" prefHeight="35.0" prefWidth="183.0" promptText="Select Category" />
+      <JFXComboBox layoutX="294.0" layoutY="134.0" prefHeight="35.0" prefWidth="174.0" promptText="Select Status" />
+      <AnchorPane layoutX="49.0" layoutY="195.0" prefHeight="741.0" prefWidth="1830.0" style="-fx-background-color: #f2eeed;">
+         <children>
+            <TableView layoutX="25.0" layoutY="14.0" prefHeight="704.0" prefWidth="1786.0">
+              <columns>
+                <TableColumn prefWidth="253.0" text="Book Cover" />
+                <TableColumn prefWidth="199.0" text="ISBN" />
+                  <TableColumn prefWidth="332.0" text="Title" />
+                  <TableColumn prefWidth="262.0" text="Author" />
+                  <TableColumn prefWidth="163.0" text="Category" />
+                  <TableColumn prefWidth="145.0" text="Status" />
+                  <TableColumn prefWidth="203.0" text="Added Date" />
+                  <TableColumn prefWidth="228.0" text="Actions" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="70.0" layoutX="1062.0" layoutY="35.0" stroke="WHITE" strokeLineCap="ROUND" strokeType="INSIDE" width="492.0" />
+      <JFXTextField layoutX="1093.0" layoutY="47.0" prefHeight="35.0" prefWidth="430.0" promptText="Search by tutle, author, ISBN..." style="-fx-background-radius: 10;">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -44,107 +62,5 @@
             <Font size="18.0" />
          </font>
       </JFXTextField>
-      <JFXComboBox layoutX="1474.0" layoutY="115.0" prefHeight="35.0" prefWidth="183.0" promptText="Select Category" />
-      <JFXComboBox layoutX="1690.0" layoutY="116.0" prefHeight="35.0" prefWidth="174.0" promptText="Select Status" />
-      <AnchorPane layoutX="49.0" layoutY="195.0" prefHeight="741.0" prefWidth="1830.0" style="-fx-background-color: #f2eeed;">
-         <children>
-            <AnchorPane layoutX="71.0" layoutY="22.0" prefHeight="293.0" prefWidth="499.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
-               <children>
-                  <ImageView fitHeight="213.0" fitWidth="206.0" layoutX="7.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/Cover%20Images/Harry%20Potter%20and%20the%20Philosopher's%20Stone.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="159.0" layoutY="17.0" prefHeight="27.0" prefWidth="325.0" text="Harry Potter and the Philosopher's Stone ">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="160.0" layoutY="49.0" prefHeight="25.0" prefWidth="75.0" text="Author : ">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="160.0" layoutY="78.0" prefHeight="25.0" prefWidth="75.0" text="ISBN : ">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="160.0" layoutY="107.0" prefHeight="25.0" prefWidth="92.0" text="Category : ">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Line endX="398.0" layoutX="81.0" layoutY="234.0" startX="-66.66666412353516" />
-                  <JFXButton layoutX="130.0" layoutY="247.0" prefHeight="30.0" prefWidth="91.0" text="Update" />
-                  <JFXButton layoutX="260.0" layoutY="247.0" prefHeight="30.0" prefWidth="91.0" text="Delete" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="666.0" layoutY="28.0" prefHeight="293.0" prefWidth="499.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
-               <children>
-                  <ImageView fitHeight="213.0" fitWidth="206.0" layoutX="7.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/Cover%20Images/Harry%20Potter%20and%20the%20Philosopher's%20Stone.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="159.0" layoutY="17.0" prefHeight="27.0" prefWidth="325.0" text="Harry Potter and the Philosopher's Stone ">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="160.0" layoutY="49.0" prefHeight="25.0" prefWidth="75.0" text="Author : ">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="160.0" layoutY="78.0" prefHeight="25.0" prefWidth="75.0" text="ISBN : ">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="160.0" layoutY="107.0" prefHeight="25.0" prefWidth="92.0" text="Category : ">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Line endX="398.0" layoutX="81.0" layoutY="234.0" startX="-66.66666412353516" />
-                  <JFXButton layoutX="130.0" layoutY="247.0" prefHeight="30.0" prefWidth="91.0" text="Update" />
-                  <JFXButton layoutX="260.0" layoutY="247.0" prefHeight="30.0" prefWidth="91.0" text="Delete" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="1263.0" layoutY="28.0" prefHeight="293.0" prefWidth="499.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
-               <children>
-                  <ImageView fitHeight="213.0" fitWidth="206.0" layoutX="7.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../assets/Cover%20Images/Harry%20Potter%20and%20the%20Philosopher's%20Stone.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="159.0" layoutY="17.0" prefHeight="27.0" prefWidth="325.0" text="Harry Potter and the Philosopher's Stone ">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="160.0" layoutY="49.0" prefHeight="25.0" prefWidth="75.0" text="Author : ">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="160.0" layoutY="78.0" prefHeight="25.0" prefWidth="75.0" text="ISBN : ">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="160.0" layoutY="107.0" prefHeight="25.0" prefWidth="92.0" text="Category : ">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Line endX="398.0" layoutX="81.0" layoutY="234.0" startX="-66.66666412353516" />
-                  <JFXButton layoutX="130.0" layoutY="247.0" prefHeight="30.0" prefWidth="91.0" text="Update" />
-                  <JFXButton layoutX="260.0" layoutY="247.0" prefHeight="30.0" prefWidth="91.0" text="Delete" />
-               </children>
-            </AnchorPane>
-         </children>
-      </AnchorPane>
    </children>
 </AnchorPane>
