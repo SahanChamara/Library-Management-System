@@ -37,7 +37,7 @@
          <children>
             <TableView fx:id="tblBooks" layoutX="25.0" layoutY="14.0" prefHeight="704.0" prefWidth="1786.0" style="-fx-background-color: #ffffff;">
               <columns>
-                <TableColumn fx:id="colBookCover" prefWidth="253.0" text="Book Cover" />
+                <TableColumn fx:id="colBookId" prefWidth="253.0" text="Book ID" />
                 <TableColumn fx:id="colIsbn" prefWidth="199.0" text="ISBN" />
                   <TableColumn fx:id="colTitle" prefWidth="332.0" text="Title" />
                   <TableColumn fx:id="colAuthor" prefWidth="262.0" text="Author" />
