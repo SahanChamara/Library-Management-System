@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +17,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -46,7 +48,7 @@ public class BookAddFormController implements Initializable {
     private String imgpath;
 
     @FXML
-    void btnAddBookOnAction(ActionEvent event) {
+    void btnAddBookOnAction(ActionEvent event) throws IOException {
         if(BookManageController.getInstance().addBook(new Book(null,
                 txtBookTitle.getText(),
                 txtIsbn.getText(),
@@ -58,10 +60,10 @@ public class BookAddFormController implements Initializable {
 
             new Alert(Alert.AlertType.INFORMATION,"Book Added Successful").show();
 
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/view/book_manage_form.fxml"));
-            BookManageFormController controller = fxmlLoader.getController();
-            controller.loadBookData();
+//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/book_manage_form.fxml"));
+//            Parent load = fxmlLoader.load();
+//            BookManageController controller = fxmlLoader.getController();
+//            controller.loadBookDetails();
         }
     }
 

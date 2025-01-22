@@ -140,4 +140,14 @@ public class BookManageController implements BookManageService{
             throw new IllegalArgumentException(e);
         }
     }
+
+    @Override
+    public boolean deleteBook(String id) {
+
+    }
+
+    @Override
+    public boolean updateBook(String id) {
+        return false;
+    }
 }

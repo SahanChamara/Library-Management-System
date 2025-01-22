@@ -14,4 +14,6 @@ public interface BookManageService {
     String generateAuthorId();
     String generateCategoryId();
     String generateBookId();
+    boolean deleteBook(String id);
+    boolean updateBook(String id);
 }

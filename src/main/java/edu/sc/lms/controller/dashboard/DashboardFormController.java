@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
@@ -72,8 +73,10 @@ public class DashboardFormController implements Initializable {
     private Stage dialogStage;
 
     @FXML
-    void btnBookManagementOnAction(ActionEvent event) {
-
+    void btnBookManagementOnAction(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/book_manage_form.fxml"))));
+        stage.show();
     }
 
     @FXML
