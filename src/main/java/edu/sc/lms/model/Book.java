@@ -21,5 +21,7 @@ public class Book {
     @Setter
     private JFXButton updateBook;
     private JFXButton deleteBook;
+    private String categoryId;
+    private String authorId;
 
 }

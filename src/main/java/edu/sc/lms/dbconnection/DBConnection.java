@@ -9,7 +9,7 @@ public class DBConnection {
     }
 
     public static DBConnection getInstance() throws SQLException {
-        return instance!=null?instance:new DBConnection();
+        return instance == null ? instance=new DBConnection():instance;
     }
 
     public Connection getConnection(){

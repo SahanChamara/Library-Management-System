@@ -58,7 +58,7 @@ public class DashboardController implements DashBoardService {
         try {
             ResultSet rst = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT BookTitle,price,coverImg FROM book");
             while (rst.next()) {
-                bookArrayList.add(new Book(null, rst.getString(1), null, rst.getDouble(2), null, rst.getString(3), null, null,null,null));
+                bookArrayList.add(new Book(null, rst.getString(1), null, rst.getDouble(2), null, rst.getString(3), null, null,null,null,null,null));
             }
             return bookArrayList;
         } catch (SQLException e) {

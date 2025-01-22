@@ -126,6 +126,7 @@ public class DashboardFormController implements Initializable {
 
             BookCardFormController bookCardFormController = fxmlLoader.getController();
             bookCardFormController.setData(book);
+
             if (column == 5) {
                 column = 0;
                 row++;
