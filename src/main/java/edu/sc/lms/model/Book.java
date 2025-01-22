@@ -3,10 +3,7 @@ package edu.sc.lms.model;
 import com.jfoenix.controls.JFXButton;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
@@ -21,9 +18,8 @@ public class Book {
     private String bookCoverImg;
     private String category;
     private String authorName;
+    @Setter
     private JFXButton updateBook;
     private JFXButton deleteBook;
-
-
 
 }

@@ -3,6 +3,7 @@ package edu.sc.lms.controller.bookmanage;
 import com.jfoenix.controls.JFXButton;
 import edu.sc.lms.dbconnection.DBConnection;
 import edu.sc.lms.model.Book;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 
 import java.sql.ResultSet;
@@ -31,7 +32,7 @@ public class BookManageController implements BookManageService{
                     "c.Category," +
                     "a.AuthorName FROM book b LEFT JOIN author a ON b.AuthorId=a.AuthorId LEFT JOIN category c ON b.CategoryId=c.CategoryId");
             while (rst.next()){
-                bookArrayList.add(new Book(rst.getString(1), rst.getString(2), rst.getString(3),rst.getDouble(4), rst.getString(5),rst.getString(6), rst.getString(7), rst.getString(8),new JFXButton(),new JFXButton()));
+                bookArrayList.add(new Book(rst.getString(1), rst.getString(2), rst.getString(3),rst.getDouble(4), rst.getString(5),rst.getString(6), rst.getString(7), rst.getString(8),new JFXButton("Update"),new JFXButton("Delete")));
             }
             return bookArrayList;
         } catch (SQLException e) {

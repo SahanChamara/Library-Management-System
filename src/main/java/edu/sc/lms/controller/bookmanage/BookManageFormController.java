@@ -1,5 +1,6 @@
 package edu.sc.lms.controller.bookmanage;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import edu.sc.lms.model.Book;
@@ -21,7 +22,10 @@ import java.util.ResourceBundle;
 public class BookManageFormController implements Initializable {
 
     @FXML
-    private TableColumn colActions;
+    private TableColumn colDeleteAction;
+
+    @FXML
+    private TableColumn colUpdateActions;
 
     @FXML
     private TableColumn colPrice;
@@ -57,6 +61,9 @@ public class BookManageFormController implements Initializable {
     private JFXTextField txtSearch;
 
     @FXML
+    private JFXButton updateBtn;
+
+    @FXML
     void btnAddNewBookOnAction(ActionEvent event) {
 
 
@@ -65,8 +72,14 @@ public class BookManageFormController implements Initializable {
     private void loadBookData(){
         ObservableList<Book> bookObservableList = FXCollections.observableArrayList();
 
-        bookObservableList.addAll(BookManageController.getInstance().loadBookDetails());
+        for (Book loadBookDetail : BookManageController.getInstance().loadBookDetails()) {
+            loadBookDetail.getUpdateBook().setOnAction(actionEvent -> System.out.println(loadBookDetail.getBookId()));
+            loadBookDetail.getDeleteBook().setOnAction(actionEvent -> System.out.println(loadBookDetail.getBookId()));
+            bookObservableList.add(loadBookDetail);
+        }
+
         tblBooks.setItems(bookObservableList);
+
     }
 
     @Override
@@ -78,7 +91,8 @@ public class BookManageFormController implements Initializable {
         colCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
         colAvailability.setCellValueFactory(new PropertyValueFactory<>("availability"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-        colActions.setCellValueFactory(new PropertyValueFactory<>("updateBook"));
+        colUpdateActions.setCellValueFactory(new PropertyValueFactory<>("updateBook"));
+        colDeleteAction.setCellValueFactory(new PropertyValueFactory<>("deleteBook"));
 
         loadBookData();
     }
