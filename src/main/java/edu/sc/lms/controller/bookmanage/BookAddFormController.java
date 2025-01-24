@@ -60,10 +60,10 @@ public class BookAddFormController implements Initializable {
 
             new Alert(Alert.AlertType.INFORMATION,"Book Added Successful").show();
 
-//            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/book_manage_form.fxml"));
-//            Parent load = fxmlLoader.load();
-//            BookManageController controller = fxmlLoader.getController();
-//            controller.loadBookDetails();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/book_manage_form.fxml"));
+            Parent load = fxmlLoader.load();
+            BookManageFormController controller = fxmlLoader.getController();
+            controller.loadBookData();
         }
     }
 
@@ -73,7 +73,7 @@ public class BookAddFormController implements Initializable {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Insert an Book Cover Image");
-        fileChooser.setInitialDirectory(new File("C:\\Users\\Sahan Chamara\\Pictures"));
+        fileChooser.setInitialDirectory(new File("D:\\Lectures and Assignments ICET\\JavaFX\\Final Project\\Libraray Management System\\Project File\\Library-Management-System\\src\\main\\resources\\assets\\Cover Images"));
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPEG image", "*.jpg"),
                 new FileChooser.ExtensionFilter("PNG image", "*.png"), new FileChooser.ExtensionFilter("All images", "*.jpg", "*.png"));
         File selectedFile = fileChooser.showOpenDialog(stage);

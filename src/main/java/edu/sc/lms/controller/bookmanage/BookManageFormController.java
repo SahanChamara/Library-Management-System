@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -77,16 +78,27 @@ public class BookManageFormController implements Initializable {
     }
 
     public void loadBookData(){
+        System.out.println("method call");
         ObservableList<Book> bookObservableList = FXCollections.observableArrayList();
 
         for (Book loadBookDetail : BookManageController.getInstance().loadBookDetails()) {
-            loadBookDetail.getUpdateBook().setOnAction(actionEvent -> System.out.println(loadBookDetail.getBookId()));
+            loadBookDetail.getUpdateBook().setOnAction(actionEvent -> {
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/book_update_form.fxml"));
+                    Parent load = fxmlLoader.load();
+                    BookUpdateFormController controller = fxmlLoader.getController();
+                    controller.setSelectedBookId(loadBookDetail.getBookId());
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(load));
+                    stage.show();
+                } catch (IOException e) {
+                    throw new IllegalArgumentException(e);
+                }
+            });
             loadBookDetail.getDeleteBook().setOnAction(actionEvent -> System.out.println(loadBookDetail.getBookId()));
             bookObservableList.add(loadBookDetail);
         }
-
         tblBooks.setItems(bookObservableList);
-
     }
 
     @Override

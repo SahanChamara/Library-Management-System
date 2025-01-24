@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="461.0" prefWidth="912.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.bookmanage.BookUpdateFormController">
+   <children>
+      <Label layoutX="37.0" layoutY="14.0" prefHeight="42.0" prefWidth="237.0" text="Update Book">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="imgBookCover" fitHeight="305.0" fitWidth="311.0" layoutX="37.0" layoutY="78.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXTextField fx:id="txtBookTitle" layoutX="434.0" layoutY="59.0" prefHeight="45.0" prefWidth="379.0" promptText="Book Title" />
+      <JFXTextField fx:id="txtIsbn" layoutX="434.0" layoutY="124.0" prefHeight="45.0" prefWidth="379.0" promptText="ISBN" />
+      <JFXTextField fx:id="txtPrice" layoutX="434.0" layoutY="189.0" prefHeight="45.0" prefWidth="379.0" promptText="Price" />
+      <JFXTextField fx:id="txtAuthor" layoutX="434.0" layoutY="254.0" prefHeight="45.0" prefWidth="379.0" promptText="Author" />
+      <JFXButton layoutX="74.0" layoutY="400.0" onAction="#btnEditBookCoverImageOnAction" prefHeight="33.0" prefWidth="203.0" text="Edit Book Cover Image" />
+      <JFXButton layoutX="702.0" layoutY="397.0" onAction="#btnEditBookOnAction" prefHeight="39.0" prefWidth="175.0" text="Edit Book" />
+      <JFXTextField fx:id="txtNewCategory" layoutX="670.0" layoutY="348.0" onAction="#txtNewCategoryOnAction" prefHeight="25.0" prefWidth="149.0" promptText="New Category" />
+      <JFXComboBox fx:id="comboCategory" layoutX="434.0" layoutY="332.0" onAction="#comboCategoryOnStateChange" prefHeight="39.0" prefWidth="192.0" promptText="Select Category" />
+      <ImageView fitHeight="25.0" fitWidth="31.0" layoutX="790.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/enter.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

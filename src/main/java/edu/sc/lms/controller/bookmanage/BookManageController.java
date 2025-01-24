@@ -57,6 +57,9 @@ public class BookManageController implements BookManageService{
 
     @Override
     public boolean addBook(Book book) {
+        String bookId = generateBookId();
+        String authorId = generateAuthorId();
+        String categoryId = generateCategoryId();
         Connection connection = null;
         try {
             connection = DBConnection.getInstance().getConnection();
@@ -66,22 +69,22 @@ public class BookManageController implements BookManageService{
         try {
             connection.setAutoCommit(false);
             PreparedStatement pst1 = connection.prepareStatement("INSERT INTO category VALUES (?,?)");
-            pst1.setString(1,generateCategoryId());
+            pst1.setString(1,categoryId);
             pst1.setString(2,book.getCategory());
             if(pst1.executeUpdate()>0){
                 PreparedStatement pst2 = connection.prepareStatement("INSERT INTO author VALUES (?,?)");
-                pst2.setString(1,generateAuthorId());
+                pst2.setString(1,authorId);
                 pst2.setString(2,book.getAuthorName());
                 if(pst2.executeUpdate()>0){
                     PreparedStatement pst3 = connection.prepareStatement("INSERT INTO book VALUES (?,?,?,?,?,?,?,?)");
-                    pst3.setString(1,generateBookId());
+                    pst3.setString(1,bookId);
                     pst3.setString(2,book.getBookTitle());
                     pst3.setString(3,book.getIsbn());
                     pst3.setDouble(4,book.getPrice());
                     pst3.setString(5,book.getAvailability());
                     pst3.setString(6,book.getBookCoverImg());
-                    pst3.setString(7,generateCategoryId());
-                    pst3.setString(8,generateAuthorId());
+                    pst3.setString(7,categoryId);
+                    pst3.setString(8,authorId);
                     if(pst3.executeUpdate()>0){
                         connection.commit();
                         return true;
@@ -143,11 +146,34 @@ public class BookManageController implements BookManageService{
 
     @Override
     public boolean deleteBook(String id) {
+        return false;
 
     }
 
     @Override
     public boolean updateBook(String id) {
         return false;
+    }
+
+    @Override
+    public Book loadSelectedBook(String id) {
+        System.out.println("databse sending id "+id);
+        try {
+            ResultSet rst = CrudUtil.execute("SELECT " +
+                    "b.BookId," +
+                    "b.BookTitle," +
+                    "b.ISBN," +
+                    "b.Price," +
+                    "b.Availability," +
+                    "b.CoverImg," +
+                    "c.Category," +
+                    "a.AuthorName FROM book b LEFT JOIN author a ON b.AuthorId=a.AuthorId LEFT JOIN category c ON b.CategoryId=c.CategoryId WHERE BookId='" + id + "'");
+            if(rst.next()){
+                return new Book(rst.getString(1),rst.getString(2),rst.getString(3),rst.getDouble(4), rst.getString(5),rst.getString(6),rst.getString(7),rst.getString(8),null,null,null,null);
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
