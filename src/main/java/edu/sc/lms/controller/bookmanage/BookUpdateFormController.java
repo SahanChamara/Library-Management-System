@@ -6,9 +6,13 @@ import edu.sc.lms.model.Book;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -36,16 +40,34 @@ public class BookUpdateFormController implements Initializable {
     private JFXTextField txtPrice;
 
     public String selectedBookId;
+    private String imgpath;
 
     @FXML
     void btnEditBookCoverImageOnAction(ActionEvent event) {
+        Stage stage = new Stage();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Insert an Book Cover Image");
+        fileChooser.setInitialDirectory(new File("D:\\Lectures and Assignments ICET\\JavaFX\\Final Project\\Libraray Management System\\Project File\\Library-Management-System\\src\\main\\resources\\assets\\Cover Images"));
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("JPEG image", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG image", "*.png"), new FileChooser.ExtensionFilter("All images", "*.jpg", "*.png"));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        if (selectedFile != null) {
+            imgBookCover.setImage(new Image(selectedFile.getAbsolutePath()));
+            imgpath = selectedFile.getAbsolutePath();
+        } else {
+            System.out.println("no file selected");
+        }
 
     }
 
     @FXML
     void btnEditBookOnAction(ActionEvent event) {
-        System.out.println(selectedBookId);
-
+        if(BookManageController.getInstance().updateBook(new Book(selectedBookId,txtBookTitle.getText(),txtIsbn.getText(),Double.parseDouble(txtPrice.getText()),"Out OF Stock",imgpath,txtNewCategory.getText(),txtAuthor.getText(),null,null,null,null))){
+            new Alert(Alert.AlertType.INFORMATION,"Book Updated Successful").show();
+        }else{
+            new Alert(Alert.AlertType.INFORMATION,"Book Updated Failed").show();
+        }
     }
 
     @FXML

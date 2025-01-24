@@ -151,13 +151,23 @@ public class BookManageController implements BookManageService{
     }
 
     @Override
-    public boolean updateBook(String id) {
-        return false;
+    public boolean updateBook(Book book) {
+        try {
+            return CrudUtil.execute("UPDATE Book set BookTitle=?,Isbn=?,Price=?,Availability=?,coverImg=? WHERE BookId=?",
+                    book.getBookTitle(),
+                    book.getIsbn(),
+                    book.getPrice(),
+                    book.getAvailability(),
+                    book.getBookCoverImg(),
+                    book.getBookId()
+            );
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 
     @Override
     public Book loadSelectedBook(String id) {
-        System.out.println("databse sending id "+id);
         try {
             ResultSet rst = CrudUtil.execute("SELECT " +
                     "b.BookId," +

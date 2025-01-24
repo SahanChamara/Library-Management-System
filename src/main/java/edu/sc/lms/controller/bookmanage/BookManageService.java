@@ -15,6 +15,6 @@ public interface BookManageService {
     String generateCategoryId();
     String generateBookId();
     boolean deleteBook(String id);
-    boolean updateBook(String id);
+    boolean updateBook(Book book);
     Book loadSelectedBook(String id);
 }
