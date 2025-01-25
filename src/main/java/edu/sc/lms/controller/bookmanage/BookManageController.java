@@ -6,6 +6,7 @@ import edu.sc.lms.model.Author;
 import edu.sc.lms.model.Book;
 import edu.sc.lms.model.Category;
 import edu.sc.lms.util.CrudUtil;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,11 +14,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookManageController implements BookManageService{
+public class BookManageController implements BookManageService {
     private static BookManageController instance;
-    private BookManageController() {}
-    public static BookManageController getInstance(){
-        return instance == null ? instance=new BookManageController():instance;
+
+    private BookManageController() {
+    }
+
+    public static BookManageController getInstance() {
+        return instance == null ? instance = new BookManageController() : instance;
     }
 
     @Override
@@ -33,8 +37,8 @@ public class BookManageController implements BookManageService{
                     "b.CoverImg," +
                     "c.Category," +
                     "a.AuthorName FROM book b LEFT JOIN author a ON b.AuthorId=a.AuthorId LEFT JOIN category c ON b.CategoryId=c.CategoryId");
-            while (rst.next()){
-                bookArrayList.add(new Book(rst.getString(1), rst.getString(2), rst.getString(3),rst.getDouble(4), rst.getString(5),rst.getString(6), rst.getString(7), rst.getString(8),new JFXButton("Update"),new JFXButton("Delete"),null,null));
+            while (rst.next()) {
+                bookArrayList.add(new Book(rst.getString(1), rst.getString(2), rst.getString(3), rst.getDouble(4), rst.getString(5), rst.getString(6), rst.getString(7), rst.getString(8), new JFXButton("Update"), new JFXButton("Delete"), null, null));
             }
             return bookArrayList;
         } catch (SQLException e) {
@@ -66,23 +70,23 @@ public class BookManageController implements BookManageService{
         try {
             connection.setAutoCommit(false);
             PreparedStatement pst1 = connection.prepareStatement("INSERT INTO category VALUES (?,?)");
-            pst1.setString(1,categoryId);
-            pst1.setString(2,book.getCategory());
-            if(pst1.executeUpdate()>0){
+            pst1.setString(1, categoryId);
+            pst1.setString(2, book.getCategory());
+            if (pst1.executeUpdate() > 0) {
                 PreparedStatement pst2 = connection.prepareStatement("INSERT INTO author VALUES (?,?)");
-                pst2.setString(1,authorId);
-                pst2.setString(2,book.getAuthorName());
-                if(pst2.executeUpdate()>0){
+                pst2.setString(1, authorId);
+                pst2.setString(2, book.getAuthorName());
+                if (pst2.executeUpdate() > 0) {
                     PreparedStatement pst3 = connection.prepareStatement("INSERT INTO book VALUES (?,?,?,?,?,?,?,?)");
-                    pst3.setString(1,bookId);
-                    pst3.setString(2,book.getBookTitle());
-                    pst3.setString(3,book.getIsbn());
-                    pst3.setDouble(4,book.getPrice());
-                    pst3.setString(5,book.getAvailability());
-                    pst3.setString(6,book.getBookCoverImg());
-                    pst3.setString(7,categoryId);
-                    pst3.setString(8,authorId);
-                    if(pst3.executeUpdate()>0){
+                    pst3.setString(1, bookId);
+                    pst3.setString(2, book.getBookTitle());
+                    pst3.setString(3, book.getIsbn());
+                    pst3.setDouble(4, book.getPrice());
+                    pst3.setString(5, book.getAvailability());
+                    pst3.setString(6, book.getBookCoverImg());
+                    pst3.setString(7, categoryId);
+                    pst3.setString(8, authorId);
+                    if (pst3.executeUpdate() > 0) {
                         connection.commit();
                         return true;
                     }
@@ -92,7 +96,7 @@ public class BookManageController implements BookManageService{
             return false;
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);
-        }finally {
+        } finally {
             try {
                 connection.setAutoCommit(true);
             } catch (SQLException e) {
@@ -106,8 +110,8 @@ public class BookManageController implements BookManageService{
     public String generateAuthorId() {
         try {
             ResultSet rst = CrudUtil.execute("SELECT AuthorId FROM author ORDER BY AuthorId DESC LIMIT 1");
-            if(rst.next()){
-                return String.format("A%03d",Integer.parseInt(rst.getString(1).substring(1))+1);
+            if (rst.next()) {
+                return String.format("A%03d", Integer.parseInt(rst.getString(1).substring(1)) + 1);
             }
             return "A001";
         } catch (SQLException e) {
@@ -119,8 +123,8 @@ public class BookManageController implements BookManageService{
     public String generateCategoryId() {
         try {
             ResultSet rst = CrudUtil.execute("SELECT CategoryId FROM category ORDER BY CategoryId DESC LIMIT 1");
-            if(rst.next()){
-                return String.format("C%03d",Integer.parseInt(rst.getString(1).substring(1))+1);
+            if (rst.next()) {
+                return String.format("C%03d", Integer.parseInt(rst.getString(1).substring(1)) + 1);
             }
             return "C001";
         } catch (SQLException e) {
@@ -132,8 +136,8 @@ public class BookManageController implements BookManageService{
     public String generateBookId() {
         try {
             ResultSet rst = CrudUtil.execute("SELECT BookId FROM book ORDER BY BookId DESC LIMIT 1");
-            if(rst.next()){
-                return String.format("B%03d",Integer.parseInt(rst.getString(1).substring(1))+1);
+            if (rst.next()) {
+                return String.format("B%03d", Integer.parseInt(rst.getString(1).substring(1)) + 1);
             }
             return "B001";
         } catch (SQLException e) {
@@ -144,7 +148,7 @@ public class BookManageController implements BookManageService{
     @Override
     public boolean deleteBook(String id) {
         try {
-            return CrudUtil.execute("DELETE FROM Book WHERE BookId='"+id+"'");
+            return CrudUtil.execute("DELETE FROM Book WHERE BookId='" + id + "'");
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);
         }
@@ -167,6 +171,27 @@ public class BookManageController implements BookManageService{
     }
 
     @Override
+    public Book searchBook(Book book) {
+        try {
+            ResultSet rst = CrudUtil.execute("SELECT " +
+                    "b.BookId," +
+                    "b.BookTitle," +
+                    "b.ISBN," +
+                    "b.Price," +
+                    "b.Availability," +
+                    "b.CoverImg," +
+                    "c.Category," +
+                    "a.AuthorName FROM book b LEFT JOIN author a ON b.AuthorId=a.AuthorId LEFT JOIN category c ON b.CategoryId=c.CategoryId WHERE BookTitle='" + book.getBookTitle() + "' OR ISBN='" + book.getIsbn() + "'");
+            if(rst.next()){
+                return new Book(rst.getString(1),rst.getString(2), rst.getString(3), rst.getDouble(4), rst.getString(5), rst.getString(6), rst.getString(7), rst.getString(8), null, null, null, null);
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    @Override
     public Book loadSelectedBook(String id) {
         try {
             ResultSet rst = CrudUtil.execute("SELECT " +
@@ -178,8 +203,8 @@ public class BookManageController implements BookManageService{
                     "b.CoverImg," +
                     "c.Category," +
                     "a.AuthorName FROM book b LEFT JOIN author a ON b.AuthorId=a.AuthorId LEFT JOIN category c ON b.CategoryId=c.CategoryId WHERE BookId='" + id + "'");
-            if(rst.next()){
-                return new Book(rst.getString(1),rst.getString(2),rst.getString(3),rst.getDouble(4), rst.getString(5),rst.getString(6),rst.getString(7),rst.getString(8),null,null,null,null);
+            if (rst.next()) {
+                return new Book(rst.getString(1),rst.getString(2), rst.getString(3), rst.getDouble(4), rst.getString(5), rst.getString(6), rst.getString(7), rst.getString(8), new JFXButton("Update"), new JFXButton("Delete"), null, null);
             }
             return null;
         } catch (SQLException e) {

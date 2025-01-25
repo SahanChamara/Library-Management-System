@@ -1,6 +1,5 @@
 package edu.sc.lms.controller.bookmanage;
 
-import animatefx.animation.FadeIn;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -11,17 +10,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -69,6 +65,8 @@ public class BookManageFormController implements Initializable {
     @FXML
     private JFXButton updateBtn;
 
+    ObservableList<Book> bookObservableList;
+
     @FXML
     void btnAddNewBookOnAction(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -77,8 +75,7 @@ public class BookManageFormController implements Initializable {
     }
 
     public void loadBookData() {
-        System.out.println("method call");
-        ObservableList<Book> bookObservableList = FXCollections.observableArrayList();
+        bookObservableList = FXCollections.observableArrayList();
 
         for (Book loadBookDetail : BookManageController.getInstance().loadBookDetails()) {
             loadBookDetail.getUpdateBook().setOnAction(actionEvent -> {
@@ -125,5 +122,42 @@ public class BookManageFormController implements Initializable {
         colDeleteAction.setCellValueFactory(new PropertyValueFactory<>("deleteBook"));
 
         loadBookData();
+    }
+
+    @FXML
+    public void txtSearchOnAction(ActionEvent actionEvent) {
+        Book book = BookManageController.getInstance().searchBook(new Book(null, txtSearch.getText(), txtSearch.getText(), 0.0, null, null, null, null, null, null, null, null));
+
+        book.getUpdateBook().setOnAction(actionEvent -> {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/book_update_form.fxml"));
+                Parent load = fxmlLoader.load();
+                BookUpdateFormController controller = fxmlLoader.getController();
+                controller.setSelectedBookId(book.getBookId());
+                Stage stage = new Stage();
+                stage.setScene(new Scene(load));
+                stage.show();
+            } catch (IOException e) {
+                throw new IllegalArgumentException(e);
+            }
+        });
+        book.getDeleteBook().setOnAction(actionEvent -> {
+                    Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to delete it?..", ButtonType.YES, ButtonType.NO).showAndWait();
+                    ButtonType buttonType = result.orElse(ButtonType.NO);
+                    if (buttonType == ButtonType.YES) {
+                        if (BookManageController.getInstance().deleteBook(book.getBookId())) {
+                            new Alert(Alert.AlertType.INFORMATION, "Book Delete Successful").show();
+                            loadBookData();
+                        } else {
+                            new Alert(Alert.AlertType.INFORMATION, "Book Delete Failed").show();
+                        }
+                    }
+                }
+        );
+
+
+        ObservableList<Book> searchBook = FXCollections.observableArrayList();
+        searchBook.add(book);
+        tblBooks.setItems(searchBook);
     }
 }
