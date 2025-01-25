@@ -146,7 +146,7 @@ public class DashboardFormController implements Initializable {
             grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
             grid.setMaxHeight(Region.USE_PREF_SIZE);
 
-            GridPane.setMargin(anchorPane, new Insets(5));
+            GridPane.setMargin(anchorPane, new Insets(20));
         }
     }
 

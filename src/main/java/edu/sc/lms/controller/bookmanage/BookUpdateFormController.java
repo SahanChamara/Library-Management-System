@@ -3,6 +3,8 @@ package edu.sc.lms.controller.bookmanage;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import edu.sc.lms.model.Book;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,7 +21,10 @@ import java.util.ResourceBundle;
 public class BookUpdateFormController implements Initializable {
 
     @FXML
-    private JFXComboBox<?> comboCategory;
+    private JFXComboBox comboCategory;
+
+    @FXML
+    private JFXComboBox comboAvailability;
 
     @FXML
     private ImageView imgBookCover;
@@ -63,7 +68,14 @@ public class BookUpdateFormController implements Initializable {
 
     @FXML
     void btnEditBookOnAction(ActionEvent event) {
-        if(BookManageController.getInstance().updateBook(new Book(selectedBookId,txtBookTitle.getText(),txtIsbn.getText(),Double.parseDouble(txtPrice.getText()),"Out OF Stock",imgpath,txtNewCategory.getText(),txtAuthor.getText(),null,null,null,null))){
+        if(BookManageController.getInstance().updateBook(new Book(selectedBookId,
+                txtBookTitle.getText(),
+                txtIsbn.getText(),
+                Double.parseDouble(txtPrice.getText()),
+                comboAvailability.getSelectionModel().getSelectedItem().toString(),
+                imgpath,txtNewCategory.getText(),
+                txtAuthor.getText(),
+                null,null,null,null))){
             new Alert(Alert.AlertType.INFORMATION,"Book Updated Successful").show();
         }else{
             new Alert(Alert.AlertType.INFORMATION,"Book Updated Failed").show();
@@ -72,6 +84,11 @@ public class BookUpdateFormController implements Initializable {
 
     @FXML
     void comboCategoryOnStateChange(ActionEvent event) {
+
+    }
+
+    @FXML
+    void comboAvailabilityOnStateChange(ActionEvent event) {
 
     }
 
@@ -98,7 +115,14 @@ public class BookUpdateFormController implements Initializable {
         }
     }
 
+    void loadAvailability(){
+        ObservableList<String> availabilityArrayList = FXCollections.observableArrayList();
+        availabilityArrayList.addAll("InStock","Out of Stock","Available","Not Available");
+        comboAvailability.setItems(availabilityArrayList);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadAvailability();
     }
 }

@@ -6,9 +6,6 @@ import edu.sc.lms.model.Author;
 import edu.sc.lms.model.Book;
 import edu.sc.lms.model.Category;
 import edu.sc.lms.util.CrudUtil;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -146,8 +143,11 @@ public class BookManageController implements BookManageService{
 
     @Override
     public boolean deleteBook(String id) {
-        return false;
-
+        try {
+            return CrudUtil.execute("DELETE FROM Book WHERE BookId='"+id+"'");
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 
     @Override

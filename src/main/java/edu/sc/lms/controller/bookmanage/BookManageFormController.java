@@ -14,9 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -24,6 +22,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class BookManageFormController implements Initializable {
@@ -77,7 +76,7 @@ public class BookManageFormController implements Initializable {
         stage.show();
     }
 
-    public void loadBookData(){
+    public void loadBookData() {
         System.out.println("method call");
         ObservableList<Book> bookObservableList = FXCollections.observableArrayList();
 
@@ -95,7 +94,19 @@ public class BookManageFormController implements Initializable {
                     throw new IllegalArgumentException(e);
                 }
             });
-            loadBookDetail.getDeleteBook().setOnAction(actionEvent -> System.out.println(loadBookDetail.getBookId()));
+            loadBookDetail.getDeleteBook().setOnAction(actionEvent -> {
+                        Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to delete it?..", ButtonType.YES, ButtonType.NO).showAndWait();
+                        ButtonType buttonType = result.orElse(ButtonType.NO);
+                        if (buttonType == ButtonType.YES) {
+                            if (BookManageController.getInstance().deleteBook(loadBookDetail.getBookId())) {
+                                new Alert(Alert.AlertType.INFORMATION, "Book Delete Successful").show();
+                                loadBookData();
+                            } else {
+                                new Alert(Alert.AlertType.INFORMATION, "Book Delete Failed").show();
+                            }
+                        }
+                    }
+            );
             bookObservableList.add(loadBookDetail);
         }
         tblBooks.setItems(bookObservableList);
