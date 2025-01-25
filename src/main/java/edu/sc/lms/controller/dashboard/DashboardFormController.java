@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
@@ -26,6 +27,12 @@ import java.util.*;
 
 public class DashboardFormController implements Initializable {
 
+    @FXML
+    public AnchorPane anchorPaneBookManagement;
+    @FXML
+    public AnchorPane anchorPaneDashboard;
+    @FXML
+    public AnchorPane mainAnchorPane;
     @FXML
     private TabPane TabPane;
 
@@ -74,9 +81,7 @@ public class DashboardFormController implements Initializable {
 
     @FXML
     void btnBookManagementOnAction(ActionEvent event) throws IOException {
-        Stage stage = new Stage();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/book_manage_form.fxml"))));
-        stage.show();
+        loadPane("/view/book_manage_form.fxml",anchorPaneDashboard);
     }
 
     @FXML
@@ -85,7 +90,8 @@ public class DashboardFormController implements Initializable {
     }
 
     @FXML
-    void btnDashboardOnAction(ActionEvent event) {
+    void btnDashboardOnAction(ActionEvent event) throws IOException {
+        loadPane("/view/dashboard_form.fxml",anchorPaneDashboard);
 
     }
 
@@ -95,7 +101,8 @@ public class DashboardFormController implements Initializable {
     }
 
     @FXML
-    void btnMembersOnAction(ActionEvent event) {
+    void btnMembersOnAction(ActionEvent event) throws IOException {
+        loadPane("/view/member_manager_form.fxml",anchorPaneDashboard);
 
     }
 
@@ -148,6 +155,14 @@ public class DashboardFormController implements Initializable {
 
             GridPane.setMargin(anchorPane, new Insets(20));
         }
+    }
+
+    void loadPane(String fxmlPath,AnchorPane pane) throws IOException {
+        URL resource = this.getClass().getResource(fxmlPath);
+        assert resource != null;
+        Parent form = FXMLLoader.load(resource);
+        pane.getChildren().clear();
+        pane.getChildren().add(form);
     }
 
     @SneakyThrows

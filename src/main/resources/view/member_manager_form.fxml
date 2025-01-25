@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import io.github.palexdev.mfxcore.controls.Label?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="1086.0" prefWidth="1921.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.membermanage.MemberManagerFormController">
+   <children>
+      <Label layoutX="435.0" layoutY="33.0" prefHeight="54.0" prefWidth="386.0" text="Member Management">
+         <font>
+            <Font name="System Bold" size="35.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblMember" layoutX="433.0" layoutY="344.0" prefHeight="591.0" prefWidth="1440.0">
+        <columns>
+          <TableColumn fx:id="colMemberName" prefWidth="269.0" text="Member Name" />
+          <TableColumn fx:id="colMemberId" minWidth="0.0" prefWidth="132.0" text="Meber ID" />
+            <TableColumn fx:id="colContactNumber" minWidth="0.0" prefWidth="222.0" text="Contact Number" />
+            <TableColumn fx:id="colMembershipDate" minWidth="0.0" prefWidth="240.0" text="Membership Date" />
+            <TableColumn fx:id="colBooksBorrowed" minWidth="0.0" prefWidth="168.0" text="Books Borrowed" />
+            <TableColumn fx:id="colUpdateMember" minWidth="0.0" prefWidth="196.0" text="Update Member" />
+            <TableColumn fx:id="colDeleteMember" minWidth="0.0" prefWidth="212.0" text="Delete Member" />
+        </columns>
+      </TableView>
+      <AnchorPane layoutX="445.0" layoutY="139.0" prefHeight="123.0" prefWidth="312.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+         <children>
+            <Label layoutX="23.0" layoutY="14.0" prefHeight="31.0" prefWidth="120.0" text="Total Members">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTotalMember" layoutX="23.0" layoutY="46.0" prefHeight="31.0" prefWidth="56.0" text="100">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="805.0" layoutY="139.0" prefHeight="123.0" prefWidth="312.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+         <children>
+            <Label layoutX="23.0" layoutY="14.0" prefHeight="31.0" prefWidth="120.0" text="Active Members">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblActiveMember" layoutX="23.0" layoutY="46.0" prefHeight="31.0" prefWidth="56.0" text="100">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1173.0" layoutY="139.0" prefHeight="123.0" prefWidth="312.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+         <children>
+            <Label layoutX="23.0" layoutY="14.0" prefHeight="31.0" prefWidth="120.0" text="Overdue Books">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblOverdueBook" layoutX="23.0" layoutY="46.0" prefHeight="31.0" prefWidth="56.0" text="100">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1541.0" layoutY="139.0" prefHeight="123.0" prefWidth="312.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+         <children>
+            <Label layoutX="23.0" layoutY="14.0" prefHeight="31.0" prefWidth="120.0" text="New This Month">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblNewThisMonth" layoutX="23.0" layoutY="46.0" prefHeight="31.0" prefWidth="56.0" text="100">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <JFXComboBox fx:id="comboSortBy" layoutX="445.0" layoutY="288.0" onAction="#comboSortByOnStateChange" prefHeight="31.0" prefWidth="183.0" promptText="Sot By" />
+      <JFXButton layoutX="1651.0" layoutY="39.0" onAction="#btnAddMemberOnAction" prefHeight="43.0" prefWidth="222.0" text="Add New Member">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXTextField fx:id="txtSearchMember" layoutX="1312.0" layoutY="45.0" onAction="#txtSearchMemberOnAction" prefHeight="31.0" prefWidth="280.0" promptText="Search Member" style="-fx-background-radius: 10; -fx-background-color: #ffffff;">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <padding>
+            <Insets left="8.0" />
+         </padding>
+      </JFXTextField>
+   </children>
+</AnchorPane>
