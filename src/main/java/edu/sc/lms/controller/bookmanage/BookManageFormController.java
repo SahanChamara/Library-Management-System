@@ -128,7 +128,7 @@ public class BookManageFormController implements Initializable {
     public void txtSearchOnAction(ActionEvent actionEvent) {
         Book book = BookManageController.getInstance().searchBook(new Book(null, txtSearch.getText(), txtSearch.getText(), 0.0, null, null, null, null, null, null, null, null));
 
-        book.getUpdateBook().setOnAction(actionEvent -> {
+        book.getUpdateBook().setOnAction(actionEvent2 -> {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/book_update_form.fxml"));
                 Parent load = fxmlLoader.load();
@@ -141,7 +141,7 @@ public class BookManageFormController implements Initializable {
                 throw new IllegalArgumentException(e);
             }
         });
-        book.getDeleteBook().setOnAction(actionEvent -> {
+        book.getDeleteBook().setOnAction(actionEvent2 -> {
                     Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to delete it?..", ButtonType.YES, ButtonType.NO).showAndWait();
                     ButtonType buttonType = result.orElse(ButtonType.NO);
                     if (buttonType == ButtonType.YES) {

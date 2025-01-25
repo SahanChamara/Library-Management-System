@@ -183,7 +183,7 @@ public class BookManageController implements BookManageService {
                     "c.Category," +
                     "a.AuthorName FROM book b LEFT JOIN author a ON b.AuthorId=a.AuthorId LEFT JOIN category c ON b.CategoryId=c.CategoryId WHERE BookTitle='" + book.getBookTitle() + "' OR ISBN='" + book.getIsbn() + "'");
             if(rst.next()){
-                return new Book(rst.getString(1),rst.getString(2), rst.getString(3), rst.getDouble(4), rst.getString(5), rst.getString(6), rst.getString(7), rst.getString(8), null, null, null, null);
+                return new Book(rst.getString(1),rst.getString(2), rst.getString(3), rst.getDouble(4), rst.getString(5), rst.getString(6), rst.getString(7), rst.getString(8), new JFXButton("Update"), new JFXButton("Delete"), null, null);
             }
             return null;
         } catch (SQLException e) {
