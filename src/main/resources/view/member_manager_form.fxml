@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="1086.0" prefWidth="1921.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.membermanage.MemberManagerFormController">
+<AnchorPane prefHeight="1086.0" prefWidth="1921.0" stylesheets="@../styles/bookmanagement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.membermanage.MemberManagerFormController">
    <children>
       <Label layoutX="435.0" layoutY="33.0" prefHeight="54.0" prefWidth="386.0" text="Member Management">
          <font>
@@ -22,13 +21,12 @@
       </Label>
       <TableView fx:id="tblMember" layoutX="433.0" layoutY="344.0" prefHeight="591.0" prefWidth="1440.0">
         <columns>
-          <TableColumn fx:id="colMemberName" prefWidth="269.0" text="Member Name" />
-          <TableColumn fx:id="colMemberId" minWidth="0.0" prefWidth="132.0" text="Meber ID" />
-            <TableColumn fx:id="colContactNumber" minWidth="0.0" prefWidth="222.0" text="Contact Number" />
-            <TableColumn fx:id="colMembershipDate" minWidth="0.0" prefWidth="240.0" text="Membership Date" />
-            <TableColumn fx:id="colBooksBorrowed" minWidth="0.0" prefWidth="168.0" text="Books Borrowed" />
-            <TableColumn fx:id="colUpdateMember" minWidth="0.0" prefWidth="196.0" text="Update Member" />
-            <TableColumn fx:id="colDeleteMember" minWidth="0.0" prefWidth="212.0" text="Delete Member" />
+          <TableColumn fx:id="colMemberName" prefWidth="388.0" text="Member Name" />
+          <TableColumn fx:id="colMemberId" minWidth="0.0" prefWidth="174.0" text="Meber ID" />
+            <TableColumn fx:id="colContactNumber" minWidth="0.0" prefWidth="225.0" text="Contact Number" />
+            <TableColumn fx:id="colMembershipDate" minWidth="0.0" prefWidth="279.0" text="Membership Date" />
+            <TableColumn fx:id="colUpdateMember" minWidth="0.0" prefWidth="205.0" text="Update Member" />
+            <TableColumn fx:id="colDeleteMember" minWidth="0.0" prefWidth="168.0" text="Delete Member" />
         </columns>
       </TableView>
       <AnchorPane layoutX="445.0" layoutY="139.0" prefHeight="123.0" prefWidth="312.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
