@@ -4,9 +4,13 @@ import com.jfoenix.controls.JFXTextField;
 import edu.sc.lms.model.Member;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
 
 public class MemberUpdateFormController {
 
+    @FXML
+    public DatePicker dateMembership;
     @FXML
     private JFXTextField txtContactNumber;
 
@@ -26,7 +30,11 @@ public class MemberUpdateFormController {
 
     @FXML
     void btnUpdateMemberOnAction(ActionEvent event) {
-
+        if(MemberManagerController.getInstance().updateMember(new Member(selectedMemberId,txtMemberName.getText(),txtContactNumber.getText(),dateMembership.toString(),null,null))){
+            new Alert(Alert.AlertType.INFORMATION,"Member Update Successful").show();
+        }else{
+            new Alert(Alert.AlertType.INFORMATION,"Member Update Failed").show();
+        }
     }
 
     void loadSelectedMember() {
@@ -34,7 +42,7 @@ public class MemberUpdateFormController {
             Member member = MemberManagerController.getInstance().loadSelectedMember(selectedMemberId);
             txtMemberName.setText(member.getName());
             txtContactNumber.setText(member.getContactNumber());
-            txtMembershipDate.setText(member.getMembershipDate());
+            // mekata date picker eka gahapn
         }
 
     }

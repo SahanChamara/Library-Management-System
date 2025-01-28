@@ -9,4 +9,5 @@ public interface MemberService {
     List<Member> loadMemberTable();
     String generateMemberId();
     Member loadSelectedMember(String memberId);
+    boolean updateMember(Member member);
 }

@@ -7,6 +7,7 @@ import edu.sc.lms.model.Member;
 import edu.sc.lms.util.CrudUtil;
 import io.github.palexdev.materialfx.utils.ScrollUtils;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -66,6 +67,21 @@ public class MemberManagerController implements MemberService{
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);
         }
+    }
+
+    @Override
+    public boolean updateMember(Member member) {
+        try {
+            PreparedStatement psTm = CrudUtil.execute("UPDATE member SET name=?,ContactNumber=?,MembershipDate=? WHERE memberId=?");
+            psTm.setString(1,member.getName());
+            psTm.setString(2,member.getContactNumber());
+            psTm.setString(3,member.getMembershipDate());
+            psTm.setString(4,member.getMemberId());
+            return psTm.executeUpdate()>0;
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
+
     }
 
 }
