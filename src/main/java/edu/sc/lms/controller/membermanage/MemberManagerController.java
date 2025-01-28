@@ -4,7 +4,6 @@ import com.jfoenix.controls.JFXButton;
 import edu.sc.lms.dbconnection.DBConnection;
 import edu.sc.lms.model.Member;
 import edu.sc.lms.util.CrudUtil;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +36,21 @@ public class MemberManagerController implements MemberService{
                 memberArrayList.add(new Member(rst.getString(1),rst.getString(2),rst.getString(3),rst.getDate(4).toLocalDate(),new JFXButton("Update"),new JFXButton("Delete")));
             }
             return memberArrayList;
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    @Override
+    public boolean addMember(Member member) {
+        String memberId = generateMemberId();
+        try {
+            return CrudUtil.execute("INSERT INTO member VALUES (?,?,?,?)",
+                    memberId,
+                    member.getName(),
+                    member.getContactNumber(),
+                    member.getMembershipDate()
+                    );
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);
         }

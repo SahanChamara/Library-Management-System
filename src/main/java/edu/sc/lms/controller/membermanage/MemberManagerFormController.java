@@ -66,8 +66,10 @@ public class MemberManagerFormController implements Initializable {
     private JFXTextField txtSearchMember;
 
     @FXML
-    void btnAddMemberOnAction(ActionEvent event) {
-
+    void btnAddMemberOnAction(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/member_adding_form.fxml"))));
+        stage.show();
     }
 
     @FXML
