@@ -7,6 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,7 +18,7 @@ public class Member {
     private String memberId;
     private String name;
     private String contactNumber;
-    private String membershipDate;
+    private LocalDate membershipDate;
     private JFXButton updateMember;
     private JFXButton deleteMember;
 }

@@ -147,11 +147,32 @@ public class BookManageController implements BookManageService {
 
     @Override
     public boolean deleteBook(String id) {
+        Connection connection = null;
         try {
-            return CrudUtil.execute("DELETE FROM Book WHERE BookId='" + id + "'");
+            connection = DBConnection.getInstance().getConnection();
+            connection.setAutoCommit(false);
+
+            ResultSet rst = connection.createStatement().executeQuery("SELECT recordId FROM bookrecord WHERE bookId='" + id + "'");
+            String recordId = rst.next()? rst.getString(1) :null;
+
+            if(connection.createStatement().executeUpdate("DELETE FROM staff_has_bookrecord WHERE BookRecord_RecordId='" + recordId + "'")>0 &&
+                    connection.createStatement().executeUpdate("DELETE FROM bookrecord WHERE bookId='" + id + "'")>0 && connection.createStatement().executeUpdate("DELETE FROM book WHERE bookId='"+id+"'")>0){
+                connection.commit();
+                return true;
+            }
+            connection.rollback();
+            return false;
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);
+        }finally {
+            try {
+                assert connection != null;
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                throw new IllegalArgumentException(e);
+            }
         }
+
     }
 
     @Override

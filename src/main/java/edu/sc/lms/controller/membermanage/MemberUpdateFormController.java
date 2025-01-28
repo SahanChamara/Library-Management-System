@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 
+import java.time.LocalDate;
+
 public class MemberUpdateFormController {
 
     @FXML
@@ -30,7 +32,7 @@ public class MemberUpdateFormController {
 
     @FXML
     void btnUpdateMemberOnAction(ActionEvent event) {
-        if(MemberManagerController.getInstance().updateMember(new Member(selectedMemberId,txtMemberName.getText(),txtContactNumber.getText(),dateMembership.toString(),null,null))){
+        if(MemberManagerController.getInstance().updateMember(new Member(selectedMemberId,txtMemberName.getText(),txtContactNumber.getText(),dateMembership.getValue(),null,null))){
             new Alert(Alert.AlertType.INFORMATION,"Member Update Successful").show();
         }else{
             new Alert(Alert.AlertType.INFORMATION,"Member Update Failed").show();
@@ -42,7 +44,7 @@ public class MemberUpdateFormController {
             Member member = MemberManagerController.getInstance().loadSelectedMember(selectedMemberId);
             txtMemberName.setText(member.getName());
             txtContactNumber.setText(member.getContactNumber());
-            // mekata date picker eka gahapn
+            dateMembership.setValue(member.getMembershipDate());
         }
 
     }

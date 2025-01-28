@@ -10,4 +10,5 @@ public interface MemberService {
     String generateMemberId();
     Member loadSelectedMember(String memberId);
     boolean updateMember(Member member);
+    boolean deletemember(String memberId);
 }

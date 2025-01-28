@@ -12,6 +12,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -19,6 +21,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MemberManagerFormController implements Initializable {
@@ -77,7 +80,7 @@ public class MemberManagerFormController implements Initializable {
 
     }
 
-    void loadMemberTable(){
+    void loadMemberTable() {
         ObservableList<Member> memberObservableList = FXCollections.observableArrayList();
         for (Member member : MemberManagerController.getInstance().loadMemberTable()) {
             member.getUpdateMember().setOnAction(actionEvent -> {
@@ -94,7 +97,17 @@ public class MemberManagerFormController implements Initializable {
                 }
 
             });
-            member.getDeleteMember().setOnAction(actionEvent -> System.out.println("Delete btn clicked"));
+            member.getDeleteMember().setOnAction(actionEvent -> {
+                Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to delete it?...", ButtonType.YES, ButtonType.NO).showAndWait();
+                ButtonType buttonType = result.orElse(ButtonType.NO);
+                if(buttonType==ButtonType.YES){
+                    if(MemberManagerController.getInstance().deletemember(member.getMemberId())){
+                        new Alert(Alert.AlertType.INFORMATION,"Member Delete Successful").show();
+                    }else {
+                        new Alert(Alert.AlertType.INFORMATION,"Member Delete Failed").show();
+                    }
+                }
+            });
             memberObservableList.add(member);
         }
         tblMember.setItems(memberObservableList);
