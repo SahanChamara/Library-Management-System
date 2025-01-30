@@ -8,7 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
@@ -85,7 +84,8 @@ public class DashboardFormController implements Initializable {
     }
 
     @FXML
-    void btnCirculationOnAction(ActionEvent event) {
+    void btnCirculationOnAction(ActionEvent event) throws IOException {
+        loadPane("/view/circulation_management_form.fxml",anchorPaneDashboard);
 
     }
 
@@ -102,7 +102,7 @@ public class DashboardFormController implements Initializable {
 
     @FXML
     void btnMembersOnAction(ActionEvent event) throws IOException {
-        loadPane("/view/member_manager_form.fxml",anchorPaneDashboard);
+        loadPane("/view/member_management_form.fxml",anchorPaneDashboard);
 
     }
 
