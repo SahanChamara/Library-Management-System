@@ -30,4 +30,19 @@ public class CirculationController implements CirculationService{
             throw new IllegalArgumentException(e);
         }
     }
+
+    @Override
+    public List<String> loadBookTitle() {
+        ArrayList<String> booktitleList = new ArrayList<>();
+        try {
+            ResultSet rst = CrudUtil.execute("SELECT BookTitle FROM book");
+            while (rst.next()){
+                booktitleList.add(rst.getString(1));
+            }
+            return booktitleList;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 }

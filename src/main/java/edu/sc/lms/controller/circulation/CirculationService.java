@@ -3,4 +3,5 @@ import java.util.List;
 
 public interface CirculationService {
     List<String> loadMemberNames();
+    List<String> loadBookTitle();
 }

@@ -102,8 +102,15 @@ public class CirculationManagementFormController implements Initializable {
         comboMemberName.setItems(nameArrayList);
     }
 
+    void loadBookTitles(){
+        ObservableList<String> bookTitles = FXCollections.observableArrayList();
+        bookTitles.addAll(CirculationController.getInstance().loadBookTitle());
+        comboBookTitle.setItems(bookTitles);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadMemberNames();
+        loadBookTitles();
     }
 }
