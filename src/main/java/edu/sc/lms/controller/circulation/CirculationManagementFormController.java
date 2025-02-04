@@ -8,10 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -92,7 +89,7 @@ public class CirculationManagementFormController implements Initializable {
 
     @FXML
     void btnIssueBookOnAction(ActionEvent event) {
-        CirculationController.getInstance().issueBook(new BookRecord(null,
+        if (CirculationController.getInstance().issueBook(new BookRecord(null,
                 null,
                 comboMemberName.getSelectionModel().getSelectedItem().toString(),
                 null,
@@ -101,7 +98,11 @@ public class CirculationManagementFormController implements Initializable {
                 dateDueDate.getValue(),
                 null,
                 0)
-        );
+        )) {
+            new Alert(Alert.AlertType.INFORMATION, "Book Issued").show();
+        } else {
+            new Alert(Alert.AlertType.INFORMATION, "Book Issued Failed").show();
+        }
     }
 
     @FXML
@@ -109,13 +110,13 @@ public class CirculationManagementFormController implements Initializable {
 
     }
 
-    void loadMemberNames(){
+    void loadMemberNames() {
         ObservableList<String> nameArrayList = FXCollections.observableArrayList();
         nameArrayList.addAll(CirculationController.getInstance().loadMemberNames());
         comboMemberName.setItems(nameArrayList);
     }
 
-    void loadBookTitles(){
+    void loadBookTitles() {
         ObservableList<String> bookTitles = FXCollections.observableArrayList();
         bookTitles.addAll(CirculationController.getInstance().loadBookTitle());
         comboBookTitle.setItems(bookTitles);

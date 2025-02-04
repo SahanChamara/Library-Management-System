@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 
 public class BookUpdateFormController implements Initializable {
 
+    public JFXTextField txtBookQty;
     @FXML
     private JFXComboBox comboCategory;
 
@@ -72,7 +73,7 @@ public class BookUpdateFormController implements Initializable {
                 txtBookTitle.getText(),
                 txtIsbn.getText(),
                 Double.parseDouble(txtPrice.getText()),
-                comboAvailability.getSelectionModel().getSelectedItem().toString(),
+                Integer.parseInt(txtBookQty.getText()),
                 imgpath,txtNewCategory.getText(),
                 txtAuthor.getText(),
                 null,null,null,null))){

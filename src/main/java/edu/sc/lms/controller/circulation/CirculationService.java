@@ -7,5 +7,6 @@ public interface CirculationService {
     List<String> loadMemberNames();
     List<String> loadBookTitle();
     String generaRecordId();
+    String generateFineId();
     boolean issueBook(BookRecord bookRecord);
 }
