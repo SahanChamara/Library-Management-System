@@ -2,6 +2,7 @@ package edu.sc.lms.controller.circulation;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import edu.sc.lms.model.BookRecord;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +14,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class CirculationManagementFormController implements Initializable {
@@ -88,7 +92,16 @@ public class CirculationManagementFormController implements Initializable {
 
     @FXML
     void btnIssueBookOnAction(ActionEvent event) {
-
+        CirculationController.getInstance().issueBook(new BookRecord(null,
+                null,
+                comboMemberName.getSelectionModel().getSelectedItem().toString(),
+                null,
+                comboBookTitle.getSelectionModel().getSelectedItem().toString(),
+                LocalDate.now(),
+                dateDueDate.getValue(),
+                null,
+                0)
+        );
     }
 
     @FXML
