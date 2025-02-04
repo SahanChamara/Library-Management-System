@@ -23,11 +23,9 @@ import java.util.ResourceBundle;
 
 public class BookAddFormController implements Initializable {
 
+    public JFXTextField txtBookQty;
     @FXML
     private JFXComboBox comboCategory;
-
-    @FXML
-    private JFXComboBox comboAvailability;
 
     @FXML
     private ImageView imgBookCover;
@@ -56,7 +54,7 @@ public class BookAddFormController implements Initializable {
                 txtBookTitle.getText(),
                 txtIsbn.getText(),
                 Double.parseDouble(txtPrice.getText()),
-                comboAvailability.getSelectionModel().getSelectedItem().toString(),
+                Integer.parseInt(txtBookQty.getText()),
                 imgpath,
                 comboCategory.getSelectionModel().getSelectedItem().toString(),
                 txtAuthor.getText(),null,null,null,null))){
@@ -136,15 +134,8 @@ public class BookAddFormController implements Initializable {
         comboCategory.setItems(categoryList);
     }
 
-    void loadAvailability(){
-        ObservableList<String> availabilityArrayList = FXCollections.observableArrayList();
-        availabilityArrayList.addAll("InStock","Out of Stock","Available","Not Available");
-        comboAvailability.setItems(availabilityArrayList);
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadCategories();
-        loadAvailability();
     }
 }

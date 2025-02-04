@@ -42,7 +42,7 @@
                   <TableColumn fx:id="colTitle" prefWidth="310.0" text="Title" />
                   <TableColumn fx:id="colAuthor" prefWidth="250.0" text="Author" />
                   <TableColumn fx:id="colCategory" prefWidth="166.0" text="Category" />
-                  <TableColumn fx:id="colAvailability" prefWidth="155.0" text="Availability" />
+                  <TableColumn fx:id="colAvailability" prefWidth="155.0" text="AvailableQty" />
                   <TableColumn fx:id="colPrice" prefWidth="108.0" text="Price" />
                   <TableColumn fx:id="colUpdateActions" prefWidth="109.0" text="Update Book" />
                   <TableColumn fx:id="colDeleteAction" prefWidth="121.0" text="Delete Book" />

@@ -63,13 +63,9 @@ public class CirculationController implements CirculationService {
     @Override
     public boolean issueBook(BookRecord bookRecord) {
         String membername = bookRecord.getMemberName();
-        String booktitle = bookRecord.getBookTitle();
-        String recordId = generaRecordId();
         try {
             ResultSet rst = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT (SELECT MemberId FROM member WHERE name='" + bookRecord.getMemberName() + "') AS memberId,(SELECT bookId FROM book WHERE BookTitle='" + bookRecord.getBookTitle() + "') ");
             if (rst.next()) {
-                String memberId = rst.getString(1);
-                String bookId = rst.getString(2);
                 return true;
             }
         } catch (SQLException e) {

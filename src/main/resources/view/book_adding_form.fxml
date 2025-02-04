@@ -30,6 +30,6 @@
             <Image url="@../assets/enter.png" />
          </image>
       </ImageView>
-      <JFXComboBox fx:id="comboAvailability" layoutX="434.0" layoutY="364.0" onAction="#comboAvailabilityOnStateChange" prefHeight="39.0" prefWidth="192.0" promptText="Select Availability" />
+      <JFXTextField fx:id="txtBookQty" layoutX="434.0" layoutY="378.0" prefHeight="45.0" prefWidth="164.0" promptText="Enter Book Qty" />
    </children>
 </AnchorPane>

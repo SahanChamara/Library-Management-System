@@ -1,8 +1,6 @@
 package edu.sc.lms.model;
 
 import com.jfoenix.controls.JFXButton;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import lombok.*;
 
 @Data
@@ -14,7 +12,7 @@ public class Book {
     private String bookTitle;
     private String isbn;
     private Double price;
-    private String availability;
+    private Integer availableQty;
     private String bookCoverImg;
     private String category;
     private String authorName;

@@ -33,12 +33,12 @@ public class BookManageController implements BookManageService {
                     "b.BookTitle," +
                     "b.ISBN," +
                     "b.Price," +
-                    "b.Availability," +
+                    "b.AvailableQty," +
                     "b.CoverImg," +
                     "c.Category," +
                     "a.AuthorName FROM book b LEFT JOIN author a ON b.AuthorId=a.AuthorId LEFT JOIN category c ON b.CategoryId=c.CategoryId");
             while (rst.next()) {
-                bookArrayList.add(new Book(rst.getString(1), rst.getString(2), rst.getString(3), rst.getDouble(4), rst.getString(5), rst.getString(6), rst.getString(7), rst.getString(8), new JFXButton("Update"), new JFXButton("Delete"), null, null));
+                bookArrayList.add(new Book(rst.getString(1), rst.getString(2), rst.getString(3), rst.getDouble(4), rst.getInt(5), rst.getString(6), rst.getString(7), rst.getString(8), new JFXButton("Update"), new JFXButton("Delete"), null, null));
             }
             return bookArrayList;
         } catch (SQLException e) {
@@ -82,7 +82,7 @@ public class BookManageController implements BookManageService {
                     pst3.setString(2, book.getBookTitle());
                     pst3.setString(3, book.getIsbn());
                     pst3.setDouble(4, book.getPrice());
-                    pst3.setString(5, book.getAvailability());
+                    pst3.setInt(5, book.getAvailableQty());
                     pst3.setString(6, book.getBookCoverImg());
                     pst3.setString(7, categoryId);
                     pst3.setString(8, authorId);
@@ -182,7 +182,7 @@ public class BookManageController implements BookManageService {
                     book.getBookTitle(),
                     book.getIsbn(),
                     book.getPrice(),
-                    book.getAvailability(),
+                    book.getAvailableQty(),
                     book.getBookCoverImg(),
                     book.getBookId()
             );
@@ -199,12 +199,12 @@ public class BookManageController implements BookManageService {
                     "b.BookTitle," +
                     "b.ISBN," +
                     "b.Price," +
-                    "b.Availability," +
+                    "b.AvailableQty," +
                     "b.CoverImg," +
                     "c.Category," +
                     "a.AuthorName FROM book b LEFT JOIN author a ON b.AuthorId=a.AuthorId LEFT JOIN category c ON b.CategoryId=c.CategoryId WHERE BookTitle='" + book.getBookTitle() + "' OR ISBN='" + book.getIsbn() + "'");
             if(rst.next()){
-                return new Book(rst.getString(1),rst.getString(2), rst.getString(3), rst.getDouble(4), rst.getString(5), rst.getString(6), rst.getString(7), rst.getString(8), new JFXButton("Update"), new JFXButton("Delete"), null, null);
+                return new Book(rst.getString(1),rst.getString(2), rst.getString(3), rst.getDouble(4), rst.getInt(5), rst.getString(6), rst.getString(7), rst.getString(8), new JFXButton("Update"), new JFXButton("Delete"), null, null);
             }
             return null;
         } catch (SQLException e) {
@@ -220,12 +220,12 @@ public class BookManageController implements BookManageService {
                     "b.BookTitle," +
                     "b.ISBN," +
                     "b.Price," +
-                    "b.Availability," +
+                    "b.AvailableQty," +
                     "b.CoverImg," +
                     "c.Category," +
                     "a.AuthorName FROM book b LEFT JOIN author a ON b.AuthorId=a.AuthorId LEFT JOIN category c ON b.CategoryId=c.CategoryId WHERE BookId='" + id + "'");
             if (rst.next()) {
-                return new Book(rst.getString(1),rst.getString(2), rst.getString(3), rst.getDouble(4), rst.getString(5), rst.getString(6), rst.getString(7), rst.getString(8), new JFXButton("Update"), new JFXButton("Delete"), null, null);
+                return new Book(rst.getString(1),rst.getString(2), rst.getString(3), rst.getDouble(4), rst.getInt(5), rst.getString(6), rst.getString(7), rst.getString(8), new JFXButton("Update"), new JFXButton("Delete"), null, null);
             }
             return null;
         } catch (SQLException e) {
