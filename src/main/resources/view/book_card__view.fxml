@@ -6,7 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="238.0" prefWidth="214.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.bookcard.BookCardFormController">
+<AnchorPane prefHeight="238.0" prefWidth="214.0" styleClass="anchor-pane" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.bookcard.BookCardFormController">
    <stylesheets>
       <URL value="@../styles/bookcard.css" />
    </stylesheets>

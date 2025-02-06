@@ -25,9 +25,6 @@ public class BookUpdateFormController implements Initializable {
     private JFXComboBox comboCategory;
 
     @FXML
-    private JFXComboBox comboAvailability;
-
-    @FXML
     private ImageView imgBookCover;
 
     @FXML
@@ -116,14 +113,7 @@ public class BookUpdateFormController implements Initializable {
         }
     }
 
-    void loadAvailability(){
-        ObservableList<String> availabilityArrayList = FXCollections.observableArrayList();
-        availabilityArrayList.addAll("InStock","Out of Stock","Available","Not Available");
-        comboAvailability.setItems(availabilityArrayList);
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        loadAvailability();
     }
 }

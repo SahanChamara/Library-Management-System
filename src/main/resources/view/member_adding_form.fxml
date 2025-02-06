@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="385.0" prefWidth="755.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.membermanage.MemberAddFormController">
+<AnchorPane prefHeight="385.0" prefWidth="755.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.membermanage.MemberAddFormController">
     <children>
         <Label layoutX="227.0" layoutY="17.0" prefHeight="45.0" prefWidth="302.0" text="Add New Member">
             <font>

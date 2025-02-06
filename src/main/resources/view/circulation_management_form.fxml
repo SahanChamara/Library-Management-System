@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="1086.0" prefWidth="1921.0" stylesheets="@../styles/bookmanagement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.circulation.CirculationManagementFormController">
+<AnchorPane prefHeight="1086.0" prefWidth="1921.0" stylesheets="@../styles/bookmanagement.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.circulation.CirculationManagementFormController">
    <children>
       <Label layoutX="434.0" layoutY="17.0" prefHeight="48.0" prefWidth="346.0" text="Circulation Management">
          <font>

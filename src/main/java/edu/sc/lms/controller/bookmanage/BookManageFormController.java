@@ -116,7 +116,7 @@ public class BookManageFormController implements Initializable {
         colTitle.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
         colAuthor.setCellValueFactory(new PropertyValueFactory<>("authorName"));
         colCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
-        colAvailability.setCellValueFactory(new PropertyValueFactory<>("availability"));
+        colAvailability.setCellValueFactory(new PropertyValueFactory<>("availableQty"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         colUpdateActions.setCellValueFactory(new PropertyValueFactory<>("updateBook"));
         colDeleteAction.setCellValueFactory(new PropertyValueFactory<>("deleteBook"));

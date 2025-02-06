@@ -18,7 +18,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="mainAnchorPane" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f2eeed;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.dashboard.DashboardFormController">
+<AnchorPane fx:id="mainAnchorPane" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: #f2eeed;" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.dashboard.DashboardFormController">
     <children>
       <AnchorPane fx:id="anchorPaneBookManagement" layoutX="387.0" layoutY="3.0" prefHeight="1083.0" prefWidth="1532.0" style="-fx-background-color: #f2eeed;" />
       <AnchorPane fx:id="anchorPaneDashboard" layoutX="-2.0" prefHeight="1078.0" prefWidth="1921.0">
