@@ -162,8 +162,45 @@ public class CirculationController implements CirculationService {
     }
 
     @Override
-    public List<BookRecord> loadReturnDetails(String memberName, String bookTitle) {
-        return List.of();
+    public BookRecord loadReturnDetails(String memberName, String bookTitle) {
+        try {
+            ResultSet rst = CrudUtil.execute("SELECT br.BorrowedDate," +
+                    "br.ReturnDate," +
+                    "f.fine FROM BookRecord " +
+                    "br JOIN member m ON br.MemberId=m.MemberId" +
+                    " JOIN book b ON br.BookId=b.BookId " +
+                    "LEFT JOIN fine f ON br.RecordId=f.BookRecord_RecordId WHERE name='" + memberName + "' AND BookTitle='" + bookTitle + "'");
+            return rst.next() ? new BookRecord(null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    rst.getDate(1).toLocalDate(),
+                    rst.getDate(2).toLocalDate(),
+                    null,
+                    0,
+                    null,
+                    rst.getDouble(3)) : null;
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    @Override
+    public List<String> loadBookTitleRe(String memberName) {
+        ArrayList<String> bookTitleList = new ArrayList<>();
+        try {
+            ResultSet rst = CrudUtil.execute("SELECT b.booktitle FROM bookrecord" +
+                    " br JOIN member m ON br.memberid=m.memberid" +
+                    " JOIN book b ON br.bookid=b.bookid" +
+                    " WHERE name='" + memberName + "'");
+            while (rst.next()){
+                bookTitleList.add(rst.getString(1));
+            }
+            return bookTitleList;
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 
     @Override

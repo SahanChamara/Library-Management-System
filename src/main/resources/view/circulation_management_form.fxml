@@ -97,7 +97,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <JFXComboBox fx:id="comboMemberNameRe" layoutX="38.0" layoutY="52.0" prefHeight="31.0" prefWidth="625.0" promptText="Member Name" />
+            <JFXComboBox fx:id="comboMemberNameRe" layoutX="38.0" layoutY="52.0" onAction="#selectReturnMemberNameOnAction" prefHeight="31.0" prefWidth="625.0" promptText="Member Name" />
             <Label layoutX="399.0" layoutY="152.0" prefHeight="31.0" prefWidth="104.0" text="Due Date :">
                <font>
                   <Font name="System Bold" size="18.0" />

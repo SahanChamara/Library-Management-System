@@ -130,10 +130,10 @@ public class CirculationManagementFormController implements Initializable {
         ObservableList<String> bookTitles = FXCollections.observableArrayList();
         bookTitles.addAll(CirculationController.getInstance().loadBookTitle());
         comboBookTitle.setItems(bookTitles);
-        comboBookTitleRe.setItems(bookTitles);
+        //comboBookTitleRe.setItems(bookTitles);
     }
 
-    void loadTable(){
+    void loadTable() {
         ObservableList<BookRecord> bookRecordObservableList = FXCollections.observableArrayList();
         bookRecordObservableList.addAll(CirculationController.getInstance().loadTable());
         tblBookRecord.setItems(bookRecordObservableList);
@@ -158,17 +158,26 @@ public class CirculationManagementFormController implements Initializable {
 
     @FXML
     public void selectReturnBookOnAction(ActionEvent actionEvent) {
+        BookRecord bookRecord = CirculationController.getInstance().loadReturnDetails(comboMemberNameRe.getSelectionModel().getSelectedItem().toString(), comboBookTitleRe.getSelectionModel().getSelectedItem().toString());
+        lblBorrowedDate.setText(String.valueOf(bookRecord.getBorrowedDate()));
+        lblDueDate.setText(String.valueOf(bookRecord.getReturnDate()));
+        lblFine.setText(String.valueOf(bookRecord.getFineAmount()));
+    }
 
-
+    @FXML
+    public void selectReturnMemberNameOnAction(ActionEvent actionEvent) {
+        ObservableList<String> bookTitleObservableList = FXCollections.observableArrayList();
+        bookTitleObservableList.addAll(CirculationController.getInstance().loadBookTitleRe(comboMemberNameRe.getSelectionModel().getSelectedItem().toString()));
+        comboBookTitleRe.setItems(bookTitleObservableList);
     }
 
     // method invoke daily at once
-    public static void methodInvokeAtOnce(){
+    public static void methodInvokeAtOnce() {
         ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         Runnable task = () -> CirculationController.getInstance().calculateFine();
         long initialDelay = getInitialDelay(8, 0);
         long period = 24 * 60;
-        scheduler.scheduleAtFixedRate(task,initialDelay,period,TimeUnit.MINUTES);
+        scheduler.scheduleAtFixedRate(task, initialDelay, period, TimeUnit.MINUTES);
     }
 
     private static long getInitialDelay(int targetHour, int targetMinute) {
@@ -178,4 +187,6 @@ public class CirculationManagementFormController implements Initializable {
         long delayMinutes = now.until(targetTime, java.time.temporal.ChronoUnit.MINUTES);
         return delayMinutes < 0 ? delayMinutes + 1440 : delayMinutes;
     }
+
+
 }
