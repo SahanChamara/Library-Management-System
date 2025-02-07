@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -82,7 +83,7 @@ public class CirculationManagementFormController implements Initializable {
     private Label lblOverdueBook;
 
     @FXML
-    private TableView<?> tblBookRecord;
+    private TableView tblBookRecord;
 
     @FXML
     private JFXTextField txtFineAmount;
@@ -97,7 +98,9 @@ public class CirculationManagementFormController implements Initializable {
                 LocalDate.now(),
                 dateDueDate.getValue(),
                 null,
-                0)
+                0,
+                null,
+                0.0)
         )) {
             new Alert(Alert.AlertType.INFORMATION, "Book Issued").show();
         } else {
@@ -122,9 +125,24 @@ public class CirculationManagementFormController implements Initializable {
         comboBookTitle.setItems(bookTitles);
     }
 
+    void loadTable(){
+        ObservableList<BookRecord> bookRecordObservableList = FXCollections.observableArrayList();
+        bookRecordObservableList.addAll(CirculationController.getInstance().loadTable());
+        tblBookRecord.setItems(bookRecordObservableList);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        colBookTitle.setCellValueFactory(new PropertyValueFactory<>("bookTitle"));
+        colMemberName.setCellValueFactory(new PropertyValueFactory<>("memberName"));
+        colBorrowedDate.setCellValueFactory(new PropertyValueFactory<>("borrowedDate"));
+        colDueDate.setCellValueFactory(new PropertyValueFactory<>("returnDate"));
+        colReturnDate.setCellValueFactory(new PropertyValueFactory<>("dateGiven"));
+        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        colFine.setCellValueFactory(new PropertyValueFactory<>("fineAmount"));
+
         loadMemberNames();
         loadBookTitles();
+        loadTable();
     }
 }

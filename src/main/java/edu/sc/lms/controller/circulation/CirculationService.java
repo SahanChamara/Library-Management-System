@@ -9,4 +9,5 @@ public interface CirculationService {
     String generaRecordId();
     String generateFineId();
     boolean issueBook(BookRecord bookRecord);
+    List<BookRecord> loadTable();
 }

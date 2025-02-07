@@ -1,6 +1,7 @@
 package edu.sc.lms.controller.circulation;
 
 import edu.sc.lms.dbconnection.DBConnection;
+import edu.sc.lms.model.Book;
 import edu.sc.lms.model.BookRecord;
 import edu.sc.lms.util.CrudUtil;
 
@@ -92,7 +93,7 @@ public class CirculationController implements CirculationService {
                 psTm.setDate(5, Date.valueOf(bookRecord.getReturnDate()));
                 psTm.setString(6, null);
                 psTm.setInt(7, 0);
-                if (psTm.executeUpdate() > 0 && connection.createStatement().executeUpdate("UPDATE Book SET= AvailableQty=AvailableQty-1 WHERE BookId='" + rst.getString(2) + "'") > 0) {
+                if (psTm.executeUpdate() > 0 && connection.createStatement().executeUpdate("UPDATE Book SET AvailableQty=AvailableQty-1 WHERE BookId='" + rst.getString(2) + "'") > 0) {
                     PreparedStatement psTm2 = connection.prepareStatement("INSERT INTO Fine VALUES(?,?,?)");
                     psTm2.setString(1, fineId);
                     psTm2.setDouble(2, 0.00);
@@ -126,5 +127,31 @@ public class CirculationController implements CirculationService {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    @Override
+    public List<BookRecord> loadTable() {
+        ArrayList<BookRecord> bookRecordArrayList = new ArrayList<>();
+        try {
+            ResultSet rst = CrudUtil.execute("select b.booktitle as booktitle, m.name as membername,br.BorrowedDate as BorrowedDate,br.ReturnDate as ReturnDate,br.DateGiven as DateGiven, case when br.isreturn = 1 then 'returned' else 'not returned' end as status, f.fine as FineAmount from bookrecord br join member m on br.memberid=m.memberid join book b on br.bookid=b.bookid left join fine f on br.recordid=f.BookRecord_RecordId;");
+            while (rst.next()){
+                bookRecordArrayList.add(new BookRecord(null,
+                        null,
+                        rst.getString(2),
+                        null,
+                        rst.getString(1),
+                        rst.getDate(3).toLocalDate(),
+                        rst.getDate(4).toLocalDate(),
+                        null,
+                        0,
+                        rst.getString(6),
+                        rst.getDouble(7)
+                ));
+            }
+            return bookRecordArrayList;
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
+
     }
 }

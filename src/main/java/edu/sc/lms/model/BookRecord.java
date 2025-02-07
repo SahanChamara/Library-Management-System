@@ -21,5 +21,7 @@ public class BookRecord {
     private LocalDate returnDate;
     private LocalDate dateGiven;
     private Integer isReturn;
+    private String status;
+    private Double fineAmount;
 
 }
