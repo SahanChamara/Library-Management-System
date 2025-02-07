@@ -133,7 +133,12 @@ public class CirculationController implements CirculationService {
     public List<BookRecord> loadTable() {
         ArrayList<BookRecord> bookRecordArrayList = new ArrayList<>();
         try {
-            ResultSet rst = CrudUtil.execute("select b.booktitle as booktitle, m.name as membername,br.BorrowedDate as BorrowedDate,br.ReturnDate as ReturnDate,br.DateGiven as DateGiven, case when br.isreturn = 1 then 'returned' else 'not returned' end as status, f.fine as FineAmount from bookrecord br join member m on br.memberid=m.memberid join book b on br.bookid=b.bookid left join fine f on br.recordid=f.BookRecord_RecordId;");
+            ResultSet rst = CrudUtil.execute("SELECT b.booktitle AS booktitle," +
+                    "m.name AS membername," +
+                    "br.BorrowedDate AS BorrowedDate," +
+                    "br.ReturnDate AS ReturnDate," +
+                    "br.DateGiven AS DateGiven, CASE WHEN br.isreturn = 1 THEN 'returned' ELSE 'not returned' END AS status, " +
+                    "f.fine AS FineAmount FROM bookrecord br join member m on br.memberid=m.memberid join book b on br.bookid=b.bookid left join fine f on br.recordid=f.BookRecord_RecordId;");
             while (rst.next()){
                 bookRecordArrayList.add(new BookRecord(null,
                         null,
@@ -142,7 +147,7 @@ public class CirculationController implements CirculationService {
                         rst.getString(1),
                         rst.getDate(3).toLocalDate(),
                         rst.getDate(4).toLocalDate(),
-                        null,
+                        rst.getString(5),
                         0,
                         rst.getString(6),
                         rst.getDouble(7)
@@ -152,6 +157,17 @@ public class CirculationController implements CirculationService {
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);
         }
+
+    }
+
+    @Override
+    public List<BookRecord> loadReturnDetails(String memberName, String bookTitle) {
+        return List.of();
+    }
+
+    @Override
+    public Integer calculateFine() {
+        return 0;
 
     }
 }

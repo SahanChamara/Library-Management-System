@@ -20,6 +20,8 @@ import java.util.ResourceBundle;
 public class CirculationManagementFormController implements Initializable {
 
     @FXML
+    public JFXComboBox comboBookTitleRe;
+    @FXML
     private TableColumn colBookTitle;
 
     @FXML
@@ -103,6 +105,7 @@ public class CirculationManagementFormController implements Initializable {
                 0.0)
         )) {
             new Alert(Alert.AlertType.INFORMATION, "Book Issued").show();
+            loadTable();
         } else {
             new Alert(Alert.AlertType.INFORMATION, "Book Issued Failed").show();
         }
@@ -117,12 +120,14 @@ public class CirculationManagementFormController implements Initializable {
         ObservableList<String> nameArrayList = FXCollections.observableArrayList();
         nameArrayList.addAll(CirculationController.getInstance().loadMemberNames());
         comboMemberName.setItems(nameArrayList);
+        comboMemberNameRe.setItems(nameArrayList);
     }
 
     void loadBookTitles() {
         ObservableList<String> bookTitles = FXCollections.observableArrayList();
         bookTitles.addAll(CirculationController.getInstance().loadBookTitle());
         comboBookTitle.setItems(bookTitles);
+        comboBookTitleRe.setItems(bookTitles);
     }
 
     void loadTable(){
@@ -144,5 +149,11 @@ public class CirculationManagementFormController implements Initializable {
         loadMemberNames();
         loadBookTitles();
         loadTable();
+    }
+
+    @FXML
+    public void selectReturnBookOnAction(ActionEvent actionEvent) {
+
+
     }
 }

@@ -10,4 +10,7 @@ public interface CirculationService {
     String generateFineId();
     boolean issueBook(BookRecord bookRecord);
     List<BookRecord> loadTable();
+    List<BookRecord> loadReturnDetails(String memberName,String bookTitle);
+    Integer calculateFine();
+
 }
