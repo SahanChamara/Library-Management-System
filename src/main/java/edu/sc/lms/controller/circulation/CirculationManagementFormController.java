@@ -12,10 +12,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.time.LocalTime;
 
 public class CirculationManagementFormController implements Initializable {
 
@@ -149,11 +152,30 @@ public class CirculationManagementFormController implements Initializable {
         loadMemberNames();
         loadBookTitles();
         loadTable();
+        //CirculationController.getInstance().calculateFine();
+        methodInvokeAtOnce();
     }
 
     @FXML
     public void selectReturnBookOnAction(ActionEvent actionEvent) {
 
 
+    }
+
+    // method invoke daily at once
+    public static void methodInvokeAtOnce(){
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        Runnable task = () -> CirculationController.getInstance().calculateFine();
+        long initialDelay = getInitialDelay(8, 0);
+        long period = 24 * 60;
+        scheduler.scheduleAtFixedRate(task,initialDelay,period,TimeUnit.MINUTES);
+    }
+
+    private static long getInitialDelay(int targetHour, int targetMinute) {
+        LocalTime now = LocalTime.now();
+        LocalTime targetTime = LocalTime.of(targetHour, targetMinute);
+
+        long delayMinutes = now.until(targetTime, java.time.temporal.ChronoUnit.MINUTES);
+        return delayMinutes < 0 ? delayMinutes + 1440 : delayMinutes;
     }
 }

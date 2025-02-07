@@ -7,6 +7,7 @@ import edu.sc.lms.util.CrudUtil;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -139,7 +140,7 @@ public class CirculationController implements CirculationService {
                     "br.ReturnDate AS ReturnDate," +
                     "br.DateGiven AS DateGiven, CASE WHEN br.isreturn = 1 THEN 'returned' ELSE 'not returned' END AS status, " +
                     "f.fine AS FineAmount FROM bookrecord br join member m on br.memberid=m.memberid join book b on br.bookid=b.bookid left join fine f on br.recordid=f.BookRecord_RecordId;");
-            while (rst.next()){
+            while (rst.next()) {
                 bookRecordArrayList.add(new BookRecord(null,
                         null,
                         rst.getString(2),
@@ -166,8 +167,29 @@ public class CirculationController implements CirculationService {
     }
 
     @Override
-    public Integer calculateFine() {
-        return 0;
+    public void calculateFine() {
+        System.out.println("method calling...");
+        ArrayList<BookRecord> localDateArrayList = new ArrayList<>();
+        try {
+            ResultSet rst = CrudUtil.execute("SELECT RecordId, ReturnDate, isReturn FROM BookRecord");
+            while (rst.next()) {
+                localDateArrayList.add(new BookRecord(rst.getString(1), null, null, null, null, null, rst.getDate(2).toLocalDate(), null, rst.getInt(3), null, 0.0));
+            }
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
 
+        //Calculating Fine Ony by One
+        for (BookRecord bookRecord : localDateArrayList) {
+            long daysBetween = ChronoUnit.DAYS.between(bookRecord.getReturnDate(), LocalDate.now());
+            if (daysBetween > 0 && bookRecord.getIsReturn() != 1) {
+                double calculatedFine = (double) daysBetween * 10;
+                try {
+                    CrudUtil.execute("UPDATE Fine SET Fine = '" + calculatedFine + "' WHERE  BookRecord_RecordId = '" + bookRecord.getRecordId() + "'");
+                } catch (SQLException e) {
+                    throw new IllegalArgumentException(e);
+                }
+            }
+        }
     }
 }
