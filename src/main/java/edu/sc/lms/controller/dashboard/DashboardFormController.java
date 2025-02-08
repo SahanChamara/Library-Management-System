@@ -2,8 +2,10 @@ package edu.sc.lms.controller.dashboard;
 
 import com.jfoenix.controls.JFXTextField;
 import edu.sc.lms.controller.bookcard.BookCardFormController;
-import edu.sc.lms.model.Book;
-import edu.sc.lms.service.custom.impl.DashboardServiceImpl;
+import edu.sc.lms.dto.Book;
+import edu.sc.lms.service.ServiceFactory;
+import edu.sc.lms.service.custom.DashBoardService;
+import edu.sc.lms.util.ServiceType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -79,6 +81,8 @@ public class DashboardFormController implements Initializable {
 
     private Stage dialogStage;
 
+    DashBoardService dashBoardService = ServiceFactory.getInstanace().getServiceType(ServiceType.DASHBOARD);
+
     @FXML
     void btnBookManagementOnAction(ActionEvent event) throws IOException {
         loadPane("/view/book_manage_form.fxml",anchorPaneDashboard);
@@ -116,7 +120,7 @@ public class DashboardFormController implements Initializable {
         List<Book> bookCard = new ArrayList<>();
         Book book;
 
-        for (Book bookDatabase : DashboardServiceImpl.getInstance().loadBookToCard()) {
+        for (Book bookDatabase : dashBoardService.loadBookToCard()) {
             book = new Book();
             book.setBookTitle(bookDatabase.getBookTitle());
             book.setPrice(bookDatabase.getPrice());
@@ -169,9 +173,9 @@ public class DashboardFormController implements Initializable {
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        lblTotalBooks.setText(DashboardServiceImpl.getInstance().totalBooks());
-        lblActiveMembers.setText(DashboardServiceImpl.getInstance().activeMembers());
-        lblBorrowedBooks.setText(DashboardServiceImpl.getInstance().borrowedBooks());
+        lblTotalBooks.setText(dashBoardService.totalBooks());
+        lblActiveMembers.setText(dashBoardService.activeMembers());
+        lblBorrowedBooks.setText(dashBoardService.borrowedBooks());
         loadCard();
     }
 }

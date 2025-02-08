@@ -1,7 +1,7 @@
 package edu.sc.lms.service.custom.impl;
 
 import edu.sc.lms.dbconnection.DBConnection;
-import edu.sc.lms.model.Staff;
+import edu.sc.lms.dto.Staff;
 import edu.sc.lms.service.custom.LoginService;
 
 import java.sql.PreparedStatement;

@@ -1,8 +1,8 @@
 package edu.sc.lms.service.custom;
 
-import edu.sc.lms.model.Author;
-import edu.sc.lms.model.Book;
-import edu.sc.lms.model.Category;
+import edu.sc.lms.dto.Author;
+import edu.sc.lms.dto.Book;
+import edu.sc.lms.dto.Category;
 
 import java.util.List;
 

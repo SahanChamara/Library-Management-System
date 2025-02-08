@@ -1,4 +1,4 @@
-package edu.sc.lms.model;
+package edu.sc.lms.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

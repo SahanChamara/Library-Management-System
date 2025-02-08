@@ -3,8 +3,10 @@ package edu.sc.lms.controller.bookmanage;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import edu.sc.lms.model.Book;
-import edu.sc.lms.service.custom.impl.BookManageServiceImpl;
+import edu.sc.lms.dto.Book;
+import edu.sc.lms.service.ServiceFactory;
+import edu.sc.lms.service.custom.BookManageService;
+import edu.sc.lms.util.ServiceType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -68,6 +70,8 @@ public class BookManageFormController implements Initializable {
 
     ObservableList<Book> bookObservableList;
 
+    BookManageService bookManageService = ServiceFactory.getInstanace().getServiceType(ServiceType.BOOKMANAGE);
+
     @FXML
     void btnAddNewBookOnAction(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -78,7 +82,7 @@ public class BookManageFormController implements Initializable {
     public void loadBookData() {
         bookObservableList = FXCollections.observableArrayList();
 
-        for (Book loadBookDetail : BookManageServiceImpl.getInstance().loadBookDetails()) {
+        for (Book loadBookDetail : bookManageService.loadBookDetails()) {
             loadBookDetail.getUpdateBook().setOnAction(actionEvent -> {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/book_update_form.fxml"));
@@ -96,7 +100,7 @@ public class BookManageFormController implements Initializable {
                         Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to delete it?..", ButtonType.YES, ButtonType.NO).showAndWait();
                         ButtonType buttonType = result.orElse(ButtonType.NO);
                         if (buttonType == ButtonType.YES) {
-                            if (BookManageServiceImpl.getInstance().deleteBook(loadBookDetail.getBookId())) {
+                            if (bookManageService.deleteBook(loadBookDetail.getBookId())) {
                                 new Alert(Alert.AlertType.INFORMATION, "Book Delete Successful").show();
                                 loadBookData();
                             } else {
@@ -127,7 +131,7 @@ public class BookManageFormController implements Initializable {
 
     @FXML
     public void txtSearchOnAction(ActionEvent actionEvent) {
-        Book book = BookManageServiceImpl.getInstance().searchBook(new Book(null, txtSearch.getText(), txtSearch.getText(), 0.0, null, null, null, null, null, null, null, null));
+        Book book = bookManageService.searchBook(new Book(null, txtSearch.getText(), txtSearch.getText(), 0.0, null, null, null, null, null, null, null, null));
 
         book.getUpdateBook().setOnAction(actionEvent2 -> {
             try {
@@ -146,7 +150,7 @@ public class BookManageFormController implements Initializable {
                     Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to delete it?..", ButtonType.YES, ButtonType.NO).showAndWait();
                     ButtonType buttonType = result.orElse(ButtonType.NO);
                     if (buttonType == ButtonType.YES) {
-                        if (BookManageServiceImpl.getInstance().deleteBook(book.getBookId())) {
+                        if (bookManageService.deleteBook(book.getBookId())) {
                             new Alert(Alert.AlertType.INFORMATION, "Book Delete Successful").show();
                             loadBookData();
                         } else {

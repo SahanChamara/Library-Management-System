@@ -1,6 +1,6 @@
 package edu.sc.lms.service.custom;
 
-import edu.sc.lms.model.Member;
+import edu.sc.lms.dto.Member;
 
 import java.util.List;
 

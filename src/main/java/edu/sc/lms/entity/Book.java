@@ -1,4 +1,4 @@
-package edu.sc.lms.model;
+package edu.sc.lms.entity;
 
 import com.jfoenix.controls.JFXButton;
 import lombok.*;

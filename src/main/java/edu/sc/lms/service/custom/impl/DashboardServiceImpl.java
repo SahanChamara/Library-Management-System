@@ -1,7 +1,7 @@
 package edu.sc.lms.service.custom.impl;
 
 import edu.sc.lms.dbconnection.DBConnection;
-import edu.sc.lms.model.Book;
+import edu.sc.lms.dto.Book;
 import edu.sc.lms.service.custom.DashBoardService;
 import javafx.scene.image.Image;
 

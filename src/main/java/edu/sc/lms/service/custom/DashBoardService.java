@@ -1,6 +1,6 @@
 package edu.sc.lms.service.custom;
 
-import edu.sc.lms.model.Book;
+import edu.sc.lms.dto.Book;
 
 import java.util.List;
 

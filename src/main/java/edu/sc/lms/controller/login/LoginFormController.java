@@ -4,8 +4,10 @@ import animatefx.animation.FadeIn;
 import animatefx.animation.ZoomIn;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
-import edu.sc.lms.model.Staff;
-import edu.sc.lms.service.custom.impl.LoginServiceImpl;
+import edu.sc.lms.dto.Staff;
+import edu.sc.lms.service.ServiceFactory;
+import edu.sc.lms.service.custom.LoginService;
+import edu.sc.lms.util.ServiceType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -58,6 +60,8 @@ public class LoginFormController {
     private String generateOTP;
     private String existEmail;
 
+    LoginService loginService = ServiceFactory.getInstanace().getServiceType(ServiceType.LOGIN);
+
     @FXML
     void btnBackMouseClick(MouseEvent event) {
 
@@ -66,7 +70,7 @@ public class LoginFormController {
     @FXML
     void btnResetPassword(ActionEvent event) {
         if(txtNewResetPassword.getText().equals(txtNewConfirmPassword.getText())){
-            if(LoginServiceImpl.getInstance().updatePassword(txtNewResetPassword.getText(), existEmail)){
+            if(loginService.updatePassword(txtNewResetPassword.getText(), existEmail)){
                 Optional<ButtonType> result = new Alert(Alert.AlertType.INFORMATION, "Password Reset Successful.now you can login your Dashboard.").showAndWait();
                 ButtonType buttonType = result.orElse(ButtonType.CLOSE);
                 if(buttonType==ButtonType.OK){
@@ -84,7 +88,7 @@ public class LoginFormController {
     @FXML
     void btnSendCode(ActionEvent event) {
         try {
-            if (LoginServiceImpl.getInstance().isExistUser(txtEmailEnterPassReset.getText())) {
+            if (loginService.isExistUser(txtEmailEnterPassReset.getText())) {
                 sendEmail(txtEmailEnterPassReset.getText());
                 existEmail = txtEmailEnterPassReset.getText();
             } else {
@@ -159,7 +163,7 @@ public class LoginFormController {
 
     @FXML
     void btnSignInOnAction(ActionEvent event) {
-        if (LoginServiceImpl.getInstance().loginUser(new Staff(null, txtEmail.getText(), null, txtPassword.getText()))) {
+        if (loginService.loginUser(new Staff(null, txtEmail.getText(), null, txtPassword.getText()))) {
             new Alert(Alert.AlertType.INFORMATION, "Login Successful").show();
         } else {
             new Alert(Alert.AlertType.INFORMATION, "Login failed").show();

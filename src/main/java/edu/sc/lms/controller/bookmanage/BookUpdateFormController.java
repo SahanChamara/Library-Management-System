@@ -2,8 +2,10 @@ package edu.sc.lms.controller.bookmanage;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import edu.sc.lms.model.Book;
-import edu.sc.lms.service.custom.impl.BookManageServiceImpl;
+import edu.sc.lms.dto.Book;
+import edu.sc.lms.service.ServiceFactory;
+import edu.sc.lms.service.custom.BookManageService;
+import edu.sc.lms.util.ServiceType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -44,6 +46,8 @@ public class BookUpdateFormController implements Initializable {
     public String selectedBookId;
     private String imgpath;
 
+    BookManageService bookManageService = ServiceFactory.getInstanace().getServiceType(ServiceType.BOOKMANAGE);
+
     @FXML
     void btnEditBookCoverImageOnAction(ActionEvent event) {
         Stage stage = new Stage();
@@ -65,7 +69,7 @@ public class BookUpdateFormController implements Initializable {
 
     @FXML
     void btnEditBookOnAction(ActionEvent event) {
-        if(BookManageServiceImpl.getInstance().updateBook(new Book(selectedBookId,
+        if(bookManageService.updateBook(new Book(selectedBookId,
                 txtBookTitle.getText(),
                 txtIsbn.getText(),
                 Double.parseDouble(txtPrice.getText()),
@@ -101,7 +105,7 @@ public class BookUpdateFormController implements Initializable {
 
     private void loadSelectBook() {
         if (selectedBookId != null) {
-            Book book = BookManageServiceImpl.getInstance().loadSelectedBook(selectedBookId);
+            Book book = bookManageService.loadSelectedBook(selectedBookId);
 
             txtBookTitle.setText(book.getBookTitle());
             txtAuthor.setText(book.getAuthorName());

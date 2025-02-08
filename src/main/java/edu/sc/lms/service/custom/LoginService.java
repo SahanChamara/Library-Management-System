@@ -1,6 +1,6 @@
 package edu.sc.lms.service.custom;
 
-import edu.sc.lms.model.Staff;
+import edu.sc.lms.dto.Staff;
 
 public interface LoginService {
     boolean loginUser(Staff staff);

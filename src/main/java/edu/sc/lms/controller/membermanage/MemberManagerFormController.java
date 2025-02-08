@@ -2,8 +2,10 @@ package edu.sc.lms.controller.membermanage;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import edu.sc.lms.model.Member;
-import edu.sc.lms.service.custom.impl.MemberManagerServiceImpl;
+import edu.sc.lms.dto.Member;
+import edu.sc.lms.service.ServiceFactory;
+import edu.sc.lms.service.custom.MemberService;
+import edu.sc.lms.util.ServiceType;
 import io.github.palexdev.mfxcore.controls.Label;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -66,6 +68,8 @@ public class MemberManagerFormController implements Initializable {
     @FXML
     private JFXTextField txtSearchMember;
 
+    MemberService memberService = ServiceFactory.getInstanace().getServiceType(ServiceType.MEMBER);
+
     @FXML
     void btnAddMemberOnAction(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -85,7 +89,7 @@ public class MemberManagerFormController implements Initializable {
 
     void loadMemberTable() {
         ObservableList<Member> memberObservableList = FXCollections.observableArrayList();
-        for (Member member : MemberManagerServiceImpl.getInstance().loadMemberTable()) {
+        for (Member member : memberService.loadMemberTable()) {
             member.getUpdateMember().setOnAction(actionEvent -> {
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/member_update_form.fxml"));
@@ -104,7 +108,7 @@ public class MemberManagerFormController implements Initializable {
                 Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to delete it?...", ButtonType.YES, ButtonType.NO).showAndWait();
                 ButtonType buttonType = result.orElse(ButtonType.NO);
                 if(buttonType==ButtonType.YES){
-                    if(MemberManagerServiceImpl.getInstance().deletemember(member.getMemberId())){
+                    if(memberService.deletemember(member.getMemberId())){
                         new Alert(Alert.AlertType.INFORMATION,"Member Delete Successful").show();
                     }else {
                         new Alert(Alert.AlertType.INFORMATION,"Member Delete Failed").show();
@@ -125,7 +129,7 @@ public class MemberManagerFormController implements Initializable {
         colUpdateMember.setCellValueFactory(new PropertyValueFactory<>("updateMember"));
         colDeleteMember.setCellValueFactory(new PropertyValueFactory<>("deleteMember"));
 
-        lblTotalMember.setText(String.valueOf(MemberManagerServiceImpl.getInstance().totalMembers()));
+        lblTotalMember.setText(String.valueOf(memberService.totalMembers()));
         loadMemberTable();
     }
 }

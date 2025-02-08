@@ -2,9 +2,9 @@ package edu.sc.lms.service.custom.impl;
 
 import com.jfoenix.controls.JFXButton;
 import edu.sc.lms.dbconnection.DBConnection;
-import edu.sc.lms.model.Author;
-import edu.sc.lms.model.Book;
-import edu.sc.lms.model.Category;
+import edu.sc.lms.dto.Author;
+import edu.sc.lms.dto.Book;
+import edu.sc.lms.dto.Category;
 import edu.sc.lms.service.custom.BookManageService;
 import edu.sc.lms.util.CrudUtil;
 

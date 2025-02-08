@@ -1,4 +1,4 @@
-package edu.sc.lms.model;
+package edu.sc.lms.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,9 +9,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Staff {
-    private String staffId;
-    private String email;
-    private String userName;
-    private String password;
+public class Author {
+    private String authorId;
+    private String authorName;
 }
+

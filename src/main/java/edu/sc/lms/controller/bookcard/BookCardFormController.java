@@ -1,6 +1,6 @@
 package edu.sc.lms.controller.bookcard;
 
-import edu.sc.lms.model.Book;
+import edu.sc.lms.dto.Book;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;

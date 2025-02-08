@@ -2,7 +2,7 @@ package edu.sc.lms.service.custom.impl;
 
 import com.jfoenix.controls.JFXButton;
 import edu.sc.lms.dbconnection.DBConnection;
-import edu.sc.lms.model.Member;
+import edu.sc.lms.dto.Member;
 import edu.sc.lms.service.custom.MemberService;
 import edu.sc.lms.util.CrudUtil;
 import java.sql.*;

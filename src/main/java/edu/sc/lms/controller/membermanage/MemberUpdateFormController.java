@@ -1,8 +1,10 @@
 package edu.sc.lms.controller.membermanage;
 
 import com.jfoenix.controls.JFXTextField;
-import edu.sc.lms.model.Member;
-import edu.sc.lms.service.custom.impl.MemberManagerServiceImpl;
+import edu.sc.lms.dto.Member;
+import edu.sc.lms.service.ServiceFactory;
+import edu.sc.lms.service.custom.MemberService;
+import edu.sc.lms.util.ServiceType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -23,6 +25,8 @@ public class MemberUpdateFormController {
 
     private String selectedMemberId;
 
+    MemberService memberService = ServiceFactory.getInstanace().getServiceType(ServiceType.MEMBER);
+
     void setSelectedMemberId(String selectedMemberId) {
         System.out.println(selectedMemberId);
         this.selectedMemberId = selectedMemberId;
@@ -31,7 +35,7 @@ public class MemberUpdateFormController {
 
     @FXML
     void btnUpdateMemberOnAction(ActionEvent event) {
-        if(MemberManagerServiceImpl.getInstance().updateMember(new Member(selectedMemberId,txtMemberName.getText(),txtContactNumber.getText(),dateMembership.getValue(),null,null))){
+        if(memberService.updateMember(new Member(selectedMemberId,txtMemberName.getText(),txtContactNumber.getText(),dateMembership.getValue(),null,null))){
             new Alert(Alert.AlertType.INFORMATION,"Member Update Successful").show();
         }else{
             new Alert(Alert.AlertType.INFORMATION,"Member Update Failed").show();
@@ -40,7 +44,7 @@ public class MemberUpdateFormController {
 
     void loadSelectedMember() {
         if (selectedMemberId != null) {
-            Member member = MemberManagerServiceImpl.getInstance().loadSelectedMember(selectedMemberId);
+            Member member = memberService.loadSelectedMember(selectedMemberId);
             txtMemberName.setText(member.getName());
             txtContactNumber.setText(member.getContactNumber());
             dateMembership.setValue(member.getMembershipDate());

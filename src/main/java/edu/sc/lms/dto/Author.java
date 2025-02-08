@@ -1,4 +1,4 @@
-package edu.sc.lms.model;
+package edu.sc.lms.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +9,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Fine {
-    private String fineId;
-    private String fine;
-    private String recordId;
+public class Author {
+    private String authorId;
+    private String authorName;
 }
+

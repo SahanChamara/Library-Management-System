@@ -1,7 +1,7 @@
 package edu.sc.lms.service.custom.impl;
 
 import edu.sc.lms.dbconnection.DBConnection;
-import edu.sc.lms.model.BookRecord;
+import edu.sc.lms.dto.BookRecord;
 import edu.sc.lms.service.custom.CirculationService;
 import edu.sc.lms.util.CrudUtil;
 
