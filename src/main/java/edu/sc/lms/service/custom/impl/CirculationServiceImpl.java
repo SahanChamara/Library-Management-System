@@ -1,8 +1,8 @@
-package edu.sc.lms.controller.circulation;
+package edu.sc.lms.service.custom.impl;
 
 import edu.sc.lms.dbconnection.DBConnection;
-import edu.sc.lms.model.Book;
 import edu.sc.lms.model.BookRecord;
+import edu.sc.lms.service.custom.CirculationService;
 import edu.sc.lms.util.CrudUtil;
 
 import java.sql.*;
@@ -11,15 +11,15 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CirculationController implements CirculationService {
-    private static CirculationController instance;
+public class CirculationServiceImpl implements CirculationService {
+    /*private static CirculationServiceImpl instance;
 
-    private CirculationController() {
+    private CirculationServiceImpl() {
     }
 
-    public static CirculationController getInstance() {
-        return instance == null ? instance = new CirculationController() : instance;
-    }
+    public static CirculationServiceImpl getInstance() {
+        return instance == null ? instance = new CirculationServiceImpl() : instance;
+    }*/
 
     @Override
     public List<String> loadMemberNames() {

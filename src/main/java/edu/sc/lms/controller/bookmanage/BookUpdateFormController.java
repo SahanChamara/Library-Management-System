@@ -3,8 +3,7 @@ package edu.sc.lms.controller.bookmanage;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import edu.sc.lms.model.Book;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import edu.sc.lms.service.custom.impl.BookManageServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -66,7 +65,7 @@ public class BookUpdateFormController implements Initializable {
 
     @FXML
     void btnEditBookOnAction(ActionEvent event) {
-        if(BookManageController.getInstance().updateBook(new Book(selectedBookId,
+        if(BookManageServiceImpl.getInstance().updateBook(new Book(selectedBookId,
                 txtBookTitle.getText(),
                 txtIsbn.getText(),
                 Double.parseDouble(txtPrice.getText()),
@@ -102,7 +101,7 @@ public class BookUpdateFormController implements Initializable {
 
     private void loadSelectBook() {
         if (selectedBookId != null) {
-            Book book = BookManageController.getInstance().loadSelectedBook(selectedBookId);
+            Book book = BookManageServiceImpl.getInstance().loadSelectedBook(selectedBookId);
 
             txtBookTitle.setText(book.getBookTitle());
             txtAuthor.setText(book.getAuthorName());

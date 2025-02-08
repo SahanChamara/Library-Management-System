@@ -1,4 +1,4 @@
-package edu.sc.lms.controller.login;
+package edu.sc.lms.service.custom;
 
 import edu.sc.lms.model.Staff;
 

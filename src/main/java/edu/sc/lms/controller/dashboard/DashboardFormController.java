@@ -3,6 +3,7 @@ package edu.sc.lms.controller.dashboard;
 import com.jfoenix.controls.JFXTextField;
 import edu.sc.lms.controller.bookcard.BookCardFormController;
 import edu.sc.lms.model.Book;
+import edu.sc.lms.service.custom.impl.DashboardServiceImpl;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -115,7 +116,7 @@ public class DashboardFormController implements Initializable {
         List<Book> bookCard = new ArrayList<>();
         Book book;
 
-        for (Book bookDatabase : DashboardController.getInstance().loadBookToCard()) {
+        for (Book bookDatabase : DashboardServiceImpl.getInstance().loadBookToCard()) {
             book = new Book();
             book.setBookTitle(bookDatabase.getBookTitle());
             book.setPrice(bookDatabase.getPrice());
@@ -168,9 +169,9 @@ public class DashboardFormController implements Initializable {
     @SneakyThrows
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        lblTotalBooks.setText(DashboardController.getInstance().totalBooks());
-        lblActiveMembers.setText(DashboardController.getInstance().activeMembers());
-        lblBorrowedBooks.setText(DashboardController.getInstance().borrowedBooks());
+        lblTotalBooks.setText(DashboardServiceImpl.getInstance().totalBooks());
+        lblActiveMembers.setText(DashboardServiceImpl.getInstance().activeMembers());
+        lblBorrowedBooks.setText(DashboardServiceImpl.getInstance().borrowedBooks());
         loadCard();
     }
 }

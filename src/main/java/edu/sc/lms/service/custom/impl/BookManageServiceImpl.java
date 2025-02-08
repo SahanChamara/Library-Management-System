@@ -1,10 +1,11 @@
-package edu.sc.lms.controller.bookmanage;
+package edu.sc.lms.service.custom.impl;
 
 import com.jfoenix.controls.JFXButton;
 import edu.sc.lms.dbconnection.DBConnection;
 import edu.sc.lms.model.Author;
 import edu.sc.lms.model.Book;
 import edu.sc.lms.model.Category;
+import edu.sc.lms.service.custom.BookManageService;
 import edu.sc.lms.util.CrudUtil;
 
 import java.sql.Connection;
@@ -14,15 +15,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookManageController implements BookManageService {
-    private static BookManageController instance;
+public class BookManageServiceImpl implements BookManageService {
+    /*private static BookManageServiceImpl instance;
 
-    private BookManageController() {
+    private BookManageServiceImpl() {
     }
 
-    public static BookManageController getInstance() {
-        return instance == null ? instance = new BookManageController() : instance;
-    }
+    public static BookManageServiceImpl getInstance() {
+        return instance == null ? instance = new BookManageServiceImpl() : instance;
+    }*/
 
     @Override
     public List<Book> loadBookDetails() {

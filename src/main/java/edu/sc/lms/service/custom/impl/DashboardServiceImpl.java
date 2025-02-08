@@ -1,26 +1,24 @@
-package edu.sc.lms.controller.dashboard;
+package edu.sc.lms.service.custom.impl;
 
 import edu.sc.lms.dbconnection.DBConnection;
 import edu.sc.lms.model.Book;
+import edu.sc.lms.service.custom.DashBoardService;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-import java.io.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DashboardController implements DashBoardService {
-    private static DashboardController instance;
+public class DashboardServiceImpl implements DashBoardService {
     private Image image;
 
-    private DashboardController() {
+    /*private static DashboardServiceImpl instance;
+    private DashboardServiceImpl() {
     }
-
-    public static DashboardController getInstance() {
-        return instance != null ? instance : new DashboardController();
-    }
+    public static DashboardServiceImpl getInstance() {
+        return instance != null ? instance : new DashboardServiceImpl();
+    }*/
 
     @Override
     public String totalBooks() {

@@ -1,21 +1,22 @@
-package edu.sc.lms.controller.membermanage;
+package edu.sc.lms.service.custom.impl;
 
 import com.jfoenix.controls.JFXButton;
 import edu.sc.lms.dbconnection.DBConnection;
 import edu.sc.lms.model.Member;
+import edu.sc.lms.service.custom.MemberService;
 import edu.sc.lms.util.CrudUtil;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MemberManagerController implements MemberService{
-    private static MemberManagerController instance;
+public class MemberManagerServiceImpl implements MemberService {
+    /*private static MemberManagerServiceImpl instance;
 
-    private MemberManagerController() {
+    private MemberManagerServiceImpl() {
     }
-    public static MemberManagerController getInstance(){
-        return instance == null ? instance=new MemberManagerController():instance;
-    }
+    public static MemberManagerServiceImpl getInstance(){
+        return instance == null ? instance=new MemberManagerServiceImpl():instance;
+    }*/
 
     @Override
     public Integer totalMembers(){

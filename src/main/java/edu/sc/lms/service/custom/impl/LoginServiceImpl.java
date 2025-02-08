@@ -1,21 +1,20 @@
-package edu.sc.lms.controller.login;
+package edu.sc.lms.service.custom.impl;
 
-import com.mysql.cj.log.Log;
 import edu.sc.lms.dbconnection.DBConnection;
 import edu.sc.lms.model.Staff;
+import edu.sc.lms.service.custom.LoginService;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class LoginController implements LoginService{
-    private static LoginController instance;
+public class LoginServiceImpl implements LoginService {
+   /* private static LoginServiceImpl instance;
 
-    private LoginController() {
+    private LoginServiceImpl() {
     }
-    public static LoginController getInstance(){
-        return instance!=null?instance:new LoginController();
-    }
+    public static LoginServiceImpl getInstance(){
+        return instance!=null?instance:new LoginServiceImpl();
+    }*/
 
     @Override
     public boolean loginUser(Staff staff) {

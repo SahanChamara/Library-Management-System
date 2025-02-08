@@ -3,6 +3,7 @@ package edu.sc.lms.controller.bookmanage;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import edu.sc.lms.model.Book;
+import edu.sc.lms.service.custom.impl.BookManageServiceImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -50,7 +51,7 @@ public class BookAddFormController implements Initializable {
 
     @FXML
     void btnAddBookOnAction(ActionEvent event) throws IOException {
-        if(BookManageController.getInstance().addBook(new Book(null,
+        if(BookManageServiceImpl.getInstance().addBook(new Book(null,
                 txtBookTitle.getText(),
                 txtIsbn.getText(),
                 Double.parseDouble(txtPrice.getText()),

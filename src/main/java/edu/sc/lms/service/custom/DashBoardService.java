@@ -1,4 +1,4 @@
-package edu.sc.lms.controller.dashboard;
+package edu.sc.lms.service.custom;
 
 import edu.sc.lms.model.Book;
 

@@ -1,4 +1,4 @@
-package edu.sc.lms.controller.bookmanage;
+package edu.sc.lms.service.custom;
 
 import edu.sc.lms.model.Author;
 import edu.sc.lms.model.Book;

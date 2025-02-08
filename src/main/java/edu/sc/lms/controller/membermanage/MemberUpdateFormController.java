@@ -2,12 +2,11 @@ package edu.sc.lms.controller.membermanage;
 
 import com.jfoenix.controls.JFXTextField;
 import edu.sc.lms.model.Member;
+import edu.sc.lms.service.custom.impl.MemberManagerServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
-
-import java.time.LocalDate;
 
 public class MemberUpdateFormController {
 
@@ -32,7 +31,7 @@ public class MemberUpdateFormController {
 
     @FXML
     void btnUpdateMemberOnAction(ActionEvent event) {
-        if(MemberManagerController.getInstance().updateMember(new Member(selectedMemberId,txtMemberName.getText(),txtContactNumber.getText(),dateMembership.getValue(),null,null))){
+        if(MemberManagerServiceImpl.getInstance().updateMember(new Member(selectedMemberId,txtMemberName.getText(),txtContactNumber.getText(),dateMembership.getValue(),null,null))){
             new Alert(Alert.AlertType.INFORMATION,"Member Update Successful").show();
         }else{
             new Alert(Alert.AlertType.INFORMATION,"Member Update Failed").show();
@@ -41,7 +40,7 @@ public class MemberUpdateFormController {
 
     void loadSelectedMember() {
         if (selectedMemberId != null) {
-            Member member = MemberManagerController.getInstance().loadSelectedMember(selectedMemberId);
+            Member member = MemberManagerServiceImpl.getInstance().loadSelectedMember(selectedMemberId);
             txtMemberName.setText(member.getName());
             txtContactNumber.setText(member.getContactNumber());
             dateMembership.setValue(member.getMembershipDate());

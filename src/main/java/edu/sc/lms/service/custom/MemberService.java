@@ -1,4 +1,4 @@
-package edu.sc.lms.controller.membermanage;
+package edu.sc.lms.service.custom;
 
 import edu.sc.lms.model.Member;
 
