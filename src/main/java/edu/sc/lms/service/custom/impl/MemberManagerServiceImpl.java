@@ -96,7 +96,7 @@ public class MemberManagerServiceImpl implements MemberService {
     }
 
     @Override
-    public boolean deletemember(String memberId) {
+    public boolean deleteMember(String memberId) {
         Connection connection = null;
         try {
             connection = DBConnection.getInstance().getConnection();

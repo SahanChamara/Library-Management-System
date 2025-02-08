@@ -1,5 +1,6 @@
 package edu.sc.lms.controller.dashboard;
 
+import com.google.inject.Inject;
 import com.jfoenix.controls.JFXTextField;
 import edu.sc.lms.controller.bookcard.BookCardFormController;
 import edu.sc.lms.dto.Book;
@@ -81,7 +82,8 @@ public class DashboardFormController implements Initializable {
 
     private Stage dialogStage;
 
-    DashBoardService dashBoardService = ServiceFactory.getInstanace().getServiceType(ServiceType.DASHBOARD);
+    @Inject
+    DashBoardService dashBoardService;
 
     @FXML
     void btnBookManagementOnAction(ActionEvent event) throws IOException {

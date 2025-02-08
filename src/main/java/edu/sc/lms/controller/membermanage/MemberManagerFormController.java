@@ -108,7 +108,7 @@ public class MemberManagerFormController implements Initializable {
                 Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to delete it?...", ButtonType.YES, ButtonType.NO).showAndWait();
                 ButtonType buttonType = result.orElse(ButtonType.NO);
                 if(buttonType==ButtonType.YES){
-                    if(memberService.deletemember(member.getMemberId())){
+                    if(memberService.deleteMember(member.getMemberId())){
                         new Alert(Alert.AlertType.INFORMATION,"Member Delete Successful").show();
                     }else {
                         new Alert(Alert.AlertType.INFORMATION,"Member Delete Failed").show();

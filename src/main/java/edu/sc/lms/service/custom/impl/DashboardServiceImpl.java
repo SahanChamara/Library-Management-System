@@ -1,66 +1,49 @@
 package edu.sc.lms.service.custom.impl;
 
+import com.google.inject.Inject;
 import edu.sc.lms.dbconnection.DBConnection;
 import edu.sc.lms.dto.Book;
+import edu.sc.lms.entity.BookEntity;
+import edu.sc.lms.repository.DaoFactory;
+import edu.sc.lms.repository.custom.DashboardDao;
 import edu.sc.lms.service.custom.DashBoardService;
+import edu.sc.lms.util.DaoType;
 import javafx.scene.image.Image;
+import org.modelmapper.ModelMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DashboardServiceImpl implements DashBoardService {
     private Image image;
 
-    /*private static DashboardServiceImpl instance;
-    private DashboardServiceImpl() {
-    }
-    public static DashboardServiceImpl getInstance() {
-        return instance != null ? instance : new DashboardServiceImpl();
-    }*/
+    @Inject
+    DashboardDao dashboardDao;
+    ModelMapper mapper =  new ModelMapper();
 
     @Override
     public String totalBooks() {
-        try {
-            ResultSet rst = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT COUNT(BookId) FROM book");
-            return rst.next() ? rst.getString(1) : null;
-        } catch (SQLException e) {
-            throw new IllegalArgumentException(e);
-        }
+        return dashboardDao.totalBooks();
     }
 
     @Override
     public String activeMembers() {
-        try {
-            ResultSet rst = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT COUNT(MemberId) FROM member");
-            return rst.next() ? rst.getString(1) : null;
-        } catch (SQLException e) {
-            throw new IllegalArgumentException(e);
-        }
+        return dashboardDao.activeMembers();
     }
 
     @Override
     public String borrowedBooks() {
-        try {
-            ResultSet rst = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT COUNT(RecordId) FROM bookrecord");
-            return rst.next() ? rst.getString(1) : null;
-        } catch (SQLException e) {
-            throw new IllegalArgumentException(e);
-        }
+        return dashboardDao.borrowedBooks();
     }
 
     @Override
     public List<Book> loadBookToCard() {
-        ArrayList<Book> bookArrayList = new ArrayList<>();
-        try {
-            ResultSet rst = DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT BookTitle,price,coverImg FROM book");
-            while (rst.next()) {
-                bookArrayList.add(new Book(null, rst.getString(1), null, rst.getDouble(2), null, rst.getString(3), null, null,null,null,null,null));
-            }
-            return bookArrayList;
-        } catch (SQLException e) {
-            throw new IllegalArgumentException(e);
-        }
+       return dashboardDao.loadBookToCard()
+               .stream()
+               .map(bookEntity -> mapper.map(bookEntity,Book.class))
+               .collect(Collectors.toList());
     }
 }

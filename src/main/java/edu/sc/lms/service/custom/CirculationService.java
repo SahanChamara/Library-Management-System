@@ -1,9 +1,10 @@
 package edu.sc.lms.service.custom;
 import edu.sc.lms.dto.BookRecord;
+import edu.sc.lms.service.SuperService;
 
 import java.util.List;
 
-public interface CirculationService {
+public interface CirculationService extends SuperService {
     List<String> loadMemberNames();
     List<String> loadBookTitle();
     String generaRecordId();
