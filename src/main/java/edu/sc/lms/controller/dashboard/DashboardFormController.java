@@ -4,8 +4,10 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.JFXTextField;
 import edu.sc.lms.controller.bookcard.BookCardFormController;
 import edu.sc.lms.dto.Book;
+import edu.sc.lms.repository.DaoFactory;
 import edu.sc.lms.service.ServiceFactory;
 import edu.sc.lms.service.custom.DashBoardService;
+import edu.sc.lms.util.DaoType;
 import edu.sc.lms.util.ServiceType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -82,8 +84,8 @@ public class DashboardFormController implements Initializable {
 
     private Stage dialogStage;
 
-    @Inject
-    DashBoardService dashBoardService;
+
+    DashBoardService dashBoardService = ServiceFactory.getInstanace().getServiceType(ServiceType.DASHBOARD);
 
     @FXML
     void btnBookManagementOnAction(ActionEvent event) throws IOException {
@@ -172,12 +174,16 @@ public class DashboardFormController implements Initializable {
         pane.getChildren().add(form);
     }
 
-    @SneakyThrows
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lblTotalBooks.setText(dashBoardService.totalBooks());
         lblActiveMembers.setText(dashBoardService.activeMembers());
         lblBorrowedBooks.setText(dashBoardService.borrowedBooks());
-        loadCard();
+        try {
+            loadCard();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

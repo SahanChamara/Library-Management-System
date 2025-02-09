@@ -10,15 +10,19 @@ import edu.sc.lms.service.custom.LoginService;
 import edu.sc.lms.util.ServiceType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.IOException;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -164,7 +168,13 @@ public class LoginFormController {
     @FXML
     void btnSignInOnAction(ActionEvent event) {
         if (loginService.loginUser(new Staff(null, txtEmail.getText(), null, txtPassword.getText()))) {
-            new Alert(Alert.AlertType.INFORMATION, "Login Successful").show();
+            Stage stage = new Stage();
+            try {
+                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"))));
+                stage.show();
+            } catch (IOException e) {
+                throw new IllegalArgumentException(e);
+            }
         } else {
             new Alert(Alert.AlertType.INFORMATION, "Login failed").show();
         }

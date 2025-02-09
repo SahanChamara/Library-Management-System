@@ -21,6 +21,7 @@ public class AppModule extends AbstractModule {
 
         bind(BookManageDao.class).to(BookManageDaoImpl.class);
         bind(DashboardDao.class).to(DashboardDaoImpl.class);
+        bind(LoginDao.class).to(LoginDaoImpl.class);
 
         /*bind(CirculationDao.class).to(CirculationDaoImpl.class);
         bind(LoginDao.class).to(LoginDaoImpl.class);

@@ -6,6 +6,7 @@ import edu.sc.lms.dto.Book;
 import edu.sc.lms.entity.BookEntity;
 import edu.sc.lms.repository.DaoFactory;
 import edu.sc.lms.repository.custom.DashboardDao;
+import edu.sc.lms.repository.custom.impl.DashboardDaoImpl;
 import edu.sc.lms.service.custom.DashBoardService;
 import edu.sc.lms.util.DaoType;
 import javafx.scene.image.Image;
@@ -20,8 +21,9 @@ import java.util.stream.Collectors;
 public class DashboardServiceImpl implements DashBoardService {
     private Image image;
 
-    @Inject
-    DashboardDao dashboardDao;
+    /*@Inject
+    DashboardDao dashboardDao;*/
+    DashboardDao dashboardDao = DaoFactory.getInstance().getDaoType(DaoType.DASHBOARD);
     ModelMapper mapper =  new ModelMapper();
 
     @Override

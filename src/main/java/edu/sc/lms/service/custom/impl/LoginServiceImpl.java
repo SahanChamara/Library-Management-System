@@ -2,47 +2,32 @@ package edu.sc.lms.service.custom.impl;
 
 import edu.sc.lms.dbconnection.DBConnection;
 import edu.sc.lms.dto.Staff;
+import edu.sc.lms.entity.StaffEntity;
+import edu.sc.lms.repository.DaoFactory;
+import edu.sc.lms.repository.custom.LoginDao;
 import edu.sc.lms.service.custom.LoginService;
+import edu.sc.lms.util.DaoType;
+import org.modelmapper.ModelMapper;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class LoginServiceImpl implements LoginService {
-   /* private static LoginServiceImpl instance;
-
-    private LoginServiceImpl() {
-    }
-    public static LoginServiceImpl getInstance(){
-        return instance!=null?instance:new LoginServiceImpl();
-    }*/
+    LoginDao loginDao = DaoFactory.getInstance().getDaoType(DaoType.LOGIN);
+    ModelMapper mapper = new ModelMapper();
 
     @Override
     public boolean loginUser(Staff staff) {
-        try {
-            return DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT email,password FROM staff WHERE email='" + staff.getEmail() + "' AND password='" + staff.getPassword() + "'").next();
-        } catch (SQLException e) {
-            throw new IllegalArgumentException(e);
-        }
+        return loginDao.loginUser(mapper.map(staff, StaffEntity.class));
     }
 
     @Override
     public boolean isExistUser(String email) {
-        try {
-            return DBConnection.getInstance().getConnection().createStatement().executeQuery("SELECT email FROM staff WHERE email='" + email + "'").next();
-        } catch (SQLException e) {
-            throw new IllegalArgumentException(e);
-        }
+        return loginDao.isExistUser(email);
     }
 
     @Override
     public boolean updatePassword(String password,String email) {
-        try {
-            PreparedStatement prepareStm = DBConnection.getInstance().getConnection().prepareStatement("UPDATE staff SET password=? WHERE email=?");
-            prepareStm.setString(1,password);
-            prepareStm.setString(2,email);
-            return prepareStm.executeUpdate()>0;
-        } catch (SQLException e) {
-            throw new IllegalArgumentException(e);
-        }
+        return loginDao.updatePassword(password,email);
     }
 }
