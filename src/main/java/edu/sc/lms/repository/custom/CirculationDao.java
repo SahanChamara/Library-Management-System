@@ -1,4 +1,22 @@
 package edu.sc.lms.repository.custom;
 
-public interface CirculationDao {
+import edu.sc.lms.dto.BookRecord;
+import edu.sc.lms.entity.BookRecordEntity;
+import edu.sc.lms.repository.CrudDao;
+
+import java.util.List;
+
+public interface CirculationDao extends CrudDao<BookRecordEntity,String> {
+    List<String> loadMemberNames();
+    List<String> loadBookTitle();
+    String generaRecordId();
+    String generateFineId();
+    boolean issueBook(BookRecordEntity bookRecord);
+    List<BookRecordEntity> loadTable();
+    BookRecordEntity loadReturnDetails(String memberName,String bookTitle);
+    List<String> loadBookTitleRe(String memberName);
+    boolean calculateFine();
+    Integer borrowedBook();
+    Integer returnedBookCount();
+    boolean returnBook(BookRecordEntity bookRecordEntity);
 }

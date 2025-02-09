@@ -9,7 +9,6 @@ public interface MemberService extends SuperService {
     Integer totalMembers();
     List<Member> loadMemberTable();
     boolean addMember(Member member);
-    String generateMemberId();
     Member loadSelectedMember(String memberId);
     boolean updateMember(Member member);
     boolean deleteMember(String memberId);

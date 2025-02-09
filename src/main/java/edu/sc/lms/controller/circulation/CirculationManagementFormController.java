@@ -9,6 +9,7 @@ import edu.sc.lms.util.ServiceType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -120,6 +121,22 @@ public class CirculationManagementFormController implements Initializable {
 
     @FXML
     void btnReturnBookOnAction(ActionEvent event) {
+        if (circulationService.returnBook(new BookRecord(null,
+                null,
+                comboMemberNameRe.getSelectionModel().getSelectedItem().toString(),
+                null,
+                comboBookTitleRe.getSelectionModel().getSelectedItem().toString(),
+                null,
+                null,
+                String.valueOf(LocalDate.now()),
+                1,
+                null,
+                Double.parseDouble(txtFineAmount.getText())))) {
+            new Alert(Alert.AlertType.INFORMATION, "Book Returned Successful").show();
+        } else {
+            new Alert(Alert.AlertType.INFORMATION, "Book Returned Failed").show();
+        }
+
 
     }
 
@@ -156,20 +173,35 @@ public class CirculationManagementFormController implements Initializable {
         loadMemberNames();
         loadBookTitles();
         loadTable();
+        lblBookBorrowed.setText(String.valueOf(circulationService.borrowedBook()));
+        lblBookReturn.setText(String.valueOf(circulationService.returnedBookCount()));
         //CirculationController.getInstance().calculateFine();
-        methodInvokeAtOnce();
+        circulationService.calculateFine();
+        //methodInvokeAtOnce();
     }
 
     @FXML
-    public void selectReturnBookOnAction(ActionEvent actionEvent) {
-        BookRecord bookRecord = circulationService.loadReturnDetails(comboMemberNameRe.getSelectionModel().getSelectedItem().toString(), comboBookTitleRe.getSelectionModel().getSelectedItem().toString());
-        lblBorrowedDate.setText(String.valueOf(bookRecord.getBorrowedDate()));
-        lblDueDate.setText(String.valueOf(bookRecord.getReturnDate()));
-        lblFine.setText(String.valueOf(bookRecord.getFineAmount()));
+    public void selectReturnBookOnAction(Event Event) {
+        try {
+            String selectedBook = comboBookTitleRe.getSelectionModel().getSelectedItem().toString();
+        } catch (NullPointerException e) {
+            return;
+        }
+        try {
+            BookRecord bookRecord = circulationService.loadReturnDetails(comboMemberNameRe.getSelectionModel().getSelectedItem().toString(), comboBookTitleRe.getSelectionModel().getSelectedItem().toString());
+            if (bookRecord != null) {
+                lblBorrowedDate.setText(String.valueOf(bookRecord.getBorrowedDate()));
+                lblDueDate.setText(String.valueOf(bookRecord.getReturnDate()));
+                lblFine.setText(String.valueOf(bookRecord.getFineAmount()));
+            }
+        } catch (NullPointerException e) {
+            throw new NullPointerException("Error");
+        }
     }
 
     @FXML
-    public void selectReturnMemberNameOnAction(ActionEvent actionEvent) {
+    public void selectReturnMemberNameOnAction(Event Event) {
+        comboBookTitleRe.getSelectionModel().clearSelection();
         ObservableList<String> bookTitleObservableList = FXCollections.observableArrayList();
         bookTitleObservableList.addAll(circulationService.loadBookTitleRe(comboMemberNameRe.getSelectionModel().getSelectedItem().toString()));
         comboBookTitleRe.setItems(bookTitleObservableList);
