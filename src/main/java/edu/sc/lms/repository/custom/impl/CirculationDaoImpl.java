@@ -202,23 +202,32 @@ public class CirculationDaoImpl implements CirculationDao {
             while (rst.next()) {
                 localDateArrayList.add(new BookRecord(rst.getString(1), null, null, null, null, null, rst.getDate(2).toLocalDate(), null, rst.getInt(3), null, 0.0));
             }
+            System.out.println(localDateArrayList.size());
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);
         }
 
         //Calculating Fine Ony by One
+        boolean isUpdated=false;
+        int updatedCount=0;
+        int chekCount=0;
         for (BookRecord bookRecord : localDateArrayList) {
             long daysBetween = ChronoUnit.DAYS.between(bookRecord.getReturnDate(), LocalDate.now());
             if (daysBetween > 0 && bookRecord.getIsReturn() != 1) {
+                chekCount++;
                 double calculatedFine = (double) daysBetween * 10;
                 try {
-                    return CrudUtil.execute("UPDATE Fine SET Fine = '" + calculatedFine + "' WHERE  BookRecord_RecordId = '" + bookRecord.getRecordId() + "'");
+                    isUpdated = CrudUtil.execute("UPDATE Fine SET Fine = '" + calculatedFine + "' WHERE  BookRecord_RecordId = '" + bookRecord.getRecordId() + "'");
+                    if(isUpdated){
+                        updatedCount++;
+                    }
                 } catch (SQLException e) {
                     throw new IllegalArgumentException(e);
                 }
             }
         }
-        return false;
+        return updatedCount == chekCount;
+
     }
 
     @Override
@@ -258,7 +267,7 @@ public class CirculationDaoImpl implements CirculationDao {
             if (recordId != null) {
                 if(connection.createStatement().executeUpdate("UPDATE bookRecord SET DateGiven='" + bookRecordEntity.getDateGiven() + "', " +
                         "IsReturn='" + bookRecordEntity.getIsReturn() + "' WHERE recordId='" + recordId + "'")>0 && connection.createStatement().executeUpdate("UPDATE Fine SET fine=fine-'"+bookRecordEntity.getFineAmount()+"' " +
-                        "WHERE BookRecord_RecordId='"+bookRecordEntity.getRecordId()+"'")>0){
+                        "WHERE BookRecord_RecordId='"+recordId+"'")>0){
                     connection.commit();
                     return true;
                 }
@@ -267,6 +276,7 @@ public class CirculationDaoImpl implements CirculationDao {
             }
             return false;
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
             try {
                 assert connection!=null;
                 connection.rollback();

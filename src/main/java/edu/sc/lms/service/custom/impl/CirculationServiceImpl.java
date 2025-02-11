@@ -8,6 +8,7 @@ import edu.sc.lms.repository.custom.CirculationDao;
 import edu.sc.lms.service.custom.CirculationService;
 import edu.sc.lms.util.CrudUtil;
 import edu.sc.lms.util.DaoType;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 
 import java.sql.*;
