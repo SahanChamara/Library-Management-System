@@ -64,7 +64,15 @@ public class MemberManageDaoImpl implements MemberManageDao {
 
     @Override
     public MemberEntity search(MemberEntity entity) {
-        return null;
+        try {
+            ResultSet rst = CrudUtil.execute("SELECT * FROM member WHERE name='"+entity.getName()+"' OR contactNumber='"+entity.getContactNumber()+"'");
+            if(rst.next()){
+                return new MemberEntity(rst.getString(1), rst.getString(2),rst.getString(3),rst.getDate(4).toLocalDate(),new JFXButton("Update"),new JFXButton("Delete") );
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
     }
 
     @Override

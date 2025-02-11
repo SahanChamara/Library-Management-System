@@ -2,6 +2,7 @@ package edu.sc.lms.controller.membermanage;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import edu.sc.lms.controller.bookmanage.BookUpdateFormController;
 import edu.sc.lms.dto.Member;
 import edu.sc.lms.service.ServiceFactory;
 import edu.sc.lms.service.custom.MemberService;
@@ -84,7 +85,35 @@ public class MemberManagerFormController implements Initializable {
 
     @FXML
     void txtSearchMemberOnAction(ActionEvent event) {
-
+        Member member = memberService.searchMember(new Member(null, txtSearchMember.getText(), txtSearchMember.getText(), null, null, null));
+        member.getUpdateMember().setOnAction(actionEvent2 -> {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/view/member_update_form.fxml"));
+                Parent load = fxmlLoader.load();
+                MemberUpdateFormController controller = fxmlLoader.getController();
+                controller.setSelectedMemberId(member.getMemberId());
+                Stage stage = new Stage();
+                stage.setScene(new Scene(load));
+                stage.show();
+            } catch (IOException e) {
+                throw new IllegalArgumentException(e);
+            }
+        });
+        member.getDeleteMember().setOnAction(actionEvent2 -> {
+            Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to delete it?..", ButtonType.YES, ButtonType.NO).showAndWait();
+            ButtonType buttonType = result.orElse(ButtonType.NO);
+            if (buttonType == ButtonType.YES) {
+                if (memberService.deleteMember(member.getMemberId())) {
+                    new Alert(Alert.AlertType.INFORMATION, "Member Delete Successful").show();
+                    loadMemberTable();
+                } else {
+                    new Alert(Alert.AlertType.INFORMATION, "Member Delete Failed").show();
+                }
+            }
+        });
+        ObservableList<Member> memberObservableList = FXCollections.observableArrayList();
+        memberObservableList.add(member);
+        tblMember.setItems(memberObservableList);
     }
 
     void loadMemberTable() {
@@ -107,11 +136,11 @@ public class MemberManagerFormController implements Initializable {
             member.getDeleteMember().setOnAction(actionEvent -> {
                 Optional<ButtonType> result = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure want to delete it?...", ButtonType.YES, ButtonType.NO).showAndWait();
                 ButtonType buttonType = result.orElse(ButtonType.NO);
-                if(buttonType==ButtonType.YES){
-                    if(memberService.deleteMember(member.getMemberId())){
-                        new Alert(Alert.AlertType.INFORMATION,"Member Delete Successful").show();
-                    }else {
-                        new Alert(Alert.AlertType.INFORMATION,"Member Delete Failed").show();
+                if (buttonType == ButtonType.YES) {
+                    if (memberService.deleteMember(member.getMemberId())) {
+                        new Alert(Alert.AlertType.INFORMATION, "Member Delete Successful").show();
+                    } else {
+                        new Alert(Alert.AlertType.INFORMATION, "Member Delete Failed").show();
                     }
                 }
             });

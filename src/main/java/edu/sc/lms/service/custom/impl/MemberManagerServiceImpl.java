@@ -1,18 +1,12 @@
 package edu.sc.lms.service.custom.impl;
 
-import com.jfoenix.controls.JFXButton;
-import edu.sc.lms.dbconnection.DBConnection;
 import edu.sc.lms.dto.Member;
 import edu.sc.lms.entity.MemberEntity;
 import edu.sc.lms.repository.DaoFactory;
 import edu.sc.lms.repository.custom.MemberManageDao;
 import edu.sc.lms.service.custom.MemberService;
-import edu.sc.lms.util.CrudUtil;
 import edu.sc.lms.util.DaoType;
 import org.modelmapper.ModelMapper;
-
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,7 +40,7 @@ public class MemberManagerServiceImpl implements MemberService {
 
     @Override
     public boolean updateMember(Member member) {
-       return memberManageDao.update(mapper.map(member, MemberEntity.class));
+        return memberManageDao.update(mapper.map(member, MemberEntity.class));
     }
 
     @Override
@@ -54,4 +48,11 @@ public class MemberManagerServiceImpl implements MemberService {
         return memberManageDao.delete(memberId);
     }
 
+    @Override
+    public Member searchMember(Member member) {
+        if (member != null) {
+            return mapper.map(memberManageDao.search(mapper.map(member, MemberEntity.class)), Member.class);
+        }
+        return null;
+    }
 }

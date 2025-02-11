@@ -12,4 +12,5 @@ public interface MemberService extends SuperService {
     Member loadSelectedMember(String memberId);
     boolean updateMember(Member member);
     boolean deleteMember(String memberId);
+    Member searchMember(Member member);
 }
