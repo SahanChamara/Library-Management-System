@@ -243,18 +243,43 @@ public class CirculationDaoImpl implements CirculationDao {
 
     @Override
     public boolean returnBook(BookRecordEntity bookRecordEntity) {
+        Connection connection=null;
         try {
-            ResultSet rst = CrudUtil.execute("select br.recordid from bookrecord br " +
+             connection = DBConnection.getInstance().getConnection();
+             connection.setAutoCommit(false);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            ResultSet rst = connection.createStatement().executeQuery("select br.recordid from bookrecord br " +
                     "join member m on br.memberid=m.memberid " +
                     "join book b on br.bookid=b.bookid where name='"+bookRecordEntity.getMemberName()+"' and booktitle='"+bookRecordEntity.getBookTitle()+"'");
             String recordId = rst.next() ? rst.getString(1) : null;
             if (recordId != null) {
-                return CrudUtil.execute("UPDATE bookRecord SET DateGiven='" + bookRecordEntity.getDateGiven() + "', " +
-                        "IsReturn='" + bookRecordEntity.getIsReturn() + "' WHERE recordId='" + recordId + "'");
+                if(connection.createStatement().executeUpdate("UPDATE bookRecord SET DateGiven='" + bookRecordEntity.getDateGiven() + "', " +
+                        "IsReturn='" + bookRecordEntity.getIsReturn() + "' WHERE recordId='" + recordId + "'")>0 && connection.createStatement().executeUpdate("UPDATE Fine SET fine=fine-'"+bookRecordEntity.getFineAmount()+"' " +
+                        "WHERE BookRecord_RecordId='"+bookRecordEntity.getRecordId()+"'")>0){
+                    connection.commit();
+                    return true;
+                }
+                connection.rollback();
+                return false;
             }
             return false;
         } catch (SQLException e) {
+            try {
+                assert connection!=null;
+                connection.rollback();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
             throw new IllegalArgumentException(e);
+        }finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 

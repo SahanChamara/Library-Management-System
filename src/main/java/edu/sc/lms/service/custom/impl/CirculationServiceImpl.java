@@ -75,6 +75,7 @@ public class CirculationServiceImpl implements CirculationService {
 
     @Override
     public boolean returnBook(BookRecord bookRecord) {
+        System.out.println(bookRecord.getFineAmount());
         return circulationDao.returnBook(mapper.map(bookRecord, BookRecordEntity.class));
     }
 }

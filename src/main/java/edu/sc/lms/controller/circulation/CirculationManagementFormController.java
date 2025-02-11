@@ -121,20 +121,26 @@ public class CirculationManagementFormController implements Initializable {
 
     @FXML
     void btnReturnBookOnAction(ActionEvent event) {
-        if (circulationService.returnBook(new BookRecord(null,
-                null,
-                comboMemberNameRe.getSelectionModel().getSelectedItem().toString(),
-                null,
-                comboBookTitleRe.getSelectionModel().getSelectedItem().toString(),
-                null,
-                null,
-                String.valueOf(LocalDate.now()),
-                1,
-                null,
-                Double.parseDouble(txtFineAmount.getText())))) {
-            new Alert(Alert.AlertType.INFORMATION, "Book Returned Successful").show();
-        } else {
-            new Alert(Alert.AlertType.INFORMATION, "Book Returned Failed").show();
+        try {
+            if (circulationService.returnBook(new BookRecord(null,
+                    null,
+                    comboMemberNameRe.getSelectionModel().getSelectedItem().toString(),
+                    null,
+                    comboBookTitleRe.getSelectionModel().getSelectedItem().toString(),
+                    null,
+                    null,
+                    String.valueOf(LocalDate.now()),
+                    1,
+                    null,
+                    Double.parseDouble(txtFineAmount.getText())))) {
+                new Alert(Alert.AlertType.INFORMATION, "Book Returned Successful").show();
+            } else {
+                new Alert(Alert.AlertType.INFORMATION, "Book Returned Failed").show();
+            }
+        } catch (NumberFormatException e) {
+            new Alert(Alert.AlertType.INFORMATION,"Please Enter the Fine Amount").show();
+        } catch (NullPointerException e) {
+            new Alert(Alert.AlertType.INFORMATION,"Please Select the Member Name").show();
         }
 
 
@@ -193,6 +199,13 @@ public class CirculationManagementFormController implements Initializable {
                 lblBorrowedDate.setText(String.valueOf(bookRecord.getBorrowedDate()));
                 lblDueDate.setText(String.valueOf(bookRecord.getReturnDate()));
                 lblFine.setText(String.valueOf(bookRecord.getFineAmount()));
+
+                if(lblFine.getText().equals("0.0")){
+                    txtFineAmount.setDisable(true);
+                    txtFineAmount.setText("0.0");
+                }else {
+                    txtFineAmount.setDisable(false);
+                }
             }
         } catch (NullPointerException e) {
             throw new NullPointerException("Error");
