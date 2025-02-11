@@ -52,8 +52,8 @@ public class BookAddFormController implements Initializable {
     private ObservableList<String> categoryList;
     private String imgpath;
 
-    @Inject
-    private BookManageService bookManageService;
+
+    BookManageService bookManageService = ServiceFactory.getInstanace().getServiceType(ServiceType.BOOKMANAGE);
 
     @FXML
     void btnAddBookOnAction(ActionEvent event) throws IOException {
