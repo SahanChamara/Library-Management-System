@@ -15,8 +15,9 @@ public interface CirculationDao extends CrudDao<BookRecordEntity,String> {
     List<BookRecordEntity> loadTable();
     BookRecordEntity loadReturnDetails(String memberName,String bookTitle);
     List<String> loadBookTitleRe(String memberName);
-    boolean calculateFine();
+    List<BookRecordEntity> returnFineCalculatingDetails();
     Integer borrowedBook();
     Integer returnedBookCount();
     boolean returnBook(BookRecordEntity bookRecordEntity);
+    Integer updateCalculatedFine(Double calculatedFineAmount,String recordId);
 }

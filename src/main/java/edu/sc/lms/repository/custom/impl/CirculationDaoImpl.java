@@ -195,39 +195,32 @@ public class CirculationDaoImpl implements CirculationDao {
     }
 
     @Override
-    public boolean calculateFine() {
-        ArrayList<BookRecord> localDateArrayList = new ArrayList<>();
+    public List<BookRecordEntity> returnFineCalculatingDetails() {
+        ArrayList<BookRecordEntity> localDateArrayList = new ArrayList<>();
         try {
             ResultSet rst = CrudUtil.execute("SELECT RecordId, ReturnDate, isReturn FROM BookRecord");
             while (rst.next()) {
-                localDateArrayList.add(new BookRecord(rst.getString(1), null, null, null, null, null, rst.getDate(2).toLocalDate(), null, rst.getInt(3), null, 0.0));
+                localDateArrayList.add(new BookRecordEntity(rst.getString(1), null, null, null, null, null, rst.getDate(2).toLocalDate(), null, rst.getInt(3), null, 0.0));
             }
-            System.out.println(localDateArrayList.size());
+            return localDateArrayList;
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);
         }
+    }
 
-        //Calculating Fine Ony by One
-        boolean isUpdated=false;
-        int updatedCount=0;
-        int chekCount=0;
-        for (BookRecord bookRecord : localDateArrayList) {
-            long daysBetween = ChronoUnit.DAYS.between(bookRecord.getReturnDate(), LocalDate.now());
-            if (daysBetween > 0 && bookRecord.getIsReturn() != 1) {
-                chekCount++;
-                double calculatedFine = (double) daysBetween * 10;
-                try {
-                    isUpdated = CrudUtil.execute("UPDATE Fine SET Fine = '" + calculatedFine + "' WHERE  BookRecord_RecordId = '" + bookRecord.getRecordId() + "'");
-                    if(isUpdated){
-                        updatedCount++;
-                    }
-                } catch (SQLException e) {
-                    throw new IllegalArgumentException(e);
-                }
+    @Override
+    public Integer updateCalculatedFine(Double calculatedFineAmount,String recordId) {
+        boolean isUpdated = false;
+        int updatedCount = 0;
+        try {
+            isUpdated = CrudUtil.execute("UPDATE Fine SET Fine = '" + calculatedFineAmount + "' WHERE  BookRecord_RecordId = '" + recordId + "'");
+            if (isUpdated) {
+                updatedCount++;
             }
+            return updatedCount;
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
         }
-        return updatedCount == chekCount;
-
     }
 
     @Override

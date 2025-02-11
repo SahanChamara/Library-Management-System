@@ -47,7 +47,7 @@ public class CirculationServiceImpl implements CirculationService {
 
     @Override
     public BookRecord loadReturnDetails(String memberName, String bookTitle) {
-        return mapper.map(circulationDao.loadReturnDetails(memberName,bookTitle), BookRecord.class);
+        return mapper.map(circulationDao.loadReturnDetails(memberName, bookTitle), BookRecord.class);
     }
 
     @Override
@@ -59,14 +59,25 @@ public class CirculationServiceImpl implements CirculationService {
 
     @Override
     public void calculateFine() {
-        System.out.println("method calling...");
-        boolean isUpdated = circulationDao.calculateFine();
-        System.out.println(isUpdated);
+        int checkCount=0;
+        int updatedCount=0;
+        for (BookRecord bookRecord : circulationDao.returnFineCalculatingDetails()
+                .stream()
+                .map(entity -> mapper.map(entity, BookRecord.class))
+                .collect(Collectors.toList())) {
+            long daysBetween = ChronoUnit.DAYS.between(bookRecord.getReturnDate(), LocalDate.now());
+            if (daysBetween > 0 && bookRecord.getIsReturn() != 1) {
+                checkCount++;
+                double calculatedFine = (double) daysBetween * 10;
+                updatedCount = circulationDao.updateCalculatedFine(calculatedFine, bookRecord.getRecordId());
+            }
+        }
+        System.out.println(checkCount==updatedCount);
     }
 
     @Override
     public Integer borrowedBook() {
-       return circulationDao.borrowedBook();
+        return circulationDao.borrowedBook();
     }
 
     @Override
