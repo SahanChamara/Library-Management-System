@@ -96,7 +96,7 @@ public class CirculationManagementFormController implements Initializable {
     @FXML
     private JFXTextField txtFineAmount;
 
-    CirculationService circulationService = ServiceFactory.getInstanace().getServiceType(ServiceType.CIRCULATION);
+    CirculationService circulationService = ServiceFactory.getInstance().getServiceType(ServiceType.CIRCULATION);
 
     @FXML
     void btnIssueBookOnAction(ActionEvent event) {

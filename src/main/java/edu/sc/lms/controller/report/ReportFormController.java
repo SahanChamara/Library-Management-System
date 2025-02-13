@@ -1,5 +1,9 @@
 package edu.sc.lms.controller.report;
 
+import edu.sc.lms.dto.Report;
+import edu.sc.lms.service.ServiceFactory;
+import edu.sc.lms.service.custom.ReportService;
+import edu.sc.lms.util.ServiceType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.CategoryAxis;
@@ -11,6 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ReportFormController implements Initializable {
+    ReportService reportService = ServiceFactory.getInstance().getServiceType(ServiceType.REPORT);
 
     @FXML
     public LineChart lineChart;
@@ -29,18 +34,19 @@ public class ReportFormController implements Initializable {
     @FXML
     private CategoryAxis lineChartMonthlyCirculation;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    void loadChart(){
         XYChart.Series series = new XYChart.Series();
         series.setName("Borrowings");
 
-        series.getData().add(new XYChart.Data("Monday",20));
-        series.getData().add(new XYChart.Data("Tuesday",10));
-        series.getData().add(new XYChart.Data("Wednesday",14));
-        series.getData().add(new XYChart.Data("Thursday",12));
-        series.getData().add(new XYChart.Data("Friday",32));
-
+        for (Report report : reportService.getWeeklyCirculation()) {
+            series.getData().add(new XYChart.Data(report.getDayOfWeek(),report.getBookBorowedCount()));
+        }
         lineChart.getData().add(series);
 
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loadChart();
     }
 }

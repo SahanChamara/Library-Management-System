@@ -19,6 +19,7 @@ public class DaoFactory {
             case BOOKMANAGE: return (T) new BookManageDaoImpl();
             case DASHBOARD:return (T) new DashboardDaoImpl();
             case MEMBER:return (T) new MemberManageDaoImpl();
+            case REPORT: return (T) new ReportDaoImpl();
         }
         return null;
     }

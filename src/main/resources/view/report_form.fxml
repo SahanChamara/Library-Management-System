@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="1086.0" prefWidth="1921.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.report.ReportFormController">
+<AnchorPane prefHeight="1086.0" prefWidth="1921.0" stylesheets="@../styles/reportChart.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.report.ReportFormController">
    <children>
       <Label layoutX="444.0" layoutY="27.0" prefHeight="48.0" prefWidth="346.0" text="Report">
          <font>

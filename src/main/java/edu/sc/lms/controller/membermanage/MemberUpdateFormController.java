@@ -25,7 +25,7 @@ public class MemberUpdateFormController {
 
     private String selectedMemberId;
 
-    MemberService memberService = ServiceFactory.getInstanace().getServiceType(ServiceType.MEMBER);
+    MemberService memberService = ServiceFactory.getInstance().getServiceType(ServiceType.MEMBER);
 
     void setSelectedMemberId(String selectedMemberId) {
         this.selectedMemberId = selectedMemberId;

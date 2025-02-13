@@ -64,7 +64,7 @@ public class LoginFormController {
     private String generateOTP;
     private String existEmail;
 
-    LoginService loginService = ServiceFactory.getInstanace().getServiceType(ServiceType.LOGIN);
+    LoginService loginService = ServiceFactory.getInstance().getServiceType(ServiceType.LOGIN);
 
     @FXML
     void btnBackMouseClick(MouseEvent event) {

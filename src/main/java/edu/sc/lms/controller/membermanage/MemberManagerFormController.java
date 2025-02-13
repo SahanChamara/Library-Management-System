@@ -2,7 +2,6 @@ package edu.sc.lms.controller.membermanage;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
-import edu.sc.lms.controller.bookmanage.BookUpdateFormController;
 import edu.sc.lms.dto.Member;
 import edu.sc.lms.service.ServiceFactory;
 import edu.sc.lms.service.custom.MemberService;
@@ -69,7 +68,7 @@ public class MemberManagerFormController implements Initializable {
     @FXML
     private JFXTextField txtSearchMember;
 
-    MemberService memberService = ServiceFactory.getInstanace().getServiceType(ServiceType.MEMBER);
+    MemberService memberService = ServiceFactory.getInstance().getServiceType(ServiceType.MEMBER);
 
     @FXML
     void btnAddMemberOnAction(ActionEvent event) throws IOException {

@@ -1,6 +1,5 @@
 package edu.sc.lms.controller.bookmanage;
 
-import com.google.inject.Inject;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import edu.sc.lms.dto.Book;
@@ -53,7 +52,7 @@ public class BookAddFormController implements Initializable {
     private String imgpath;
 
 
-    BookManageService bookManageService = ServiceFactory.getInstanace().getServiceType(ServiceType.BOOKMANAGE);
+    BookManageService bookManageService = ServiceFactory.getInstance().getServiceType(ServiceType.BOOKMANAGE);
 
     @FXML
     void btnAddBookOnAction(ActionEvent event) throws IOException {

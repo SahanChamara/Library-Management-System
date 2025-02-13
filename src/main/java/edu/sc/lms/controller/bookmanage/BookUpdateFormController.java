@@ -46,7 +46,7 @@ public class BookUpdateFormController implements Initializable {
     public String selectedBookId;
     private String imgpath;
 
-    BookManageService bookManageService = ServiceFactory.getInstanace().getServiceType(ServiceType.BOOKMANAGE);
+    BookManageService bookManageService = ServiceFactory.getInstance().getServiceType(ServiceType.BOOKMANAGE);
 
     @FXML
     void btnEditBookCoverImageOnAction(ActionEvent event) {

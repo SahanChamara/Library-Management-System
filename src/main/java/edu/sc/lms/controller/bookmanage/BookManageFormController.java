@@ -1,6 +1,5 @@
 package edu.sc.lms.controller.bookmanage;
 
-import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -77,7 +76,7 @@ public class BookManageFormController implements Initializable {
 
     ObservableList<Book> bookObservableList;
 
-    BookManageService bookManageService = ServiceFactory.getInstanace().getServiceType(ServiceType.BOOKMANAGE);
+    BookManageService bookManageService = ServiceFactory.getInstance().getServiceType(ServiceType.BOOKMANAGE);
 
     @FXML
     void btnAddNewBookOnAction(ActionEvent event) throws IOException {

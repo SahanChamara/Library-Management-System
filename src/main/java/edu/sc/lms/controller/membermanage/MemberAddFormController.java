@@ -25,7 +25,7 @@ public class MemberAddFormController {
     @FXML
     private JFXTextField txtMemberName;
 
-    MemberService memberService = ServiceFactory.getInstanace().getServiceType(ServiceType.MEMBER);
+    MemberService memberService = ServiceFactory.getInstance().getServiceType(ServiceType.MEMBER);
 
     @FXML
     void btnAddMemberOnAction(ActionEvent event) {

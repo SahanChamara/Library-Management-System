@@ -1,0 +1,9 @@
+.default-color0.chart-series-line {
+    -fx-stroke: #102E5D; /* Dark Blue */
+    -fx-stroke-width: 2px;
+    -fx-effect: dropshadow(gaussian, #000000, 5, 0.5, 0, 0);
+}
+.default-color0.chart-line-symbol {
+    -fx-background-color: white, #102E5D;
+    -fx-background-radius: 5px;
+}
