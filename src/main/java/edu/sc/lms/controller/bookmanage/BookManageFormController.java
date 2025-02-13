@@ -174,7 +174,7 @@ public class BookManageFormController implements Initializable {
 
     public void btnGetBookReportOnAction(ActionEvent actionEvent) {
         try {
-            JasperDesign design = JRXmlLoader.load("src/main/resources/reports/Book Report.jrxml");
+            JasperDesign design = JRXmlLoader.load("src/main/resources/reports/BookReport.jrxml");
             JasperReport jasperReport = JasperCompileManager.compileReport(design);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
             //JasperExportManager.exportReportToPdfFile(jasperPrint,"Book_Report.pdf");

@@ -1,0 +1,137 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="BookReport" language="java" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13acf49e-4913-4d1b-bccc-113817ad15d1">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50.0" bold="false"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18.0" bold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14.0" bold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle mode="Opaque" backcolor="#F0EFEF">
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+		</conditionalStyle>
+	</style>
+	<query language="SQL"><![CDATA[SELECT 
+    b.BookTitle,
+    b.ISBN,
+    b.price,
+    b.AvailableQty,
+    CASE 
+        WHEN b.AvailableQty = 0 THEN 'Out of Stock'
+        WHEN b.AvailableQty < 5 THEN 'Low Stock'
+        ELSE 'In Stock'
+    END as StockStatus
+FROM book b
+ORDER BY b.AvailableQty ASC;]]></query>
+	<field name="BookTitle" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="BookTitle"/>
+		<property name="com.jaspersoft.studio.field.label" value="BookTitle"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="book"/>
+	</field>
+	<field name="ISBN" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ISBN"/>
+		<property name="com.jaspersoft.studio.field.label" value="ISBN"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="book"/>
+	</field>
+	<field name="price" class="java.lang.Double">
+		<property name="com.jaspersoft.studio.field.name" value="price"/>
+		<property name="com.jaspersoft.studio.field.label" value="price"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="book"/>
+	</field>
+	<field name="AvailableQty" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="AvailableQty"/>
+		<property name="com.jaspersoft.studio.field.label" value="AvailableQty"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="book"/>
+	</field>
+	<field name="StockStatus" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="StockStatus"/>
+		<property name="com.jaspersoft.studio.field.label" value="StockStatus"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="132" splitType="Stretch">
+		<element kind="frame" uuid="6c6ca4e1-17cd-4913-93d6-5e670ea9ae8a" mode="Opaque" x="0" y="0" width="553" height="95" backcolor="#0E3D73">
+			<element kind="staticText" uuid="a2a2cac8-5a7d-4487-8c54-dab235ce4e21" x="67" y="0" width="358" height="66" bold="false" hTextAlign="Center" style="Title">
+				<text><![CDATA[LibraryMS]]></text>
+			</element>
+			<element kind="staticText" uuid="8978eac3-c578-41c9-837e-48d2b0184642" x="128" y="66" width="249" height="29" fontSize="22.0" bold="false" hTextAlign="Center" style="SubTitle">
+				<text><![CDATA[Book Inventory Status Report]]></text>
+			</element>
+			<element kind="image" uuid="359f64b9-4280-4c0f-8319-aee7b5964912" x="450" y="10" width="102" height="79">
+				<expression><![CDATA["D:/Lectures and Assignments ICET/JavaFX/Final Project/Libraray Management System/Project File/Library-Management-System/src/main/resources/assets/Logo/Library_MS-remove bg.png"]]></expression>
+			</element>
+		</element>
+		<element kind="frame" uuid="e3c14156-5b51-4201-918b-97fdc012e5d4" mode="Opaque" x="0" y="100" width="553" height="32" forecolor="#000000" backcolor="#FFFFFF">
+			<element kind="textField" uuid="5c3301e7-a737-4c59-8a2f-a6c79fd1adb8" x="409" y="11" width="144" height="20" forecolor="#030000" fontSize="12.0" pattern="EEEEE dd MMMMM yyyy" hTextAlign="Right">
+				<expression><![CDATA[new java.util.Date()]]></expression>
+			</element>
+		</element>
+	</title>
+	<pageHeader splitType="Stretch"/>
+	<columnHeader height="26" splitType="Stretch">
+		<element kind="staticText" uuid="1989fa6d-5c38-4e65-a854-2d056feb645b" x="0" y="7" width="140" height="18" forecolor="#000000" bold="false" hTextAlign="Center" style="Column header">
+			<text><![CDATA[BookTitle]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8363003a-f98e-48e2-b8a5-31130ddc760b"/>
+		</element>
+		<element kind="staticText" uuid="c895e1ff-40b7-4aba-ba98-e1dfa3a8d2eb" x="149" y="7" width="111" height="18" forecolor="#000000" bold="false" hTextAlign="Center" style="Column header">
+			<text><![CDATA[ISBN]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5fa07d59-9af0-4145-a0fb-00f86d737652"/>
+		</element>
+		<element kind="staticText" uuid="00835547-d7b9-4fe0-a3e9-788c8791d49f" x="266" y="7" width="58" height="18" forecolor="#000000" bold="false" hTextAlign="Center" style="Column header">
+			<text><![CDATA[price]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f96d9aa0-6e01-47cf-b135-b973089bcd47"/>
+		</element>
+		<element kind="staticText" uuid="be6ce531-b51a-436e-adf4-bc787cc960f5" x="333" y="7" width="111" height="18" forecolor="#000000" bold="false" hTextAlign="Center" style="Column header">
+			<text><![CDATA[AvailableQty]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5febf967-67a7-41f3-9b4d-f41b7d708a67"/>
+		</element>
+		<element kind="staticText" uuid="5d5c6c49-54e2-4083-9970-acd927242813" x="454" y="7" width="101" height="18" forecolor="#000000" bold="false" style="Column header">
+			<text><![CDATA[StockStatus]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2a543273-9816-4c59-9920-97311bad217e"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<element kind="frame" uuid="b50221b5-8254-440b-8c6f-1f0b138c9259" mode="Opaque" x="0" y="0" width="555" height="18" style="Row">
+				<element kind="textField" uuid="6e7eab90-be56-46cd-8f4b-dd56e8898246" positionType="Float" x="0" y="0" width="140" height="18" fontSize="14.0" textAdjust="StretchHeight" hTextAlign="Center" style="Detail">
+					<expression><![CDATA[$F{BookTitle}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8363003a-f98e-48e2-b8a5-31130ddc760b"/>
+				</element>
+				<element kind="textField" uuid="457bce29-cbd3-4635-ba09-a891beea98a1" positionType="Float" x="149" y="0" width="111" height="18" fontSize="14.0" textAdjust="StretchHeight" hTextAlign="Center" style="Detail">
+					<expression><![CDATA[$F{ISBN}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5fa07d59-9af0-4145-a0fb-00f86d737652"/>
+				</element>
+				<element kind="textField" uuid="1b5d1463-d3fa-4041-87bc-c16a2c4481a4" positionType="Float" x="266" y="0" width="58" height="18" fontSize="14.0" textAdjust="StretchHeight" hTextAlign="Center" style="Detail">
+					<expression><![CDATA[$F{price}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f96d9aa0-6e01-47cf-b135-b973089bcd47"/>
+				</element>
+				<element kind="textField" uuid="730206fa-0ef7-4bee-aa9a-4cc3a44f7c48" positionType="Float" x="333" y="0" width="111" height="18" fontSize="14.0" textAdjust="StretchHeight" hTextAlign="Center" style="Detail">
+					<expression><![CDATA[$F{AvailableQty}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5febf967-67a7-41f3-9b4d-f41b7d708a67"/>
+				</element>
+				<element kind="textField" uuid="12477052-5c3d-4356-82a5-fb4a9b066bcd" positionType="Float" x="454" y="0" width="101" height="18" fontSize="14.0" textAdjust="StretchHeight" style="Detail">
+					<expression><![CDATA[$F{StockStatus}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2a543273-9816-4c59-9920-97311bad217e"/>
+				</element>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="7" splitType="Stretch">
+		<element kind="line" uuid="1133a906-5b71-476e-9f3e-bc97c97058c1" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1">
+			<pen lineWidth="0.5" lineColor="#999999"/>
+		</element>
+	</columnFooter>
+	<pageFooter height="25" splitType="Stretch">
+		<element kind="frame" uuid="729c3539-f946-4d0e-a0a7-bda2815ea1b0" mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000">
+			<element kind="textField" uuid="4834e99c-7f6c-485a-b098-50e5187f2ab4" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" fontSize="10.0" evaluationTime="Report" bold="false" vTextAlign="Middle" style="Column header">
+				<expression><![CDATA[" " + $V{PAGE_NUMBER}]]></expression>
+			</element>
+			<element kind="textField" uuid="9825b46e-76f1-469a-abb8-a1cc27aad685" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" fontSize="10.0" bold="false" hTextAlign="Right" vTextAlign="Middle" style="Column header">
+				<expression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></expression>
+			</element>
+			<element kind="textField" uuid="137d38c7-1a83-4fc5-b156-9d5f1b1a0ddc" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" fontSize="10.0" pattern="EEEEE dd MMMMM yyyy" bold="false" vTextAlign="Middle" style="Column header">
+				<expression><![CDATA[new java.util.Date()]]></expression>
+			</element>
+		</element>
+	</pageFooter>
+	<summary splitType="Stretch"/>
+</jasperReport>
