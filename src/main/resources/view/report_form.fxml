@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="1086.0" prefWidth="1921.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.report.ReportFormController">
+   <children>
+      <Label layoutX="444.0" layoutY="27.0" prefHeight="48.0" prefWidth="346.0" text="Report">
+         <font>
+            <Font name="System Bold" size="27.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="444.0" layoutY="84.0" prefHeight="123.0" prefWidth="312.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+         <children>
+            <Label layoutX="23.0" layoutY="14.0" prefHeight="31.0" prefWidth="120.0" text="Total Circulation">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTotalCirculation" layoutX="23.0" layoutY="46.0" prefHeight="31.0" prefWidth="56.0" text="100">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="804.0" layoutY="84.0" prefHeight="123.0" prefWidth="312.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+         <children>
+            <Label layoutX="23.0" layoutY="14.0" prefHeight="31.0" prefWidth="120.0" text="Active Member">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblActiveMember" layoutX="23.0" layoutY="46.0" prefHeight="31.0" prefWidth="56.0" text="100">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1169.0" layoutY="82.0" prefHeight="123.0" prefWidth="312.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+         <children>
+            <Label layoutX="23.0" layoutY="14.0" prefHeight="31.0" prefWidth="120.0" text="Total Fines">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblTotalFine" layoutX="23.0" layoutY="46.0" prefHeight="31.0" prefWidth="56.0" text="100">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="1521.0" layoutY="80.0" prefHeight="123.0" prefWidth="312.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+         <children>
+            <Label layoutX="23.0" layoutY="14.0" prefHeight="31.0" prefWidth="120.0" text="OverdueRate">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblOverdueRate" layoutX="23.0" layoutY="46.0" prefHeight="31.0" prefWidth="56.0" text="100">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <LineChart fx:id="lineChart" layoutX="447.0" layoutY="267.0" prefHeight="389.0" prefWidth="672.0" title="Monthly Circulation Trends">
+        <xAxis>
+          <CategoryAxis fx:id="lineChartMonthlyCirculation" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis side="LEFT" />
+        </yAxis>
+      </LineChart>
+   </children>
+</AnchorPane>

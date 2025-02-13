@@ -4,6 +4,7 @@ import com.google.inject.Inject;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import edu.sc.lms.dbconnection.DBConnection;
 import edu.sc.lms.dto.Book;
 import edu.sc.lms.service.ServiceFactory;
 import edu.sc.lms.service.custom.BookManageService;
@@ -19,9 +20,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -165,5 +171,17 @@ public class BookManageFormController implements Initializable {
         ObservableList<Book> searchBook = FXCollections.observableArrayList();
         searchBook.add(book);
         tblBooks.setItems(searchBook);
+    }
+
+    public void btnGetBookReportOnAction(ActionEvent actionEvent) {
+        try {
+            JasperDesign design = JRXmlLoader.load("src/main/resources/reports/Book Report.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(design);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
+            //JasperExportManager.exportReportToPdfFile(jasperPrint,"Book_Report.pdf");
+            JasperViewer.viewReport(jasperPrint,false);
+        } catch (JRException | SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

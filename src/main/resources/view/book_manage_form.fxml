@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1082.0" prefWidth="1922.0" style="-fx-background-color: #f2eeed;" stylesheets="@../styles/bookmanagement.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.bookmanage.BookManageFormController">
+<AnchorPane prefHeight="1082.0" prefWidth="1922.0" style="-fx-background-color: #f2eeed;" stylesheets="@../styles/bookmanagement.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.sc.lms.controller.bookmanage.BookManageFormController">
    <children>
       <Label layoutX="437.0" layoutY="53.0" prefHeight="46.0" prefWidth="312.0" text="Book Management">
          <font>
@@ -61,5 +61,17 @@
             <Font size="18.0" />
          </font>
       </JFXTextField>
+      <JFXButton layoutX="1545.0" layoutY="127.0" onAction="#btnGetBookReportOnAction" prefHeight="51.0" prefWidth="295.0" text="Get Book Report">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/add.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>

@@ -116,7 +116,8 @@ public class DashboardFormController implements Initializable {
     }
 
     @FXML
-    void btnReportsOnAction(ActionEvent event) {
+    void btnReportsOnAction(ActionEvent event) throws IOException {
+        loadPane("/view/report_form.fxml",anchorPaneDashboard);
 
     }
 
