@@ -87,6 +87,8 @@ public class ReportFormController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        lblTotalFine.setText(reportService.getTotalFine());
+        lblTotalCirculation.setText(String.valueOf(reportService.getTotalCirculations()));
         weeklyCirculationChart();
         popularCategoryPieChart();
         activeMemberbarChart();

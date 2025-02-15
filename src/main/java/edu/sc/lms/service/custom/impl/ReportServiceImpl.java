@@ -45,4 +45,14 @@ public class ReportServiceImpl implements ReportService {
                 .map(fineCollection ->mapper.map(fineCollection, Report.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public String getTotalFine() {
+        return "RS."+reportDao.getTotalFine();
+    }
+
+    @Override
+    public Integer getTotalCirculations() {
+        return reportDao.getTotalCirculations();
+    }
 }

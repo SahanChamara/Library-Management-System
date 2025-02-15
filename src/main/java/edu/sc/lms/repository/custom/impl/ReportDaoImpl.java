@@ -96,6 +96,26 @@ public class ReportDaoImpl implements ReportDao {
     }
 
     @Override
+    public Double getTotalFine() {
+        try {
+            ResultSet rst = CrudUtil.execute("SELECT SUM(fine) FROM fine");
+            return rst.next()? rst.getDouble(1):0.0;
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    @Override
+    public Integer getTotalCirculations() {
+        try {
+            ResultSet rst = CrudUtil.execute("SELECT COUNT(RecordId) FROM Bookrecord");
+            return rst.next()? rst.getInt(1):0;
+        } catch (SQLException e) {
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    @Override
     public boolean add(Report entity) {
         return false;
     }

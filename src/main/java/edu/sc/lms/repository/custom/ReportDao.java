@@ -11,4 +11,6 @@ public interface ReportDao extends CrudDao<Report,Integer> {
     List<ReportEntity> getPopularBookCategoriesByBorrow();
     List<ReportEntity> getActiveMembers();
     List<ReportEntity> getFineCollection();
+    Double getTotalFine();
+    Integer getTotalCirculations();
 }
