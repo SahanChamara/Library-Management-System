@@ -113,8 +113,8 @@ public class LoginFormController {
         properties.put("mail.smtp.host", "smtp.gmail.com");
         properties.put("mail.smtp.port", "587");
 
-        String myEmail = "softhiive@gmail.com";
-        String password = "fwow uhmt rwpr kznj";
+        String myEmail = "libraryms2025@gmail.com";
+        String password = "wucf pmwd yhus ivgh";
 
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override

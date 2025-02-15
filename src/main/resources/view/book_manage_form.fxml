@@ -61,14 +61,14 @@
             <Font size="18.0" />
          </font>
       </JFXTextField>
-      <JFXButton layoutX="1545.0" layoutY="127.0" onAction="#btnGetBookReportOnAction" prefHeight="51.0" prefWidth="295.0" text="Get Book Report">
+      <JFXButton layoutX="1726.0" layoutY="939.0" onAction="#btnGetBookReportOnAction" prefHeight="36.0" prefWidth="165.0" text="Get Book Report">
          <font>
-            <Font name="System Bold" size="23.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
          <graphic>
-            <ImageView fitHeight="35.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="26.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assets/add.png" />
+                  <Image url="@../assets/getReport.png" />
                </image>
             </ImageView>
          </graphic>

@@ -2,6 +2,7 @@ package edu.sc.lms.controller.circulation;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import edu.sc.lms.dbconnection.DBConnection;
 import edu.sc.lms.dto.BookRecord;
 import edu.sc.lms.service.ServiceFactory;
 import edu.sc.lms.service.custom.CirculationService;
@@ -14,8 +15,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.concurrent.Executors;
@@ -238,4 +244,15 @@ public class CirculationManagementFormController implements Initializable {
     }
 
 
+    public void btnGetCirculationReportOnAction(ActionEvent actionEvent) {
+        try {
+            JasperDesign design = JRXmlLoader.load("src/main/resources/reports/Circulation.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(design);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
+            //JasperExportManager.exportReportToPdfFile(jasperPrint,"Book_Report.pdf");
+            JasperViewer.viewReport(jasperPrint,false);
+        } catch (JRException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

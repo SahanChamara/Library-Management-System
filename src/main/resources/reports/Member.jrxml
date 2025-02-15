@@ -1,0 +1,117 @@
+<!-- Created with Jaspersoft Studio version 7.0.1.final using JasperReports Library version 7.0.1-573496633c2b4074e32f433154b543003f7d2498  -->
+<jasperReport name="Member" language="java" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="13acf49e-4913-4d1b-bccc-113817ad15d1">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50.0" bold="false"/>
+	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18.0" bold="false"/>
+	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14.0" bold="true"/>
+	<style name="Detail" mode="Transparent" fontName="Times New Roman"/>
+	<style name="Row" mode="Transparent" fontName="Times New Roman" pdfFontName="Times-Roman">
+		<conditionalStyle mode="Opaque" backcolor="#F0EFEF">
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+		</conditionalStyle>
+	</style>
+	<query language="SQL"><![CDATA[SELECT 
+    DATE_FORMAT(MembershipDate, '%Y-%m') as Month,
+    COUNT(*) as NewMembers,
+    MIN(MembershipDate) as EarliestJoinDate,
+    MAX(MembershipDate) as LatestJoinDate
+FROM member
+GROUP BY DATE_FORMAT(MembershipDate, '%Y-%m')
+ORDER BY Month DESC]]></query>
+	<field name="Month" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Month"/>
+		<property name="com.jaspersoft.studio.field.label" value="Month"/>
+	</field>
+	<field name="NewMembers" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="NewMembers"/>
+		<property name="com.jaspersoft.studio.field.label" value="NewMembers"/>
+	</field>
+	<field name="EarliestJoinDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="EarliestJoinDate"/>
+		<property name="com.jaspersoft.studio.field.label" value="EarliestJoinDate"/>
+	</field>
+	<field name="LatestJoinDate" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="LatestJoinDate"/>
+		<property name="com.jaspersoft.studio.field.label" value="LatestJoinDate"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="132" splitType="Stretch">
+		<element kind="frame" uuid="e3c14156-5b51-4201-918b-97fdc012e5d4" mode="Opaque" x="0" y="100" width="553" height="32" forecolor="#000000" backcolor="#FFFFFF">
+			<element kind="textField" uuid="5c3301e7-a737-4c59-8a2f-a6c79fd1adb8" x="408" y="10" width="144" height="20" forecolor="#030000" fontSize="12.0" pattern="EEEEE dd MMMMM yyyy" hTextAlign="Right">
+				<expression><![CDATA[new java.util.Date()]]></expression>
+			</element>
+		</element>
+		<element kind="frame" uuid="fff43861-062b-4326-a481-86dc88d4b2a5" mode="Opaque" x="0" y="0" width="553" height="95" backcolor="#0E3D73">
+			<element kind="staticText" uuid="f5ea85b7-2ec3-4182-ae89-d342bb884329" x="67" y="0" width="358" height="66" bold="false" hTextAlign="Center" style="Title">
+				<text><![CDATA[LibraryMS]]></text>
+			</element>
+			<element kind="staticText" uuid="26fa5ed2-ac5d-4dd0-a69f-f34cb2d300d3" x="97" y="63" width="322" height="29" fontSize="22.0" bold="false" hTextAlign="Center" style="SubTitle">
+				<text><![CDATA[New Members Monthly Report]]></text>
+			</element>
+			<element kind="image" uuid="c31bb5e1-5619-4337-a2f0-e214e571832b" x="450" y="10" width="102" height="79">
+				<expression><![CDATA["D:/Lectures and Assignments ICET/JavaFX/Final Project/Libraray Management System/Project File/Library-Management-System/src/main/resources/assets/Logo/Library_MS-remove bg.png"]]></expression>
+			</element>
+		</element>
+	</title>
+	<pageHeader splitType="Stretch"/>
+	<columnHeader height="26" splitType="Stretch">
+		<element kind="staticText" uuid="084d1311-2fa2-4884-8fcf-a34e1ec4a5c9" x="0" y="7" width="138" height="18" forecolor="#000000" bold="false" hTextAlign="Center" style="Column header">
+			<text><![CDATA[Month]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="10246bd5-9139-4a85-abfc-0040a6dba47e"/>
+		</element>
+		<element kind="staticText" uuid="6066ee53-0782-4607-a529-7a205c9f9521" x="138" y="7" width="138" height="18" forecolor="#000000" bold="false" hTextAlign="Center" style="Column header">
+			<text><![CDATA[NewMembers]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e12b364-b5aa-4d4e-8c1a-977d1b2c33d8"/>
+		</element>
+		<element kind="staticText" uuid="fbb55561-ab18-43c3-bfa0-38a575de8819" x="276" y="7" width="138" height="18" forecolor="#000000" bold="false" hTextAlign="Center" style="Column header">
+			<text><![CDATA[EarliestJoinDate]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2e3b65a6-f6d9-4ef5-8bc0-09f9667598e9"/>
+		</element>
+		<element kind="staticText" uuid="fcb2379e-96f5-4425-906b-f4328be9fa38" x="414" y="7" width="138" height="18" forecolor="#000000" bold="false" hTextAlign="Center" style="Column header">
+			<text><![CDATA[LatestJoinDate]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="928e21b2-a4fd-420d-93d0-57a50106e0bc"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="18" splitType="Stretch">
+			<element kind="frame" uuid="b50221b5-8254-440b-8c6f-1f0b138c9259" mode="Opaque" x="0" y="0" width="555" height="18" style="Row">
+				<element kind="textField" uuid="630e0628-a388-450c-afd9-cedb18b4b8ea" positionType="Float" x="0" y="0" width="138" height="18" fontSize="14.0" textAdjust="StretchHeight" hTextAlign="Center" style="Detail">
+					<expression><![CDATA[$F{Month}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="10246bd5-9139-4a85-abfc-0040a6dba47e"/>
+				</element>
+				<element kind="textField" uuid="b62d8f03-5bfe-4bd4-a2b3-1083f601c5f5" positionType="Float" x="138" y="0" width="138" height="18" fontSize="14.0" textAdjust="StretchHeight" hTextAlign="Center" style="Detail">
+					<expression><![CDATA[$F{NewMembers}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e12b364-b5aa-4d4e-8c1a-977d1b2c33d8"/>
+				</element>
+				<element kind="textField" uuid="c2649653-e308-40b6-adb6-5fecd8388954" positionType="Float" x="276" y="0" width="138" height="18" fontSize="14.0" textAdjust="StretchHeight" hTextAlign="Center" style="Detail">
+					<expression><![CDATA[$F{EarliestJoinDate}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2e3b65a6-f6d9-4ef5-8bc0-09f9667598e9"/>
+				</element>
+				<element kind="textField" uuid="6e4784a2-cf0a-40ef-9750-11584c9d2b74" positionType="Float" x="414" y="0" width="138" height="18" fontSize="14.0" textAdjust="StretchHeight" hTextAlign="Center" style="Detail">
+					<expression><![CDATA[$F{LatestJoinDate}]]></expression>
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="928e21b2-a4fd-420d-93d0-57a50106e0bc"/>
+				</element>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="7" splitType="Stretch">
+		<element kind="line" uuid="1133a906-5b71-476e-9f3e-bc97c97058c1" positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1">
+			<pen lineWidth="0.5" lineColor="#999999"/>
+		</element>
+	</columnFooter>
+	<pageFooter height="25" splitType="Stretch">
+		<element kind="frame" uuid="729c3539-f946-4d0e-a0a7-bda2815ea1b0" mode="Opaque" x="0" y="1" width="555" height="24" forecolor="#D0B48E" backcolor="#000000">
+			<element kind="textField" uuid="4834e99c-7f6c-485a-b098-50e5187f2ab4" x="513" y="0" width="40" height="20" forecolor="#FFFFFF" fontSize="10.0" evaluationTime="Report" bold="false" vTextAlign="Middle" style="Column header">
+				<expression><![CDATA[" " + $V{PAGE_NUMBER}]]></expression>
+			</element>
+			<element kind="textField" uuid="9825b46e-76f1-469a-abb8-a1cc27aad685" x="433" y="0" width="80" height="20" forecolor="#FFFFFF" fontSize="10.0" bold="false" hTextAlign="Right" vTextAlign="Middle" style="Column header">
+				<expression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></expression>
+			</element>
+			<element kind="textField" uuid="137d38c7-1a83-4fc5-b156-9d5f1b1a0ddc" x="2" y="1" width="197" height="20" forecolor="#FFFFFF" fontSize="10.0" pattern="EEEEE dd MMMMM yyyy" bold="false" vTextAlign="Middle" style="Column header">
+				<expression><![CDATA[new java.util.Date()]]></expression>
+			</element>
+		</element>
+	</pageFooter>
+	<summary splitType="Stretch"/>
+</jasperReport>

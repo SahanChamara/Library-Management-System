@@ -2,6 +2,7 @@ package edu.sc.lms.controller.membermanage;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import edu.sc.lms.dbconnection.DBConnection;
 import edu.sc.lms.dto.Member;
 import edu.sc.lms.service.ServiceFactory;
 import edu.sc.lms.service.custom.MemberService;
@@ -21,9 +22,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -159,5 +165,18 @@ public class MemberManagerFormController implements Initializable {
 
         lblTotalMember.setText(String.valueOf(memberService.totalMembers()));
         loadMemberTable();
+    }
+
+    public void btnGetMembersReportOnAction(ActionEvent actionEvent) {
+        try {
+            JasperDesign design = JRXmlLoader.load("src/main/resources/reports/Member.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(design);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, DBConnection.getInstance().getConnection());
+            //JasperExportManager.exportReportToPdfFile(jasperPrint,"Book_Report.pdf");
+            JasperViewer.viewReport(jasperPrint,false);
+        } catch (JRException | SQLException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 }
