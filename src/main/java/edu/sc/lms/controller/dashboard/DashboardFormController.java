@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
@@ -85,35 +86,46 @@ public class DashboardFormController implements Initializable {
 
     @FXML
     void btnBookManagementOnAction(ActionEvent event) throws IOException {
-        loadPane("/view/book_manage_form.fxml",anchorPaneDashboard);
+        loadPane("/view/book_manage_form.fxml", anchorPaneDashboard);
     }
 
     @FXML
     void btnCirculationOnAction(ActionEvent event) throws IOException {
-        loadPane("/view/circulation_management_form.fxml",anchorPaneDashboard);
+        loadPane("/view/circulation_management_form.fxml", anchorPaneDashboard);
 
     }
 
     @FXML
     void btnDashboardOnAction(ActionEvent event) throws IOException {
-        loadPane("/view/dashboard_form.fxml",anchorPaneDashboard);
+        loadPane("/view/dashboard_form.fxml", anchorPaneDashboard);
 
     }
 
     @FXML
     void btnLogOutOnAction(ActionEvent event) {
+        Stage stage = new Stage();
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/login_form.fxml"))));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        stage.show();
+        Stage currentStage = (Stage) anchorPaneDashboard.getScene().getWindow();
+        if (currentStage != null) {
+            currentStage.close();
+        }
 
     }
 
     @FXML
     void btnMembersOnAction(ActionEvent event) throws IOException {
-        loadPane("/view/member_management_form.fxml",anchorPaneDashboard);
+        loadPane("/view/member_management_form.fxml", anchorPaneDashboard);
 
     }
 
     @FXML
     void btnReportsOnAction(ActionEvent event) throws IOException {
-        loadPane("/view/report_form.fxml",anchorPaneDashboard);
+        loadPane("/view/report_form.fxml", anchorPaneDashboard);
 
     }
 
@@ -163,7 +175,7 @@ public class DashboardFormController implements Initializable {
         }
     }
 
-    void loadPane(String fxmlPath,AnchorPane pane) throws IOException {
+    void loadPane(String fxmlPath, AnchorPane pane) throws IOException {
         URL resource = this.getClass().getResource(fxmlPath);
         assert resource != null;
         Parent form = FXMLLoader.load(resource);

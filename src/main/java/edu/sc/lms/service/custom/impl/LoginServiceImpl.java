@@ -73,11 +73,6 @@ public class LoginServiceImpl implements LoginService {
             }
             return true;
         }
-        /*try {
-            Transport.send(message);
-        } catch (MessagingException e) {
-            throw new IllegalArgumentException(e);
-        }*/
         return false;
     }
 

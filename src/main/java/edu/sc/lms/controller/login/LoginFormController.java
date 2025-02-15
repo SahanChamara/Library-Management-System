@@ -115,6 +115,10 @@ public class LoginFormController {
             try {
                 stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/dashboard_form.fxml"))));
                 stage.show();
+                Stage currentStage = (Stage) txtEmail.getScene().getWindow();
+                if (currentStage != null) {
+                    currentStage.close();
+                }
             } catch (IOException e) {
                 throw new IllegalArgumentException(e);
             }
