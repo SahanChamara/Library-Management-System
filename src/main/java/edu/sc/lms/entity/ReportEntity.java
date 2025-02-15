@@ -12,4 +12,8 @@ import lombok.ToString;
 public class ReportEntity {
     private String dayOfWeek;
     private Integer bookBorowedCount;
+    private String bookCategory;
+    private Integer borrowedCountAnBookCategory;
+    private Integer activeMemberCount;
+    private Double totalFineCollection;
 }

@@ -8,4 +8,7 @@ import java.util.List;
 
 public interface ReportDao extends CrudDao<Report,Integer> {
     List<ReportEntity> getWeeklyCirculation();
+    List<ReportEntity> getPopularBookCategoriesByBorrow();
+    List<ReportEntity> getActiveMembers();
+    List<ReportEntity> getFineCollection();
 }

@@ -126,7 +126,6 @@ public class DashboardFormController implements Initializable {
             book.setBookTitle(bookDatabase.getBookTitle());
             book.setPrice(bookDatabase.getPrice());
             book.setBookCoverImg(bookDatabase.getBookCoverImg());
-            System.out.println(book.getBookCoverImg());
             bookCard.add(book);
         }
         return bookCard;
